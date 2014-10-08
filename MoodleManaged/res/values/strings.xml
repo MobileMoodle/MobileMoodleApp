@@ -1,5 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">MoodleManaged</string>
+    <string name="app_name">Moodle Managed</string>
+    <string name="title_activity_main">Courses</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
