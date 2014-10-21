@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" 
+	android:padding="5dp" 
+	tools:context=".Courses_Main_Activity">
+
+	<Button
+	    android:id="@+id/office_hours_btn"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/course_view_course_name"
+	    android:layout_below="@+id/course_view_course_name"
+	    android:minHeight="32dp"
+	    android:minWidth="128dp"
+	    android:text="@string/office_hours"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	<TextView
+	    android:id="@+id/course_view_course_name"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:text="Course Name"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	<Button
+	    android:id="@+id/notifications_bubble"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    android:minWidth="48dp"
+	    android:text="3" />
+
+	<Button
+	    android:id="@+id/syllabus_btn"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/office_hours_btn"
+	    android:layout_alignBottom="@+id/office_hours_btn"
+	    android:layout_toLeftOf="@+id/notifications_bubble"
+	    android:minHeight="32dp"
+	    android:minWidth="128dp"
+	    android:text="@string/syllabus"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>

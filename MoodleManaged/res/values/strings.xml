@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    
+	<!-- A -->
     <string name="app_name">Moodle Managed</string>
+    <!-- B -->
+    <!-- C -->
+    <!-- D -->
+    <!-- E -->
+    <!-- F -->
+    <!-- G -->
+    <!-- H -->
+    <!-- I -->
+    <!-- J -->
+    <!-- K -->
+    <!-- L -->
+    <!-- M -->
+    <!-- N -->
+    <!-- O -->
+    <string name="office_hours">Office Hours</string>
+    <!-- P -->
+    <!-- Q -->
+    <!-- R -->
+    <!-- S -->
+    <string name="syllabus">Syllabus</string>
+    <!-- T -->
     <string name="title_activity_main">Courses</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_search">Search</string>
-    <string name="action_overflow">Navigation</string>
-
+    <!-- U -->
+    <!-- V -->
+    <!-- W -->
+    <!-- X -->
+    <!-- Y -->
+    <!-- Z -->
+   
 </resources>

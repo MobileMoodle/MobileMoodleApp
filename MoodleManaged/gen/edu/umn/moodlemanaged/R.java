@@ -858,10 +858,180 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070003;
+        public static final int abc_search_url_text_holo=0x7f07005c;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
+        public static final int accessibility_focus_highlight=0x7f07005b;
+        public static final int background_dark=0x7f070007;
+        public static final int background_holo_dark=0x7f070032;
+        public static final int background_holo_light=0x7f070033;
+        public static final int background_light=0x7f070008;
+        public static final int black=0x7f070005;
+        public static final int bright_foreground_dark=0x7f070009;
+        public static final int bright_foreground_dark_disabled=0x7f07000b;
+        /**  
+    <color name="bright_foreground_holo_dark">@android:color/background_holo_light</color>
+    <color name="bright_foreground_holo_light">@android:color/background_holo_dark</color>
+    
+         */
+        public static final int bright_foreground_disabled_holo_dark=0x7f070034;
+        public static final int bright_foreground_disabled_holo_light=0x7f070035;
+        public static final int bright_foreground_light=0x7f07000a;
+        public static final int bright_foreground_light_disabled=0x7f07000c;
+        public static final int darker_gray=0x7f07001e;
+        /**  
+    <color name="bright_foreground_dark_inverse">@android:color/bright_foreground_light</color>
+    <color name="bright_foreground_light_inverse">@android:color/bright_foreground_dark</color>
+    
+         */
+        public static final int dim_foreground_dark=0x7f07000d;
+        public static final int dim_foreground_dark_disabled=0x7f07000e;
+        public static final int dim_foreground_dark_inverse=0x7f07000f;
+        public static final int dim_foreground_dark_inverse_disabled=0x7f070010;
+        public static final int dim_foreground_disabled_holo_dark=0x7f070037;
+        public static final int dim_foreground_disabled_holo_light=0x7f07003c;
+        /**  
+    <color name="bright_foreground_inverse_holo_dark">@android:color/bright_foreground_holo_light</color>
+    <color name="bright_foreground_inverse_holo_light">@android:color/bright_foreground_holo_dark</color>
+    
+         */
+        public static final int dim_foreground_holo_dark=0x7f070036;
+        public static final int dim_foreground_holo_light=0x7f07003b;
+        public static final int dim_foreground_inverse_disabled_holo_dark=0x7f070039;
+        public static final int dim_foreground_inverse_disabled_holo_light=0x7f07003e;
+        public static final int dim_foreground_inverse_holo_dark=0x7f070038;
+        public static final int dim_foreground_inverse_holo_light=0x7f07003d;
+        public static final int dim_foreground_light=0x7f070012;
+        public static final int dim_foreground_light_disabled=0x7f070013;
+        public static final int dim_foreground_light_inverse=0x7f070014;
+        public static final int dim_foreground_light_inverse_disabled=0x7f070015;
+        /**  FaceLock 
+         */
+        public static final int facelock_spotlight_mask=0x7f070031;
+        public static final int group_button_dialog_focused_holo_dark=0x7f070045;
+        public static final int group_button_dialog_focused_holo_light=0x7f070047;
+        public static final int group_button_dialog_pressed_holo_dark=0x7f070044;
+        public static final int group_button_dialog_pressed_holo_light=0x7f070046;
+        public static final int highlighted_text_dark=0x7f070017;
+        public static final int highlighted_text_holo_dark=0x7f070040;
+        public static final int highlighted_text_holo_light=0x7f070041;
+        public static final int highlighted_text_light=0x7f070018;
+        public static final int hint_foreground_dark=0x7f070011;
+        public static final int hint_foreground_holo_dark=0x7f07003a;
+        public static final int hint_foreground_holo_light=0x7f07003f;
+        public static final int hint_foreground_light=0x7f070016;
+        /**  A really bright Holo shade of blue 
+         */
+        public static final int holo_blue_bright=0x7f070055;
+        /**  A dark Holo shade of blue 
+         */
+        public static final int holo_blue_dark=0x7f07004f;
+        /**  A light Holo shade of blue 
+         */
+        public static final int holo_blue_light=0x7f07004b;
+        /**  A really bright Holo shade of gray 
+         */
+        public static final int holo_gray_bright=0x7f070056;
+        /**  A light Holo shade of gray 
+         */
+        public static final int holo_gray_light=0x7f07004c;
+        /**  A dark Holo shade of green 
+         */
+        public static final int holo_green_dark=0x7f070050;
+        /**  A light Holo shade of green 
+         */
+        public static final int holo_green_light=0x7f07004d;
+        /**  A dark Holo shade of orange 
+         */
+        public static final int holo_orange_dark=0x7f070054;
+        /**  A light Holo shade of orange 
+         */
+        public static final int holo_orange_light=0x7f070053;
+        /**  A Holo shade of purple 
+         */
+        public static final int holo_purple=0x7f070052;
+        /**  A dark Holo shade of red 
+         */
+        public static final int holo_red_dark=0x7f070051;
+        /**  A light Holo shade of red 
+         */
+        public static final int holo_red_light=0x7f07004e;
+        /**   
+    <drawable name="stat_notify_sync_noanim">@drawable/stat_notify_sync_anim0</drawable>
+    <drawable name="stat_sys_download_done">@drawable/stat_sys_download_done_static</drawable>
+    <drawable name="stat_sys_upload_done">@drawable/stat_sys_upload_anim0</drawable>
+    <drawable name="dialog_frame">@drawable/panel_background</drawable>
+    <drawable name="alert_dark_frame">@drawable/popup_full_dark</drawable>
+    <drawable name="alert_light_frame">@drawable/popup_full_bright</drawable>
+    <drawable name="menu_frame">@drawable/menu_background</drawable>
+    <drawable name="menu_full_frame">@drawable/menu_background_fill_parent_width</drawable>
+    <drawable name="editbox_dropdown_dark_frame">@drawable/editbox_dropdown_background_dark</drawable>
+    <drawable name="editbox_dropdown_light_frame">@drawable/editbox_dropdown_background</drawable>
+
+    <drawable name="dialog_holo_dark_frame">@drawable/dialog_full_holo_dark</drawable>
+    <drawable name="dialog_holo_light_frame">@drawable/dialog_full_holo_light</drawable>
+
+    <drawable name="input_method_fullscreen_background">#fff9f9f9</drawable>
+    <drawable name="input_method_fullscreen_background_holo">@drawable/screen_background_holo_dark</drawable>
+    
+         */
+        public static final int input_method_navigation_guard=0x7f07001c;
+        /**  Keyguard colors 
+         */
+        public static final int keyguard_avatar_frame_color=0x7f070057;
+        public static final int keyguard_avatar_frame_pressed_color=0x7f07005a;
+        public static final int keyguard_avatar_frame_shadow_color=0x7f070058;
+        public static final int keyguard_avatar_nick_color=0x7f070059;
+        public static final int keyguard_text_color_decline=0x7f070029;
+        /**  keyguard tab 
+         */
+        public static final int keyguard_text_color_normal=0x7f070025;
+        public static final int keyguard_text_color_soundoff=0x7f070027;
+        public static final int keyguard_text_color_soundon=0x7f070028;
+        public static final int keyguard_text_color_unlock=0x7f070026;
+        /**  keyguard overscroll widget pager 
+         */
+        public static final int kg_multi_user_text_active=0x7f07002e;
+        public static final int kg_multi_user_text_inactive=0x7f07002f;
+        public static final int kg_widget_pager_gradient=0x7f070030;
+        public static final int legacy_long_pressed_highlight=0x7f07004a;
+        public static final int legacy_pressed_highlight=0x7f070048;
+        public static final int legacy_selected_highlight=0x7f070049;
+        /**  For settings framework 
+         */
+        public static final int lighter_gray=0x7f07001d;
+        public static final int link_text_dark=0x7f070019;
+        public static final int link_text_holo_dark=0x7f070042;
+        public static final int link_text_holo_light=0x7f070043;
+        public static final int link_text_light=0x7f07001a;
+        public static final int lockscreen_clock_am_pm=0x7f07002c;
+        /**  keyguard clock 
+         */
+        public static final int lockscreen_clock_background=0x7f07002a;
+        public static final int lockscreen_clock_foreground=0x7f07002b;
+        public static final int lockscreen_owner_info=0x7f07002d;
+        public static final int perms_costs_money=0x7f070022;
+        /**  For security permissions 
+         */
+        public static final int perms_dangerous_grp_color=0x7f07001f;
+        public static final int perms_dangerous_perm_color=0x7f070020;
+        public static final int safe_mode_text=0x7f070003;
+        public static final int shadow=0x7f070021;
+        /**  For search-related UIs 
+ 
+    <color name="search_url_text_normal">#7fa87f</color>
+    <color name="search_url_text_selected">@android:color/black</color>
+    <color name="search_url_text_pressed">@android:color/black</color>
+    <color name="search_widget_corpus_item_background">@android:color/lighter_gray</color>
+    
+ SlidingTab 
+         */
+        public static final int sliding_tab_text_color_active=0x7f070023;
+        public static final int sliding_tab_text_color_shadow=0x7f070024;
+        public static final int suggestion_highlight_text=0x7f07001b;
+        public static final int transparent=0x7f070006;
+        public static final int white=0x7f070004;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1071,6 +1241,33 @@ containing a value of this type.
         public static final int ic_action_overflow=0x7f020057;
         public static final int ic_action_search=0x7f020058;
         public static final int ic_launcher=0x7f020059;
+        public static final int notification_item_background_color=0x7f02005e;
+        public static final int notification_item_background_color_pressed=0x7f02005f;
+        public static final int notification_template_icon_bg=0x7f020067;
+        public static final int notification_template_icon_low_bg=0x7f020068;
+        public static final int safe_mode_background=0x7f020061;
+        public static final int screen_background_dark=0x7f02005b;
+        /**  Background drawable that can be used for a transparent activity to
+         be able to display a dark UI: this darkens its background to make
+         a dark (default theme) UI more visible. 
+         */
+        public static final int screen_background_dark_transparent=0x7f020062;
+        public static final int screen_background_holo_dark=0x7f020066;
+        /**  For holo theme 
+         */
+        public static final int screen_background_holo_light=0x7f020065;
+        public static final int screen_background_light=0x7f02005a;
+        /**  Background drawable that can be used for a transparent activity to
+         be able to display a light UI: this lightens its background to make
+         a light UI more visible. 
+         */
+        public static final int screen_background_light_transparent=0x7f020063;
+        public static final int search_bar_default_color=0x7f020060;
+        /**  For date picker widget 
+         */
+        public static final int selected_day_background=0x7f020064;
+        public static final int status_bar_closed_default_background=0x7f02005c;
+        public static final int status_bar_opened_default_background=0x7f02005d;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -1084,13 +1281,12 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_search=0x7f05003c;
-        public static final int action_settings=0x7f05003d;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
+        public static final int course_view_course_name=0x7f05003e;
         public static final int default_activity_button=0x7f050028;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
@@ -1105,11 +1301,14 @@ containing a value of this type.
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
         public static final int listMode=0x7f050001;
+        public static final int listView=0x7f05003c;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
+        public static final int notifications_bubble=0x7f05003f;
+        public static final int office_hours_btn=0x7f05003d;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
@@ -1129,6 +1328,7 @@ containing a value of this type.
         public static final int showTitle=0x7f050006;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
+        public static final int syllabus_btn=0x7f050040;
         public static final int tabMode=0x7f050002;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
@@ -1187,10 +1387,8 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int support_simple_spinner_dropdown_item=0x7f030019;
-    }
-    public static final class menu {
-        public static final int courses_actions=0x7f0c0000;
+        public static final int course_view_row=0x7f030019;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1233,11 +1431,34 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
-        public static final int action_overflow=0x7f0a0011;
-        public static final int action_search=0x7f0a0010;
+        /**  A 
+         */
         public static final int app_name=0x7f0a000d;
-        public static final int hello_world=0x7f0a000f;
-        public static final int title_activity_main=0x7f0a000e;
+        /**  B 
+ C 
+ D 
+ E 
+ F 
+ G 
+ H 
+ I 
+ J 
+ K 
+ L 
+ M 
+ N 
+ O 
+         */
+        public static final int office_hours=0x7f0a000e;
+        /**  P 
+ Q 
+ R 
+ S 
+         */
+        public static final int syllabus=0x7f0a000f;
+        /**  T 
+         */
+        public static final int title_activity_main=0x7f0a0010;
     }
     public static final class style {
         /** 
