@@ -7,32 +7,32 @@
 	android:padding="5dp" 
 	tools:context=".Courses_Main_Activity">
 
-	<Button
-	    android:id="@+id/office_hours_btn"
+	<TextView
+	    android:id="@+id/course_view_course_id"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/course_view_course_name"
-	    android:layout_below="@+id/course_view_course_name"
-	    android:minHeight="32dp"
-	    android:minWidth="128dp"
-	    android:text="@string/office_hours"
-	    android:textAppearance="?android:attr/textAppearanceSmall" />
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:layout_toLeftOf="@+id/notifications_bubble"
+	    android:text="Course ID"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	<TextView
 	    android:id="@+id/course_view_course_name"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:layout_alignParentTop="true"
+	    android:layout_above="@+id/office_hours_btn"
+	    android:layout_alignLeft="@+id/course_view_course_id"
+	    android:layout_alignRight="@+id/course_view_course_id"
 	    android:text="Course Name"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
+	    android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	<Button
 	    android:id="@+id/notifications_bubble"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentRight="true"
-	    android:layout_alignParentTop="true"
+	    android:layout_alignTop="@+id/course_view_course_id"
 	    android:minWidth="48dp"
 	    android:text="3" />
 
@@ -42,10 +42,22 @@
 	    android:layout_height="wrap_content"
 	    android:layout_alignBaseline="@+id/office_hours_btn"
 	    android:layout_alignBottom="@+id/office_hours_btn"
-	    android:layout_toLeftOf="@+id/notifications_bubble"
+	    android:layout_toRightOf="@+id/office_hours_btn"
 	    android:minHeight="32dp"
 	    android:minWidth="128dp"
 	    android:text="@string/syllabus"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	<Button
+	    android:id="@+id/office_hours_btn"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/course_view_course_name"
+	    android:layout_below="@+id/notifications_bubble"
+	    android:layout_marginTop="20dp"
+	    android:minHeight="32dp"
+	    android:minWidth="128dp"
+	    android:text="@string/office_hours"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>

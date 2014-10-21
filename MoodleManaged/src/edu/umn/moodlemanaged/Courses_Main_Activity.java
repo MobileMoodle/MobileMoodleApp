@@ -12,9 +12,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class Courses_Main_Activity extends Activity {
-	ListView coursesList;
-	CourseCustomAdapter courseAdapter;
-	ArrayList<String> courseArray = new ArrayList<String>();
+	private final int MAX_NAME_SIZE = 21;
+	private ListView coursesList;
+	private CourseCustomAdapter courseAdapter;
+	private ArrayList<Course> courseArray = new ArrayList<Course>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +26,10 @@ public class Courses_Main_Activity extends Activity {
 		/**
 		 * Add Courses
 		 */
-		courseArray.add("CSCI 5801 Software Engineering I");
-		courseArray.add("GCD 3022 Genetics");
-		courseArray.add("CSCI 3081W Program Design");
-		courseArray.add("CSCI 5115 UI");
+		courseArray.add(new Course("CSCI 5801", "Software Engineering"));
+		courseArray.add(new Course("GCD 3022", "Genetics"));
+		courseArray.add(new Course("CSCI 3081", "Program Design"));
+		courseArray.add(new Course("CSCI 5115", "User Interface Design ..."));
 		
 		/**
 		  * set item into adapter
@@ -37,6 +38,7 @@ public class Courses_Main_Activity extends Activity {
 		coursesList = (ListView) findViewById(R.id.listView);
 		coursesList.setItemsCanFocus(false);
 		coursesList.setAdapter(courseAdapter);
+		
 		/**
 		  * get on item click listener
 		  */

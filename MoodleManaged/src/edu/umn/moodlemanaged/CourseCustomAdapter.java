@@ -14,12 +14,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CourseCustomAdapter extends ArrayAdapter<String> {
+public class CourseCustomAdapter extends ArrayAdapter<Course> {
 	Context context;
 	int layoutResourceId;
-	ArrayList<String> courses = new ArrayList<String>();
+	ArrayList<Course> courses = new ArrayList<Course>();
 
-	public CourseCustomAdapter(Context context, int layoutResourceId, ArrayList<String> courses) {
+	public CourseCustomAdapter(Context context, int layoutResourceId, ArrayList<Course> courses) {
 		super(context, layoutResourceId, courses);
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
@@ -36,6 +36,7 @@ public class CourseCustomAdapter extends ArrayAdapter<String> {
 			row = inflater.inflate(layoutResourceId, parent, false);
 			holder = new CourseHolder();
 			holder.courseName = (TextView) row.findViewById(R.id.course_view_course_name);
+			holder.courseID = (TextView) row.findViewById(R.id.course_view_course_id);
 			holder.btnNotifications = (Button) row.findViewById(R.id.notifications_bubble);
 			holder.btnSyllabus = (Button) row.findViewById(R.id.syllabus_btn);
 			holder.btnOfficeHours = (Button) row.findViewById(R.id.office_hours_btn);
@@ -44,8 +45,9 @@ public class CourseCustomAdapter extends ArrayAdapter<String> {
 			holder = (CourseHolder) row.getTag();
 		}
 		
-		String user = courses.get(position);
-		holder.courseName.setText(user);
+		Course course = courses.get(position);
+		holder.courseName.setText(course.getName());
+		holder.courseName.setText(course.getID());
 		
 		holder.btnNotifications.setOnClickListener(new OnClickListener() {
 
@@ -53,7 +55,7 @@ public class CourseCustomAdapter extends ArrayAdapter<String> {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.i("Edit Button Clicked", "**********");
-				Toast.makeText(context, "Edit button Clicked",
+				Toast.makeText(context, "Notifications button Clicked",
 						Toast.LENGTH_LONG).show();
 			}
 		});
@@ -64,7 +66,7 @@ public class CourseCustomAdapter extends ArrayAdapter<String> {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.i("Delete Button Clicked", "**********");
-				Toast.makeText(context, "Delete button Clicked",
+				Toast.makeText(context, "Syllabus button Clicked",
 						Toast.LENGTH_LONG).show();
 			}
 		});
@@ -75,7 +77,7 @@ public class CourseCustomAdapter extends ArrayAdapter<String> {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.i("Delete Button Clicked", "**********");
-				Toast.makeText(context, "Delete button Clicked",
+				Toast.makeText(context, "Office Hours button Clicked",
 						Toast.LENGTH_LONG).show();
 			}
 		});
@@ -85,6 +87,7 @@ public class CourseCustomAdapter extends ArrayAdapter<String> {
 	}
 
 	static class CourseHolder {
+		TextView courseID;
 		TextView courseName;
 		Button btnNotifications;
 		Button btnSyllabus;
