@@ -35,10 +35,10 @@ public class CustomTabListener<T extends Fragment> implements TabListener {
     
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        if(mFragment==null){
+        if(mFragment==null) {
             mFragment = Fragment.instantiate(mActivity, mClass.getName());
-            ft.add(android.R.id.content,mFragment, mTag);
-        }else{
+            ft.add(android.R.id.content, mFragment, mTag);
+        } else {
             ft.attach(mFragment);
         }
     }

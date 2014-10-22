@@ -1296,6 +1296,8 @@ containing a value of this type.
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
+        public static final int grades_list=0x7f050043;
+        public static final int grades_tab=0x7f050042;
         public static final int home=0x7f050014;
         public static final int homeAsUp=0x7f050005;
         public static final int icon=0x7f05002a;
@@ -1330,6 +1332,7 @@ containing a value of this type.
         public static final int submit_area=0x7f050039;
         public static final int syllabus_btn=0x7f050041;
         public static final int tabMode=0x7f050002;
+        public static final int textView1=0x7f050044;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
@@ -1388,8 +1391,11 @@ containing a value of this type.
         public static final int abc_simple_decor=0x7f030017;
         public static final int courses_tab=0x7f030018;
         public static final int courses_tab_row=0x7f030019;
-        public static final int main_activity=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int grades_tab=0x7f03001a;
+        public static final int grades_tab_group=0x7f03001b;
+        public static final int grades_tab_row=0x7f03001c;
+        public static final int main_activity=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

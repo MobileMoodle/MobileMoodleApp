@@ -12,11 +12,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-import edu.umn.moodlemanaged.adapters.CourseCustomAdapter;
+import edu.umn.moodlemanaged.adapters.CoursesCustomAdapter;
 
 public class CoursesFragment extends Fragment {
 	private ListView coursesList;
-	private CourseCustomAdapter courseAdapter;
+	private CoursesCustomAdapter courseAdapter;
 	private ArrayList<Course> courseArray = new ArrayList<Course>();
 
 	@Override
@@ -35,7 +35,7 @@ public class CoursesFragment extends Fragment {
 		/**
 		  * set item into adapter
 		  */
-		courseAdapter = new CourseCustomAdapter(getActivity(), R.layout.courses_tab_row, courseArray);
+		courseAdapter = new CoursesCustomAdapter(getActivity(), R.layout.courses_tab_row, courseArray);
 		coursesList = (ListView) view.findViewById(R.id.courses_list);
 		coursesList.setItemsCanFocus(false);
 		coursesList.setAdapter(courseAdapter);

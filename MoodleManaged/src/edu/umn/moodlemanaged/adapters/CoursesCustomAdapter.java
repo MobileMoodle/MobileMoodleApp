@@ -18,12 +18,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CourseCustomAdapter extends ArrayAdapter<Course> {
+public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 	Context context;
 	int layoutResourceId;
 	ArrayList<Course> courses = new ArrayList<Course>();
 
-	public CourseCustomAdapter(Context context, int layoutResourceId, ArrayList<Course> courses) {
+	public CoursesCustomAdapter(Context context, int layoutResourceId, ArrayList<Course> courses) {
 		super(context, layoutResourceId, courses);
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
