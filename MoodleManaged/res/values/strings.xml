@@ -5,10 +5,14 @@
     <string name="app_name">Moodle Managed</string>
     <!-- B -->
     <!-- C -->
+    <string name="courses_title">Courses</string>
     <!-- D -->
     <!-- E -->
+    <string name="events_title">Events</string>
+    <string name="error">Error!</string>
     <!-- F -->
     <!-- G -->
+    <string name="grades_title">Grades</string>
     <!-- H -->
     <!-- I -->
     <!-- J -->
@@ -24,7 +28,6 @@
     <!-- S -->
     <string name="syllabus">Syllabus</string>
     <!-- T -->
-    <string name="title_activity_main">Courses</string>
     <!-- U -->
     <!-- V -->
     <!-- W -->

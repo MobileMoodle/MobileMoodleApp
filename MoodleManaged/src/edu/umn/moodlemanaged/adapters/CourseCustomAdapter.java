@@ -1,6 +1,10 @@
-package edu.umn.moodlemanaged;
+package edu.umn.moodlemanaged.adapters;
 
 import java.util.ArrayList;
+
+import edu.umn.moodlemanaged.Course;
+import edu.umn.moodlemanaged.R;
+import edu.umn.moodlemanaged.R.id;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,7 +51,7 @@ public class CourseCustomAdapter extends ArrayAdapter<Course> {
 		
 		Course course = courses.get(position);
 		holder.courseName.setText(course.getName());
-		holder.courseName.setText(course.getID());
+		holder.courseID.setText(course.getID());
 		
 		holder.btnNotifications.setOnClickListener(new OnClickListener() {
 

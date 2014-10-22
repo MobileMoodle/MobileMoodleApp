@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_light"
-    tools:context=".Courses_Main_Activity" >
+    tools:context=".CoursesFragment" >
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/courses_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="5dp"
