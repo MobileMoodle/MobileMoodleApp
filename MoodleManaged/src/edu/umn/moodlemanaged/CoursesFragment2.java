@@ -18,19 +18,22 @@ public class CoursesFragment2 extends Fragment {
 	private ListView coursesList;
 	private CoursesCustomAdapter courseAdapter;
 	private ArrayList<Course> courseArray = new ArrayList<Course>();
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	
+	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		View view = inflater.inflate(R.layout.courses_tab, container, false);
-		
 		/**
 		 * Add Courses
 		 */
 		courseArray.add(new Course("CSCI 2011", "Machine Architecture"));
 		courseArray.add(new Course("PSY 3011", "Animal Behaviour"));
 		courseArray.add(new Course("CSCI 1902", "Boring Class"));
-		courseArray.add(new Course("CSCI 4041", "Intro to Algorithms"));
+		courseArray.add(new Course("CSCI 4041", "Intro to Algorithms"));	
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		View view = inflater.inflate(R.layout.courses_tab, container, false);
 		
 		/**
 		  * set item into adapter
