@@ -4,6 +4,10 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 import edu.umn.moodlemanaged.adapters.CustomTabListener;
 
 public class MoodleManaged extends Activity {
@@ -40,8 +44,35 @@ public class MoodleManaged extends Activity {
         		.setText("Grades")
         		.setTabListener(new CustomTabListener<GradesFragment>(this, "grades", GradesFragment.class));
 
-        actionBar.addTab(tab, 2, false);  
-        
-        
+        actionBar.addTab(tab, 2, false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_events:
+                //TODO
+                return true;
+            case R.id.action_account:
+                //TODO
+                return true;
+            case R.id.action_settings:
+                //TODO
+                return true;
+            case R.id.action_info:
+                //TODO
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
