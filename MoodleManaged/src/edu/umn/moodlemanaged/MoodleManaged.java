@@ -23,7 +23,7 @@ public class MoodleManaged extends Activity {
         /** Creating Events Tab */
         Tab tab = actionBar.newTab()
         		.setText("Events")
-        		.setTabListener(new CustomTabListener<CoursesFragment>(this, "courses", CoursesFragment.class));
+        		.setTabListener(new CustomTabListener<EventsFragment>(this, "events", EventsFragment.class));
         
         actionBar.addTab(tab, 0, false);
         
@@ -31,7 +31,7 @@ public class MoodleManaged extends Activity {
         /** Creating Courses Tab */
         tab = actionBar.newTab()
         		.setText("Courses")
-        		.setTabListener(new CustomTabListener<CoursesFragment2>(this, "courses2", CoursesFragment2.class));
+        		.setTabListener(new CustomTabListener<CoursesFragment>(this, "courses", CoursesFragment.class));
 
         actionBar.addTab(tab, 1, true);      
         

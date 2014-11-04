@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background_light"
-    tools:context=".CoursesFragment" >
+    tools:context=".EventsFragment" >
 
     <ListView
-        android:id="@+id/courses_list"
+        android:id="@+id/event_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="5dp"
