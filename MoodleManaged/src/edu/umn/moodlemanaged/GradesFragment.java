@@ -28,10 +28,10 @@ public class GradesFragment extends Fragment {
 	}
 
 	public void createData() {
-		for (int j = 0; j < 5; j++) {
-			Group group = new Group("Test " + j);
+		for (int j = 0; j < 2; j++) {
+			Group group = new Group("Category " + (j+1) + " 50%");
 			for (int i = 0; i < 5; i++) {
-				group.children.add("Sub Item" + i);
+				group.children.add("Assignment " + (i+1) + " 10%");
 			}
 			groups.append(j, group);
 		}

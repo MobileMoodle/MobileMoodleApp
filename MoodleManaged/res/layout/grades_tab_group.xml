@@ -9,5 +9,5 @@
     android:paddingLeft="32dp"
     android:paddingTop="8dp"
     android:text="@string/grades_title"
-    android:textSize="14sp"
-    android:textStyle="bold" />
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+

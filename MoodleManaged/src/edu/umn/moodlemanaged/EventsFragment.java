@@ -25,10 +25,10 @@ public class EventsFragment extends Fragment {
 		/**
 		 * Add Courses
 		 */
-        eventsArray.add(new Event("Assignment 1", "CSCI 5115", "", "", "11.5", "11:00PM", "", ""));
-        eventsArray.add(new Event("Assignment 2", "CSCI 5115", "", "", "11.5", "11:00PM", "", ""));
-        eventsArray.add(new Event("Assignment 3", "CSCI 5115", "", "", "11.5", "11:00PM", "", ""));
-        eventsArray.add(new Event("Assignment 4", "CSCI 5115", "", "", "11.5", "11:00PM", "", ""));
+        eventsArray.add(new Event("Assignment 1", "CSCI 5115", "", "", "110514", "11:00PM", "", ""));
+        eventsArray.add(new Event("Assignment 2", "CSCI 5115", "", "", "110514", "11:00PM", "", ""));
+        eventsArray.add(new Event("Assignment 3", "CSCI 5115", "", "", "110614", "11:00PM", "", ""));
+        eventsArray.add(new Event("Assignment 4", "CSCI 5115", "", "", "110614", "11:00PM", "", ""));
 	}
 
 	@Override

@@ -8,7 +8,7 @@
     tools:context=".EventsFragment">
 
     <TextView
-        android:id="@+id/event_date_or_course"
+        android:id="@+id/event_list_event_date"
         android:text="Today, November 5th"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
