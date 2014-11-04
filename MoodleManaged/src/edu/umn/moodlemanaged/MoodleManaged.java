@@ -29,7 +29,7 @@ public class MoodleManaged extends Activity {
         /** Creating Events Tab */
         Tab tab = actionBar.newTab()
         		.setText("Events")
-        		.setTabListener(new CustomTabListener<EventsFragment>(this, "events", EventsFragment.class));
+        		.setTabListener(new CustomTabListener<PlanningFragment>(this, "events", PlanningFragment.class));
         
         actionBar.addTab(tab, 0, false);
         

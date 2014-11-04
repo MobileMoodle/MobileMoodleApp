@@ -43,7 +43,7 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.grades_tab_row, null);
 		}
-		text = (TextView) convertView.findViewById(R.id.textView1);
+		text = (TextView) convertView.findViewById(R.id.grades_list_item);
 		text.setText(children);
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override

@@ -2,13 +2,13 @@
 <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/grades_list_grades_group"
-    android:orientation="vertical" 
+    android:id="@+id/planning_list_date"
+    android:orientation="vertical"
     android:layout_marginLeft="5dp"
-    android:gravity="left"
-    android:paddingLeft="32dp"
+    android:gravity="center_horizontal"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
-    android:text="@string/grades_title"
-    android:textAppearance="?android:attr/textAppearanceLarge" />
+    android:text="@string/events_title"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:checked="false" />
 
