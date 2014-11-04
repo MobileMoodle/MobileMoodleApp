@@ -54,21 +54,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoodleManaged.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MoodleManaged.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/MoodleManaged.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="398" max-vertical-offset="1275">
-              <caret line="44" column="70" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
-              <folding />
+            <state vertical-scroll-proportion="0.42078364" vertical-offset="909" max-vertical-offset="1513">
+              <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+              <folding>
+                <element signature="e#2748#2935#0" expanded="true" />
+                <element signature="e#2916#2917#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MoodleManaged/res/menu/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76831347" vertical-offset="144" max-vertical-offset="731">
-              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="731">
+              <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -104,8 +107,8 @@
         <option value="$PROJECT_DIR$/MoodleManaged/res/layout/grades_tab_row.xml" />
         <option value="$PROJECT_DIR$/MoodleManaged/res/layout/grades_tab_group.xml" />
         <option value="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/GradesFragment.java" />
-        <option value="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/MoodleManaged.java" />
         <option value="$PROJECT_DIR$/MoodleManaged/res/menu/main.xml" />
+        <option value="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/MoodleManaged.java" />
       </list>
     </option>
   </component>
@@ -636,7 +639,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="404" max-vertical-offset="1275">
           <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
-          <folding />
+          <folding>
+            <element signature="e#2748#2935#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -700,7 +706,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="884">
           <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="e#2748#2935#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -730,7 +739,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="884">
           <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="e#2748#2935#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -760,7 +772,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
           <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="e#2748#2935#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -790,7 +805,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="816">
           <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding />
+          <folding>
+            <element signature="e#2748#2935#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -966,19 +984,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/MoodleManaged.java">
+    <entry file="file://$PROJECT_DIR$/MoodleManaged/res/menu/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="398" max-vertical-offset="1275">
-          <caret line="44" column="70" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="731">
+          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MoodleManaged/res/menu/main.xml">
+    <entry file="file://$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/MoodleManaged.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76831347" vertical-offset="144" max-vertical-offset="731">
-          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
-          <folding />
+        <state vertical-scroll-proportion="0.42078364" vertical-offset="909" max-vertical-offset="1513">
+          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+          <folding>
+            <element signature="e#2748#2935#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
