@@ -38,13 +38,20 @@ public class CustomTabListener<T extends Fragment> implements TabListener {
 
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        mFragment = Fragment.instantiate(mActivity, mClass.getName());
-        ft.replace(android.R.id.content, mFragment, mTag);
+        if(mFragment == null)
+        {
+            mFragment = Fragment.instantiate(mActivity, mClass.getName());
+            ft.add(android.R.id.content, mFragment, mTag);
+        }
+        else
+        {
+            ft.show(mFragment);
+        }
     }
  
     @Override
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
         if(mFragment!=null)
-            ft.detach(mFragment);
+            ft.hide(mFragment);
     }
 }

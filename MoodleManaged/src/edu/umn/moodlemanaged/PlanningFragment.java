@@ -6,7 +6,11 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
+
+import java.sql.SQLOutput;
 
 import edu.umn.moodlemanaged.adapters.PlanningCustomAdapter;
 
@@ -21,7 +25,7 @@ public class PlanningFragment extends Fragment {
         createData();
 
         ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.planning_list);
-        PlanningCustomAdapter adapter = new PlanningCustomAdapter(getActivity(), groups);
+        final PlanningCustomAdapter adapter = new PlanningCustomAdapter(getActivity(), groups);
         listView.setAdapter(adapter);
         int count = adapter.getGroupCount();
         for (int position = 0; position < count; position++)

@@ -1,15 +1,23 @@
 package edu.umn.moodlemanaged.adapters;
 
 import android.app.Activity;
+import android.graphics.Paint;
+import android.text.Spannable;
+import android.text.style.StrikethroughSpan;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
 import edu.umn.moodlemanaged.Group;
 import edu.umn.moodlemanaged.R;
 
@@ -40,6 +48,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
                              boolean isLastChild, View convertView, ViewGroup parent) {
         final String children = (String) getChild(groupPosition, childPosition);
         TextView text = null;
+        text = null;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.planning_tab_row, null);
         }
@@ -51,6 +60,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
                 Toast.makeText(activity, children, Toast.LENGTH_SHORT).show();
             }
         });
+
         return convertView;
     }
 
