@@ -2,20 +2,20 @@ package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 import edu.umn.moodlemanaged.adapters.PlanningCustomAdapter;
 
 public class PlanningFragment extends Fragment {
-    private SparseArray<Group> groups = new SparseArray<Group>();
+    private ArrayList<Group2> groups = new ArrayList<Group2>();
+    ArrayList<String> isCheckedStatus = new ArrayList<String>();
+    CheckBox check_document;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -23,6 +23,9 @@ public class PlanningFragment extends Fragment {
         View view = inflater.inflate(R.layout.planning_tab, container, false);
 
         createData();
+        for (int i = 0; i < groups.size(); i++) {
+            isCheckedStatus.add("false");
+        }
 
         ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.planning_list);
         final PlanningCustomAdapter adapter = new PlanningCustomAdapter(getActivity(), groups);
@@ -44,23 +47,23 @@ public class PlanningFragment extends Fragment {
     public void createData() {
 
         int j=0;
-        Group group = new Group("Today, November 5th");
+        Group2 group = new Group2("Today, November 5th");
         for (int i = 0; i < 5; i++) {
-            group.children.add("CSCI 5115 Assignmnet " + i + " (11:00PM)");
+            group.children.add(new Eve("CSCI 8011 Assignmnet " + i + " (11:00PM)", false));
         }
-        groups.append(j, group);
+        groups.add(j, group);
         j++;
-        group = new Group("Tomorrow, November 6th");
+        group = new Group2("Tomorrow, November 6th");
         for (int i = 0; i < 5; i++) {
-            group.children.add("CSCI 4131 Assignmnet " + i + " (11:00PM)");
+            group.children.add(new Eve("CSCI 8011 Assignmnet " + i + " (11:00PM)", false));
         }
-        groups.append(j, group);
+        groups.add(j, group);
         j++;
-        group = new Group("Friday, November 7th");
+        group = new Group2("Friday, November 7th");
         for (int i = 0; i < 5; i++) {
-            group.children.add("CSCI 8011 Assignmnet " + i + " (11:00PM)");
+            group.children.add(new Eve("CSCI 8011 Assignmnet " + i + " (11:00PM)", false));
         }
-        groups.append(j, group);
+        groups.add(j, group);
         j++;
 
     }

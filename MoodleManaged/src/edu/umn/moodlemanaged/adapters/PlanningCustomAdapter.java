@@ -1,10 +1,6 @@
 package edu.umn.moodlemanaged.adapters;
 
 import android.app.Activity;
-import android.graphics.Paint;
-import android.text.Spannable;
-import android.text.style.StrikethroughSpan;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,22 +8,21 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
-import edu.umn.moodlemanaged.Group;
+import edu.umn.moodlemanaged.Group2;
 import edu.umn.moodlemanaged.R;
 
 public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
-    private final SparseArray<Group> groups;
+    private final ArrayList<Group2> groups;
     public LayoutInflater inflater;
     public Activity activity;
 
-    public PlanningCustomAdapter(Activity act, SparseArray<Group> groups) {
+    public PlanningCustomAdapter(Activity act, ArrayList<Group2> groups) {
         activity = act;
         this.groups = groups;
         inflater = act.getLayoutInflater();
@@ -44,22 +39,34 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
+    public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        final String children = (String) getChild(groupPosition, childPosition);
+        final String ct = (String) groups.get(groupPosition).children.get(childPosition).text;
         TextView text = null;
-        text = null;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.planning_tab_row, null);
         }
         text = (TextView) convertView.findViewById(R.id.planning_list_event);
-        text.setText(children);
+        text.setText(ct);
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity, children, Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, ct, Toast.LENGTH_SHORT).show();
             }
         });
+
+        final CheckBox cBox = (CheckBox) convertView.findViewById(R.id.plan_check_box);
+        cBox.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                CheckBox cb = (CheckBox) v.findViewById(R.id.plan_check_box);
+                if (cb.isChecked()) {
+                    groups.get(groupPosition).children.get(childPosition).isChecked = true;
+                } else {
+                    groups.get(groupPosition).children.get(childPosition).isChecked = false;
+                }
+            }
+        });
+        cBox.setChecked(groups.get(groupPosition).children.get(childPosition).isChecked);
 
         return convertView;
     }
@@ -100,7 +107,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.planning_tab_group, null);
         }
-        Group group = (Group) getGroup(groupPosition);
+        Group2 group = (Group2) getGroup(groupPosition);
         ((CheckedTextView) convertView).setText(group.string);
         ((CheckedTextView) convertView).setChecked(isExpanded);
         return convertView;
