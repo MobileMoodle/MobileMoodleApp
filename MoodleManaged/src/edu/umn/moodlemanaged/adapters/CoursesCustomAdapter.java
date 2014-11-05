@@ -1,5 +1,6 @@
 package edu.umn.moodlemanaged.adapters;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import edu.umn.moodlemanaged.Course;
@@ -8,17 +9,22 @@ import edu.umn.moodlemanaged.R;
 import edu.umn.moodlemanaged.R.id;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.webkit.WebView;
 
 public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 	Context context;
@@ -76,7 +82,19 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 				Log.i("Delete Button Clicked", "**********");
 				Toast.makeText(context, "Syllabus button Clicked",
 						Toast.LENGTH_LONG).show();
-			}
+
+                File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "syllabus.pdf");
+                Intent target = new Intent(Intent.ACTION_VIEW);
+                target.setDataAndType(Uri.fromFile(file), "application/pdf");
+                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                Intent intent = Intent.createChooser(target, "Open File");
+                try {
+                    context.startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Instruct the user to install a PDF reader here, or something
+                }
+
+            }
 		});
 		
 		holder.btnOfficeHours.setOnClickListener(new OnClickListener() {
