@@ -16,7 +16,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/plan_check_box"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@id/checkbox"
+        android:layout_alignRight="@id/checkbox"/>
 
     <CheckBox
         android:layout_width="wrap_content"

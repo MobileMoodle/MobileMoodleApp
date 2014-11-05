@@ -5,6 +5,9 @@ import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.widget.Toast;
+
+import edu.umn.moodlemanaged.R;
 
 /**
  * @author Alex Schillinger
@@ -31,16 +34,12 @@ public class CustomTabListener<T extends Fragment> implements TabListener {
     public void onTabReselected(Tab tab, FragmentTransaction ft) {
         // Nothing special to do here for this application
     }
- 
-    
+
+
     @Override
     public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        if(mFragment==null) {
-            mFragment = Fragment.instantiate(mActivity, mClass.getName());
-            ft.add(android.R.id.content, mFragment, mTag);
-        } else {
-            ft.attach(mFragment);
-        }
+        mFragment = Fragment.instantiate(mActivity, mClass.getName());
+        ft.replace(android.R.id.content, mFragment, mTag);
     }
  
     @Override
