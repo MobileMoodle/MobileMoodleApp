@@ -3,11 +3,13 @@ package edu.umn.moodlemanaged.adapters;
 import java.util.ArrayList;
 
 import edu.umn.moodlemanaged.Course;
+import edu.umn.moodlemanaged.Notifications;
 import edu.umn.moodlemanaged.R;
 import edu.umn.moodlemanaged.R.id;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +63,8 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 				Log.i("Edit Button Clicked", "**********");
 				Toast.makeText(context, "Notifications button Clicked",
 						Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, Notifications.class);
+                context.startActivity(intent);
 			}
 		});
 		
