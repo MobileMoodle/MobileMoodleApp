@@ -8,7 +8,8 @@
     android:padding="10dp"
     tools:context=".EventsFragment"
     android:weightSum="1"
-    android:background="@drawable/gradient" >
+    android:background="@drawable/gradient"
+    android:gravity="center_vertical" >
 
     <TextView
         android:id="@+id/planning_list_event"

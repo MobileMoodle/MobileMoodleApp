@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:id="@+id/planning_list_date"
     android:orientation="vertical"
@@ -9,6 +9,8 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
     android:text="@string/events_title"
+    android:textColor="@color/white"
+    android:background="@color/black"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:checked="false" />
 
