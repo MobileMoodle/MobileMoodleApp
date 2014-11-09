@@ -59,7 +59,7 @@ public class PlanningFragment extends Fragment {
         j++;
         group = new EventGroupDate("Tomorrow, November 9th");
         group.children.add(new Event("PSY 3011: Read Chapter 10", false));
-        group.children.add(new Event("CSCI 5115: Group Meeting (5:00PM)", false));
+        group.children.add(new Event("CSCI 5115: Group Meeting (5:00pm)", false));
         groups.add(j, group);
         j++;
         group = new EventGroupDate("Monday, November 10th");
@@ -67,11 +67,11 @@ public class PlanningFragment extends Fragment {
         groups.add(j, group);
         j++;
         group = new EventGroupDate("Tuesday, November 11th");
-        group.children.add(new Event("CSCI 4131: Assignment 7 Due (11:55PM)", false));
+        group.children.add(new Event("CSCI 4131: Assignment 7 Due (11:55pm)", false));
         groups.add(j, group);
         j++;
         group = new EventGroupDate("Wednesday, November 12th");
-        group.children.add(new Event("PSY 3011: Chapter 10 Writing Due (11:59PM)", false));
+        group.children.add(new Event("PSY 3011: Chapter 10 Writing Due (11:59pm)", false));
         group.children.add(new Event("PSY 3011: Chapter 10 Quizzes", false));
         groups.add(j, group);
         j++;
@@ -80,9 +80,9 @@ public class PlanningFragment extends Fragment {
         groups.add(j, group);
         j++;
         group = new EventGroupDate("Friday, November 14th");
-        group.children.add(new Event("CSCI 5115: Development Complete (1:30PM)", false));
-        group.children.add(new Event("CSCI 5115: Finalize Testing Plan (1:30PM)", false));
-        group.children.add(new Event("CSCI 5115: Group Meeting (4:00PM)", false));
+        group.children.add(new Event("CSCI 5115: Development Complete (1:30pm)", false));
+        group.children.add(new Event("CSCI 5115: Finalize Testing Plan (1:30pm)", false));
+        group.children.add(new Event("CSCI 5115: Group Meeting (4:00pm)", false));
         groups.add(j, group);
         j++;
         group = new EventGroupDate("Saturday, November 15th");

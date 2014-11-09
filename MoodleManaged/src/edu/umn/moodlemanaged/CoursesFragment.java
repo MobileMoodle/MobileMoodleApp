@@ -2,14 +2,10 @@ package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,17 +40,6 @@ public class CoursesFragment extends Fragment {
 		coursesList = (ListView) view.findViewById(R.id.courses_list);
 		coursesList.setItemsCanFocus(false);
 		coursesList.setAdapter(courseAdapter);
-		
-		/**
-		  * Action when item clicked
-		  */
-		coursesList.setOnItemClickListener(new OnItemClickListener() {
-		    @Override
-		    public void onItemClick(AdapterView<?> parent, View v, final int position, long id) {
-			    Log.i("List View Clicked", "**********");
-		        Toast.makeText(getActivity(), "List View Clicked:" + position, Toast.LENGTH_LONG).show();
-		    }
-		});
 		
 		return view;
 	}	

@@ -14,13 +14,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import edu.umn.moodlemanaged.Course;
-import edu.umn.moodlemanaged.Notifications;
+import edu.umn.moodlemanaged.NotificationsActivity;
+import edu.umn.moodlemanaged.OfficeHoursActivity;
 import edu.umn.moodlemanaged.R;
 
 public class CoursesCustomAdapter extends ArrayAdapter<Course> {
@@ -69,11 +69,8 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Log.i("btnNotifications Button Clicked", "**********");
-				Toast.makeText(context, "Notifications button Clicked",
-						Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, Notifications.class);
+                Intent intent = new Intent(context, NotificationsActivity.class);
                 context.startActivity(intent);
 			}
 		});
@@ -93,6 +90,7 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
                 Intent intent = Intent.createChooser(target, "Open File");
                 try {
                     context.startActivity(intent);
+                    // TODO save a pdf for user to open for MOCKUP
                 } catch (ActivityNotFoundException e) {
                     // Instruct the user to install a PDF reader here, or something
                 }
@@ -104,9 +102,9 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.i("Delete Button Clicked", "**********");
-				Toast.makeText(context, "Office Hours button Clicked",
-						Toast.LENGTH_LONG).show();
+				Log.i("btnOfficeHours Button Clicked", "**********");
+                Intent intent = new Intent(context, OfficeHoursActivity.class);
+                context.startActivity(intent);
 			}
 		});
 		

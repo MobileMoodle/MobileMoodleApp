@@ -8,11 +8,11 @@ import android.view.MenuItem;
 /**
  * Created by kent on 11/4/14.
  */
-public class Notifications extends Activity {
+public class NotificationsActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notifications_layout);
+        setContentView(R.layout.notifications);
 
         ActionBar actionBar = getActionBar();
 

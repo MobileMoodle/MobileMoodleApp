@@ -26,8 +26,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="Notifications"
-            android:label="Moodle Managed" />
+            android:name=".NotificationsActivity"
+            android:label="Notifications" />
+        <activity
+            android:name=".OfficeHoursActivity"
+            android:label="Office Hour" />
     </application>
 
 </manifest>
