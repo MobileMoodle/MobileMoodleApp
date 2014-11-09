@@ -1,6 +1,7 @@
 package edu.umn.moodlemanaged.adapters;
 
 import android.app.Activity;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,19 +43,23 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(final int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        final String ct = (String) groups.get(groupPosition).children.get(childPosition).text;
-        TextView text = null;
+
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.planning_tab_row, null);
         }
-        text = (TextView) convertView.findViewById(R.id.planning_list_event);
+
+        // Event string
+        final String ct = (String) groups.get(groupPosition).children.get(childPosition).text;
+        final TextView text = (TextView) convertView.findViewById(R.id.planning_list_event);
         text.setText(ct);
+        // Activity if selected
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(activity, ct, Toast.LENGTH_SHORT).show();
             }
         });
+
         // Store checkbox state as views are recycled
         final CheckBox cBox = (CheckBox) convertView.findViewById(R.id.plan_check_box);
         cBox.setOnClickListener(new OnClickListener() {
@@ -67,6 +73,20 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
             }
         });
         cBox.setChecked(groups.get(groupPosition).children.get(childPosition).isChecked);
+        cBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        text.setPaintFlags(text.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        text.setTextColor(activity.getApplicationContext().
+                                getResources().getColor(R.color.darker_gray));
+                    } else {
+                        text.setPaintFlags(text.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+                        text.setTextColor(activity.getApplicationContext().
+                                getResources().getColor(R.color.darker_gray));
+                    }
+                }
+            });
 
         return convertView;
     }
