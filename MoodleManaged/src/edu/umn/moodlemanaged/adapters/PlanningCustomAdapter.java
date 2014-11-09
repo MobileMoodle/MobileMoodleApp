@@ -66,9 +66,15 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 CheckBox cb = (CheckBox) v.findViewById(R.id.plan_check_box);
                 if (cb.isChecked()) {
+                    text.setPaintFlags(text.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    text.setTextColor(activity.getApplicationContext().
+                            getResources().getColor(R.color.darker_gray));
                     groups.get(groupPosition).children.get(childPosition).isChecked = true;
                 } else {
                     groups.get(groupPosition).children.get(childPosition).isChecked = false;
+                    text.setPaintFlags(text.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+                    text.setTextColor(activity.getApplicationContext().
+                            getResources().getColor(R.color.black));
                 }
             }
         });
@@ -83,7 +89,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
                     } else {
                         text.setPaintFlags(text.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
                         text.setTextColor(activity.getApplicationContext().
-                                getResources().getColor(R.color.darker_gray));
+                                getResources().getColor(R.color.black));
                     }
                 }
             });
