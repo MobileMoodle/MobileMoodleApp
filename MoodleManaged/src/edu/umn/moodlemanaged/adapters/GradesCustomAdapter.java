@@ -39,10 +39,10 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		final String children = (String) getChild(groupPosition, childPosition);
-		TextView text = null;
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.grades_tab_row, null);
 		}
+        TextView text;
 		text = (TextView) convertView.findViewById(R.id.grades_list_item);
 		text.setText(children);
 		convertView.setOnClickListener(new OnClickListener() {

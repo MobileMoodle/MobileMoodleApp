@@ -13,9 +13,7 @@ import android.view.MenuItem;
 import edu.umn.moodlemanaged.adapters.CustomTabListener;
 
 public class MoodleManaged extends Activity {
-    /** 
-     * Called when the activity is first created. 
-     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,22 +24,22 @@ public class MoodleManaged extends Activity {
        
         actionBar.setDisplayShowTitleEnabled(true);
         
-        /** Creating Events Tab */
+        // Creating Planning Tab
         Tab tab = actionBar.newTab()
-        		.setText("Events")
-        		.setTabListener(new CustomTabListener<PlanningFragment>(this, "events", PlanningFragment.class));
+        		.setText("Planning")
+        		.setTabListener(new CustomTabListener<PlanningFragment>(this, "planning", PlanningFragment.class));
         
         actionBar.addTab(tab, 0, false);
         
         
-        /** Creating Courses Tab */
+        // Creating Courses Tab
         tab = actionBar.newTab()
         		.setText("Courses")
         		.setTabListener(new CustomTabListener<CoursesFragment>(this, "courses", CoursesFragment.class));
 
         actionBar.addTab(tab, 1, true);      
         
-        /** Creating Grades Tab */
+        // Creating Grades Tab
         tab = actionBar.newTab()
         		.setText("Grades")
         		.setTabListener(new CustomTabListener<GradesFragment>(this, "grades", GradesFragment.class));
@@ -78,6 +76,7 @@ public class MoodleManaged extends Activity {
         }
     }
 
+    // Prevent accidental exiting of app
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)

@@ -1,7 +1,5 @@
 package edu.umn.moodlemanaged;
 
-import java.util.ArrayList;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
 import edu.umn.moodlemanaged.adapters.CoursesCustomAdapter;
 
 public class CoursesFragment extends Fragment {
@@ -21,13 +22,14 @@ public class CoursesFragment extends Fragment {
 	
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+        // TODO Integrate with cloud
 		/**
-		 * Add Courses
+		 * Add Courses (Mock-up ONLY)
 		 */
-		courseArray.add(new Course("CSCI 5801", "Software Engineering"));
-		courseArray.add(new Course("GCD 3022", "Genetics"));
-		courseArray.add(new Course("CSCI 3081", "Program Design"));
-		courseArray.add(new Course("CSCI 5115", "User Interface Design ..."));		
+		courseArray.add(new Course("CSCI 4131", "Internet Programming"));
+		courseArray.add(new Course("CSCI 5115", "User Interface Design, Implementation & Evaluation"));
+		courseArray.add(new Course("KIN 5001", "Foundations of Human Factors & Ergonomics"));
+        courseArray.add(new Course("PSY 3011", "Introduction to Learning & Behavior"));
 	}
 
 	@Override
@@ -36,7 +38,7 @@ public class CoursesFragment extends Fragment {
 		View view = inflater.inflate(R.layout.courses_tab, container, false);	
 		
 		/**
-		  * set item into adapter
+		  * Set item into adapter
 		  */
 		courseAdapter = new CoursesCustomAdapter(getActivity(), R.layout.courses_tab_row, courseArray);
 		coursesList = (ListView) view.findViewById(R.id.courses_list);
@@ -44,15 +46,14 @@ public class CoursesFragment extends Fragment {
 		coursesList.setAdapter(courseAdapter);
 		
 		/**
-		  * get on item click listener
+		  * Action when item clicked
 		  */
 		coursesList.setOnItemClickListener(new OnItemClickListener() {
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View v, final int position, long id) {
-			Log.i("List View Clicked", "**********");
-		    Toast.makeText(getActivity(), "List View Clicked:" + position, Toast.LENGTH_LONG).show();
-		   }
+		    @Override
+		    public void onItemClick(AdapterView<?> parent, View v, final int position, long id) {
+			    Log.i("List View Clicked", "**********");
+		        Toast.makeText(getActivity(), "List View Clicked:" + position, Toast.LENGTH_LONG).show();
+		    }
 		});
 		
 		return view;

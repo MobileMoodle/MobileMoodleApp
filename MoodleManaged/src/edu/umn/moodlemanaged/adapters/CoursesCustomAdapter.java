@@ -1,13 +1,5 @@
 package edu.umn.moodlemanaged.adapters;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import edu.umn.moodlemanaged.Course;
-import edu.umn.moodlemanaged.Notifications;
-import edu.umn.moodlemanaged.R;
-import edu.umn.moodlemanaged.R.id;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -19,12 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.webkit.WebView;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import edu.umn.moodlemanaged.Course;
+import edu.umn.moodlemanaged.Notifications;
+import edu.umn.moodlemanaged.R;
 
 public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 	Context context;
@@ -66,7 +63,7 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.i("Edit Button Clicked", "**********");
+				Log.i("btnNotifications Button Clicked", "**********");
 				Toast.makeText(context, "Notifications button Clicked",
 						Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, Notifications.class);
@@ -75,13 +72,12 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 		});
 		
 		holder.btnSyllabus.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.i("Delete Button Clicked", "**********");
-				Toast.makeText(context, "Syllabus button Clicked",
-						Toast.LENGTH_LONG).show();
+				Log.i("btnSyllabus Button Clicked", "**********");
+				/*Toast.makeText(context, "Syllabus button Clicked",
+						Toast.LENGTH_LONG).show();*/
 
                 File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "syllabus.pdf");
                 Intent target = new Intent(Intent.ACTION_VIEW);
@@ -98,7 +94,6 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 		});
 		
 		holder.btnOfficeHours.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -112,6 +107,7 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 
 	}
 
+    // Holder used to build row from xml and data
 	static class CourseHolder {
 		TextView courseID;
 		TextView courseName;

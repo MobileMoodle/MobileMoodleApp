@@ -13,16 +13,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import edu.umn.moodlemanaged.Group2;
+import edu.umn.moodlemanaged.EventGroupDate;
 import edu.umn.moodlemanaged.R;
 
 public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
-    private final ArrayList<Group2> groups;
+    private final ArrayList<EventGroupDate> groups;
     public LayoutInflater inflater;
     public Activity activity;
 
-    public PlanningCustomAdapter(Activity act, ArrayList<Group2> groups) {
+    public PlanningCustomAdapter(Activity act, ArrayList<EventGroupDate> groups) {
         activity = act;
         this.groups = groups;
         inflater = act.getLayoutInflater();
@@ -54,7 +54,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
                 Toast.makeText(activity, ct, Toast.LENGTH_SHORT).show();
             }
         });
-
+        // Store checkbox state as views are recycled
         final CheckBox cBox = (CheckBox) convertView.findViewById(R.id.plan_check_box);
         cBox.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -107,7 +107,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.planning_tab_group, null);
         }
-        Group2 group = (Group2) getGroup(groupPosition);
+        EventGroupDate group = (EventGroupDate) getGroup(groupPosition);
         ((CheckedTextView) convertView).setText(group.string);
         ((CheckedTextView) convertView).setChecked(isExpanded);
         return convertView;

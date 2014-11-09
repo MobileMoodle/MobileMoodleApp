@@ -1,8 +1,8 @@
 package edu.umn.moodlemanaged;
 
 public class Course {
-	private String id;
-	private String name;
+	private String id; // E.g. CSCI 5115
+	private String name; // E.g. User Interface Design, Implementation & Evaluation
 	
 	public Course(String id, String name){
 		this.id = id;

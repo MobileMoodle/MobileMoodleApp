@@ -5,17 +5,12 @@ import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.widget.Toast;
-
-import edu.umn.moodlemanaged.R;
 
 /**
  * @author Alex Schillinger
  * 
  *         Main application frame. Overlays action bar for tabbed navigation
  *         between grades, courses, and assignments
- * 
- *         Followed tutorial: http://www.survivingwithandroid.com/2013/06/android-action-bar-with-tab.html
  * 
  */
 public class CustomTabListener<T extends Fragment> implements TabListener {
@@ -32,7 +27,7 @@ public class CustomTabListener<T extends Fragment> implements TabListener {
  
     @Override
     public void onTabReselected(Tab tab, FragmentTransaction ft) {
-        // Nothing special to do here for this application
+
     }
 
 
