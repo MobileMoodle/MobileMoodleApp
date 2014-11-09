@@ -57,6 +57,13 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 		Course course = courses.get(position);
 		holder.courseName.setText(course.getName());
 		holder.courseID.setText(course.getID());
+        String numNots = String.valueOf(course.getNumNotifications());
+        if (course.getNumNotifications() > 0) {
+            holder.btnNotifications.setBackgroundResource(R.drawable.bluebutton);
+        } else {
+            holder.btnNotifications.setBackgroundResource(R.drawable.greybutton);
+        }
+        holder.btnNotifications.setText(numNots);
 		
 		holder.btnNotifications.setOnClickListener(new OnClickListener() {
 

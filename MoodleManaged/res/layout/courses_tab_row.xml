@@ -43,7 +43,6 @@
 	    android:layout_alignTop="@+id/course_view_course_id"
 	    android:text=" 0"
         android:drawableLeft="@drawable/ic_action_alarms"
-        android:background="@drawable/greybutton"
         android:layout_margin="03dp" />
 
     <LinearLayout
