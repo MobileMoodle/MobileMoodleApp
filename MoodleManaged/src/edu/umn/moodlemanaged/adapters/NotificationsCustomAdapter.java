@@ -1,109 +1,51 @@
 package edu.umn.moodlemanaged.adapters;
 
-import android.app.Activity;
-import android.util.SparseArray;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckedTextView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import edu.umn.moodlemanaged.NotificationsGroup;
+import java.util.ArrayList;
+
+import edu.umn.moodlemanaged.MMNotification;
 import edu.umn.moodlemanaged.R;
 
-public class NotificationsCustomAdapter extends BaseExpandableListAdapter {
+public class NotificationsCustomAdapter extends ArrayAdapter<MMNotification> {
+    Context context;
+    int layoutResourceId;
+    ArrayList<MMNotification> notifications = new ArrayList<MMNotification>();
 
-    private final SparseArray<NotificationsGroup> groups;
-    public LayoutInflater inflater;
-    public Activity activity;
-
-    public NotificationsCustomAdapter(Activity act, SparseArray<NotificationsGroup> groups) {
-        activity = act;
-        this.groups = groups;
-        inflater = act.getLayoutInflater();
+    public NotificationsCustomAdapter(Context context, int layoutResourceId, ArrayList<MMNotification> notifications) {
+        super(context, layoutResourceId, notifications);
+        this.layoutResourceId = layoutResourceId;
+        this.context = context;
+        this.notifications = notifications;
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosition) {
-        return groups.get(groupPosition).children.get(childPosition);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.notifications_row, parent, false);
+        TextView textView = (TextView) rowView.findViewById(R.id.not_list_item);
+        String text = notifications.get(position).not;
+        textView.setText(text);
+
+        return rowView;
     }
 
-    @Override
-    public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+    public MMNotification getItem(int i) {
+        return notifications.get(i);
     }
 
-    @Override
-    public View getChildView(int groupPosition, final int childPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
-
-        final String child = (String) getChild(groupPosition, childPosition);
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.notifications_row, null);
-        }
-        TextView tv1 = (TextView) convertView.findViewById(R.id.notifications_list_item);
-        tv1.setText(child);
-        convertView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(activity, child, Toast.LENGTH_SHORT).show();
-            }
-        });
-        return convertView;
+    public MMNotification remove(int i) {
+        return notifications.remove(i);
     }
 
-    @Override
-    public int getChildrenCount(int groupPosition) {
-        return groups.get(groupPosition).children.size();
+    public void insert(int i, MMNotification n) {
+        notifications.add(i, n);
     }
 
-    @Override
-    public Object getGroup(int groupPosition) {
-        return groups.get(groupPosition);
-    }
-
-    @Override
-    public int getGroupCount() {
-        return groups.size();
-    }
-
-    @Override
-    public void onGroupCollapsed(int groupPosition) {
-        super.onGroupCollapsed(groupPosition);
-    }
-
-    @Override
-    public void onGroupExpanded(int groupPosition) {
-        super.onGroupExpanded(groupPosition);
-    }
-
-    @Override
-    public long getGroupId(int groupPosition) {
-        return 0;
-    }
-
-    @Override
-    public View getGroupView(int groupPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.notifications_group, null);
-        }
-        NotificationsGroup notificationsGroup = (NotificationsGroup) getGroup(groupPosition);
-        ((CheckedTextView) convertView).setText(notificationsGroup.string);
-        ((CheckedTextView) convertView).setChecked(isExpanded);
-        return convertView;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return false;
-    }
-
-    @Override
-    public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
-    }
 }

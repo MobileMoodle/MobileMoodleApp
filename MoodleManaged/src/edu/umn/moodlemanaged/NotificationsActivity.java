@@ -3,22 +3,23 @@ package edu.umn.moodlemanaged;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.SparseArray;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import de.timroes.android.listview.EnhancedListView;
 import edu.umn.moodlemanaged.adapters.NotificationsCustomAdapter;
 
 /**
  * Created by kent on 11/4/14.
  */
 public class NotificationsActivity extends Activity {
-    private SparseArray<NotificationsGroup> groups = new SparseArray<NotificationsGroup>();
-    ArrayAdapter<String> coursesAdapter;
+    private ArrayList<MMNotification> mmNotificationArray = new ArrayList<MMNotification>();
+    private NotificationsCustomAdapter notificationAdapater;
+    private ArrayAdapter<String> coursesAdapter;
+    private EnhancedListView notList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,6 @@ public class NotificationsActivity extends Activity {
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        // Populate notifications data
-        createData();
 
         Spinner courses = (Spinner) findViewById(R.id.course_spinner_n);
         coursesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new ArrayList<String>());
@@ -40,11 +38,40 @@ public class NotificationsActivity extends Activity {
         coursesAdapter.add("PSY 3011");
         courses.setAdapter(coursesAdapter);
 
-        ExpandableListView listView = (ExpandableListView) findViewById(R.id.notifications_list);
-        NotificationsCustomAdapter adapter = new NotificationsCustomAdapter(this, groups);
-        listView.setAdapter(adapter);
-    }
+        mmNotificationArray.add(new MMNotification("Midterm 1 Graded: 88%"));
+        mmNotificationArray.add(new MMNotification("Class Cancelled Due to Snow (11/11)"));
+        mmNotificationArray.add(new MMNotification("Assignment 7 Due Tuesday, November 12 (11:55pm)"));
 
+        /**
+         * Set item into adapter
+         */
+        notificationAdapater = new NotificationsCustomAdapter(this, R.layout.notifications, mmNotificationArray);
+        notList = (EnhancedListView) findViewById(R.id.notifications_list);
+        notList.setDismissCallback(new EnhancedListView.OnDismissCallback() {
+            @Override
+            public EnhancedListView.Undoable onDismiss(EnhancedListView enhancedListView, int i) {
+                final int position = i;
+                // Store item for later restore
+                final MMNotification item = notificationAdapater.getItem(position);
+                notificationAdapater.remove(position);
+                // return an Undoable
+                return new EnhancedListView.Undoable() {
+                    // Reinsert the item to the adapter
+                    @Override public void undo() {
+                        notificationAdapater.insert(position, item);
+                        notificationAdapater.notifyDataSetChanged();
+                    }
+
+                    // Return a string for your item
+                    @Override public String getTitle() {
+                        return "Deleted '" + item.not + "'";
+                    }
+            };
+        }});
+        notList.setAdapter(notificationAdapater);
+        notList.enableSwipeToDismiss();
+        notList.setSwipeDirection(EnhancedListView.SwipeDirection.END);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -56,21 +83,4 @@ public class NotificationsActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createData() {
-        NotificationsGroup notificationsGroup = new NotificationsGroup("Exams");
-        notificationsGroup.children.add("Midterm 1 Graded: 88%");
-        groups.append(0, notificationsGroup);
-        notificationsGroup = new NotificationsGroup("Quizzes");
-        groups.append(1, notificationsGroup);
-        notificationsGroup = new NotificationsGroup("Projects");
-        groups.append(2, notificationsGroup);
-        notificationsGroup = new NotificationsGroup("Assignments");
-        notificationsGroup.children.add("Assignment 7 Due: Tuesday, 11:55pm");
-        groups.append(3, notificationsGroup);
-        notificationsGroup = new NotificationsGroup("Announcements");
-        notificationsGroup.children.add("Class Cancelled Due to Snow: Tuesday, Nov 11th");
-        groups.append(4, notificationsGroup);
-        notificationsGroup = new NotificationsGroup("Personal");
-        groups.append(5, notificationsGroup);
-    }
 }
