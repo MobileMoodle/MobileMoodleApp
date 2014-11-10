@@ -23,7 +23,7 @@
 
     <!-- Icon will be inserted here. -->
 
-    <!-- The title and summary have some gap between them, and this 'group' should be centered vertically. -->
+    <!-- The title and summary have some gap between them, and this 'gradesGroup' should be centered vertically. -->
     <RelativeLayout
             android:layout_width="0dip"
             android:layout_weight="1"

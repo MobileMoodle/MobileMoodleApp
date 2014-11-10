@@ -28,7 +28,6 @@
         android:id="@+id/grades_list_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
         android:text="@string/percentage"
         android:layout_weight=".05"
         android:textAppearance="?android:attr/textAppearanceMedium" >

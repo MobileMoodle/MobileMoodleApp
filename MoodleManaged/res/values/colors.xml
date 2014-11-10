@@ -160,7 +160,7 @@
     <color name="link_text_holo_dark">#5c5cff</color>
     <color name="link_text_holo_light">#0000ee</color>
 
-    <!-- Group buttons -->
+    <!-- GradesGroup buttons -->
     <eat-comment />
     <color name="group_button_dialog_pressed_holo_dark">#46c5c1ff</color>
     <color name="group_button_dialog_focused_holo_dark">#2699cc00</color>

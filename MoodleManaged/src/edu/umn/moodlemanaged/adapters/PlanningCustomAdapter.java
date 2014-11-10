@@ -15,16 +15,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import edu.umn.moodlemanaged.EventGroupDate;
+import edu.umn.moodlemanaged.PlanningGroupDate;
 import edu.umn.moodlemanaged.R;
 
 public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
-    private final ArrayList<EventGroupDate> groups;
+    private final ArrayList<PlanningGroupDate> groups;
     public LayoutInflater inflater;
     public Activity activity;
 
-    public PlanningCustomAdapter(Activity act, ArrayList<EventGroupDate> groups) {
+    public PlanningCustomAdapter(Activity act, ArrayList<PlanningGroupDate> groups) {
         activity = act;
         this.groups = groups;
         inflater = act.getLayoutInflater();
@@ -133,7 +133,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.planning_tab_group, null);
         }
-        EventGroupDate group = (EventGroupDate) getGroup(groupPosition);
+        PlanningGroupDate group = (PlanningGroupDate) getGroup(groupPosition);
         ((CheckedTextView) convertView).setText(group.string);
         ((CheckedTextView) convertView).setChecked(isExpanded);
         return convertView;

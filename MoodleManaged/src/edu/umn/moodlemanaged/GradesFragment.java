@@ -6,16 +6,21 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import edu.umn.moodlemanaged.adapters.GradesCustomAdapter;
 
 public class GradesFragment extends Fragment {
-	private SparseArray<Group> groups = new SparseArray<Group>();
+	private SparseArray<GradesGroup> groups = new SparseArray<GradesGroup>();
     private String desiredGrade = "";
     private View view;
+    ArrayAdapter<String> coursesAdapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,9 +30,21 @@ public class GradesFragment extends Fragment {
         // Populate grades data
 		createData();
 
+        Spinner courses = (Spinner) view.findViewById(R.id.course_spinner_g);
+        coursesAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, new ArrayList<String>());
+        coursesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        coursesAdapter.add("CSCI 4131");
+        coursesAdapter.add("CSCI 5115");
+        coursesAdapter.add("KIN 5001");
+        coursesAdapter.add("PSY 3011");
+        courses.setAdapter(coursesAdapter);
+
+        // Text for the desired grade
         TextView textView = (TextView) view.findViewById(R.id.tv_grade_i_want);
         textView.setText("Grade I want: " + desiredGrade);
 
+        // Grades I want slider
         SeekBar seekBar = (SeekBar) view.findViewById(R.id.sb_grade_i_want);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -65,19 +82,13 @@ public class GradesFragment extends Fragment {
 
                 TextView tv = (TextView) view.findViewById(R.id.tv_grade_i_want);
                 tv.setText("Grade I want: " + desiredGrade);
-
-                // Change percents
+                // TODO Change percents
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar){}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar){}
         });
 
 		ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
@@ -93,21 +104,20 @@ public class GradesFragment extends Fragment {
      * TODO Add tabs for other courses
      */
 	public void createData() {
-        Group group = new Group("Exams (40%)");
-        group.children.add("Midterm (15%)");
-        group.children.add("Final (25%)");
-        groups.append(0, group);
-        group = new Group("Assignments (60%)");
-        group.children.add("Assignment 1 (5%)");
-        group.children.add("Assignment 2 (5%)");
-        group.children.add("Assignment 3 (10%)");
-        group.children.add("Assignment 4 (5%)");
-        group.children.add("Assignment 5 (5%)");
-        group.children.add("Assignment 6 (5%)");
-        group.children.add("Assignment 7 (10%)");
-        group.children.add("Assignment 8 (5%)");
-        groups.append(1, group);
-
+        GradesGroup gradesGroup = new GradesGroup("Exams (40%)");
+        gradesGroup.children.add(new Grade("Midterm (15%)", "88%", true));
+        gradesGroup.children.add(new Grade("Final (25%)", "", false));
+        groups.append(0, gradesGroup);
+        gradesGroup = new GradesGroup("Assignments (60%)");
+        gradesGroup.children.add(new Grade("Assignment 1 (5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 2 (5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 3 (5%)", "97%", true));
+        gradesGroup.children.add(new Grade("Assignment 4 (5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 5 (5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 6 (5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 7 (5%)", "", false));
+        gradesGroup.children.add(new Grade("Assignment 8 (5%)", "", false));
+        groups.append(1, gradesGroup);
 	}
 
 }

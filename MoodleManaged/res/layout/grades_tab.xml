@@ -4,34 +4,42 @@
     android:layout_width="match_parent" 
     android:layout_height="match_parent" >
 
+    <Spinner
+        android:id="@+id/course_spinner_g"
+        android:layout_width="200dp"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
     <TextView
         android:id="@+id/tv_grade_i_want"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="15dp"
         android:text="Grade I want:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginLeft="15dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/course_spinner_g"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="0dp" />
 
     <SeekBar
         android:id="@+id/sb_grade_i_want"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:max="12"
-        android:layout_marginTop="31dp"
-        android:layout_alignTop="@+id/tv_grade_i_want"
-        android:layout_alignLeft="@+id/tv_grade_i_want"
-        android:layout_alignStart="@+id/tv_grade_i_want"
-        android:layout_alignRight="@+id/tv_grade_i_want"
-        android:layout_alignEnd="@+id/tv_grade_i_want" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/course_spinner_g"
+        android:layout_centerHorizontal="true" />
 
     <ExpandableListView
         android:id="@+id/grades_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:childDivider="#000000"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/sb_grade_i_want"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">

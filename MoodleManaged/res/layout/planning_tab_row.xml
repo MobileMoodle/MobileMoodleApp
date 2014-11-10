@@ -23,6 +23,12 @@
         android:layout_width="0dip"
         android:layout_height="fill_parent"
         android:layout_weight="0.05">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="#000000" />
+
     </RelativeLayout>
 
     <CheckBox

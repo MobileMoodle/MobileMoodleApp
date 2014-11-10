@@ -334,14 +334,14 @@
     <!-- Base attributes that are available to all groups. -->
     <declare-styleable name="MenuGroup">
 
-        <!-- The ID of the group. -->
+        <!-- The ID of the gradesGroup. -->
         <attr name="android:id" />
 
-        <!-- The category applied to all items within this group.
+        <!-- The category applied to all items within this gradesGroup.
              (This will be or'ed with the orderInCategory attribute.) -->
         <attr name="android:menuCategory" />
 
-        <!-- The order within the category applied to all items within this group.
+        <!-- The order within the category applied to all items within this gradesGroup.
              (This will be or'ed with the category attribute.) -->
         <attr name="android:orderInCategory" />
 

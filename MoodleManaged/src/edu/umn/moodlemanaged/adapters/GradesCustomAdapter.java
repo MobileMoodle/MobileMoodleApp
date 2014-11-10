@@ -10,16 +10,18 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 import android.widget.Toast;
-import edu.umn.moodlemanaged.Group;
+
+import edu.umn.moodlemanaged.Grade;
+import edu.umn.moodlemanaged.GradesGroup;
 import edu.umn.moodlemanaged.R;
 
 public class GradesCustomAdapter extends BaseExpandableListAdapter {
 
-	private final SparseArray<Group> groups;
+	private final SparseArray<GradesGroup> groups;
 	public LayoutInflater inflater;
 	public Activity activity;
 
-	public GradesCustomAdapter(Activity act, SparseArray<Group> groups) {
+	public GradesCustomAdapter(Activity act, SparseArray<GradesGroup> groups) {
 		activity = act;
 		this.groups = groups;
 		inflater = act.getLayoutInflater();
@@ -38,17 +40,18 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		final String children = (String) getChild(groupPosition, childPosition);
+		final Grade child = (Grade) getChild(groupPosition, childPosition);
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.grades_tab_row, null);
 		}
-        TextView text;
-		text = (TextView) convertView.findViewById(R.id.grades_list_item);
-		text.setText(children);
+        TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
+		tv1.setText(child.getCoursework());
+        TextView tv2 = (TextView) convertView.findViewById(R.id.grades_list_percent);
+        tv2.setText(child.getPercent());
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(activity, children, Toast.LENGTH_SHORT).show();
+				Toast.makeText(activity, child.getCoursework(), Toast.LENGTH_SHORT).show();
 			}
 		});
 		return convertView;
@@ -90,8 +93,8 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.grades_tab_group, null);
 		}
-		Group group = (Group) getGroup(groupPosition);
-		((CheckedTextView) convertView).setText(group.string);
+		GradesGroup gradesGroup = (GradesGroup) getGroup(groupPosition);
+		((CheckedTextView) convertView).setText(gradesGroup.string);
 		((CheckedTextView) convertView).setChecked(isExpanded);
 		return convertView;
 	}
