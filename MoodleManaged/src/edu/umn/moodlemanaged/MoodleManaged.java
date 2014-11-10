@@ -58,21 +58,21 @@ public class MoodleManaged extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.action_events:
-                //TODO
-                return true;
-            case R.id.action_account:
-                //TODO
-                return true;
-            case R.id.action_settings:
-                //TODO
-                return true;
-            case R.id.action_info:
-                //TODO
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.action_events) {
+            //TODO
+            return true;
+        } else if (id == R.id.action_account) {
+            //TODO
+            return true;
+        } else if (id == R.id.action_settings) {
+            //TODO
+            return true;
+        } else if (id == R.id.action_info) {
+            //TODO
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

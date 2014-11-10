@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="moodlemanaged">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/MoodleManaged/bin/moodlemanaged.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MoodleManaged/MoodleManaged.iml" filepath="$PROJECT_DIR$/MoodleManaged/MoodleManaged.iml" />
-      <module fileurl="file://$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" filepath="$PROJECT_DIR$/appcompat_v7/appcompat_v7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MobileMoodleApp.iml" filepath="$PROJECT_DIR$/MobileMoodleApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/module1/module1.iml" filepath="$PROJECT_DIR$/modules/module1/module1.iml" />
     </modules>
   </component>
 </project>
