@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:clickable="true"
+    android:orientation="horizontal"
+    tools:context=".MainActivity"
+    android:layout_margin="5dp"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp">
+
+    <TextView
+        android:id="@+id/notifications_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:text="Notification"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginLeft="25dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp">
+    </TextView>
+
+</LinearLayout>

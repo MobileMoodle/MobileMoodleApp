@@ -6,21 +6,26 @@
     android:orientation="horizontal"
     tools:context=".MainActivity"
     android:layout_margin="5dp"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp">
 
     <RelativeLayout
         android:layout_width="0dip"
         android:layout_height="fill_parent"
         android:layout_weight="0.1">
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
     </RelativeLayout>
 
     <TextView
         android:id="@+id/grades_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="5dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:text="@string/grades_title"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_weight=".85">
     </TextView>
 
@@ -28,9 +33,11 @@
         android:id="@+id/grades_list_percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:text="@string/percentage"
         android:layout_weight=".05"
-        android:textAppearance="?android:attr/textAppearanceMedium" >
+        android:textAppearance="?android:attr/textAppearanceLarge" >
     </TextView>
 
 </LinearLayout>
