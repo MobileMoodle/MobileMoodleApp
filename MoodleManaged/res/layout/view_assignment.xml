@@ -23,10 +23,10 @@
 
     <Button
         android:id="@+id/reminders_btn"
-        android:drawableLeft="@drawable/ic_action_alarms"
+        android:drawableLeft="@drawable/ic_action_event"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
         android:background="@drawable/greybutton"
         android:layout_marginRight="20dp"
         android:layout_alignParentTop="true"
@@ -40,7 +40,7 @@
         android:id="@+id/percent_img"
         android:src="@drawable/grade_percent"
         android:minHeight="40dp"
-        android:minWidth="40dp"
+        android:minWidth="30dp"
         android:layout_marginTop="37dp"
         android:layout_below="@+id/reminders_btn"
         android:layout_centerHorizontal="true" />
