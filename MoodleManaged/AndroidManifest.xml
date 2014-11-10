@@ -30,7 +30,10 @@
             android:label="Notifications" />
         <activity
             android:name=".OfficeHoursActivity"
-            android:label="Office Hour" />
+            android:label="Office Hours" />
+        <activity
+            android:name=".ViewAssignmentActivity"
+            android:label="View Event" />
     </application>
 
 </manifest>

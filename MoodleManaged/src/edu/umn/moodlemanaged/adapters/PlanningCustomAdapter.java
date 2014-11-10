@@ -1,6 +1,7 @@
 package edu.umn.moodlemanaged.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,12 @@ import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import edu.umn.moodlemanaged.PlanningGroupDate;
 import edu.umn.moodlemanaged.R;
+import edu.umn.moodlemanaged.ViewAssignmentActivity;
 
 public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
@@ -24,10 +25,10 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
     public LayoutInflater inflater;
     public Activity activity;
 
-    public PlanningCustomAdapter(Activity act, ArrayList<PlanningGroupDate> groups) {
-        activity = act;
+    public PlanningCustomAdapter(Activity activity, ArrayList<PlanningGroupDate> groups) {
+        this.activity = activity;
         this.groups = groups;
-        inflater = act.getLayoutInflater();
+        this.inflater = activity.getLayoutInflater();
     }
 
     @Override
@@ -56,7 +57,8 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         convertView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity, ct, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity, ViewAssignmentActivity.class);
+                activity.startActivity(intent);
             }
         });
 
