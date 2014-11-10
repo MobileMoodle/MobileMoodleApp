@@ -12,7 +12,6 @@
         android:id="@+id/courses_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="5dp"
         android:cacheColorHint="#00000000" />
 
 </RelativeLayout>
