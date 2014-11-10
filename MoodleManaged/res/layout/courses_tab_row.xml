@@ -42,6 +42,7 @@
 	    android:layout_alignParentRight="true"
 	    android:layout_alignTop="@+id/course_view_course_id"
 	    android:text=" 0"
+        android:background="@drawable/greybutton"
         android:drawableLeft="@drawable/ic_action_alarms"
         android:layout_margin="03dp" />
 
