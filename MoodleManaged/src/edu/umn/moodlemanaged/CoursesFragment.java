@@ -22,8 +22,8 @@ public class CoursesFragment extends Fragment {
 		/**
 		 * Add Courses (Mock-up ONLY)
 		 */
-		courseArray.add(new Course("CSCI 4131", "Internet Programming", 0));
-		courseArray.add(new Course("CSCI 5115", "User Interface Design, Implementation & Evaluation", 2));
+		courseArray.add(new Course("CSCI 4131", "Internet Programming", 3));
+		courseArray.add(new Course("CSCI 5115", "User Interface Design, Implementation & Evaluation", 0));
 		courseArray.add(new Course("KIN 5001", "Foundations of Human Factors & Ergonomics", 0));
         courseArray.add(new Course("PSY 3011", "Introduction to Learning & Behavior", 1));
 	}

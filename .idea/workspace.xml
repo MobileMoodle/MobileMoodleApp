@@ -21,15 +21,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b548eb47-3c96-405a-bfae-8bcc3a525eee" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/MMNotification.java" />
-      <change type="DELETED" beforePath="C:\Users\Sir Schilly\Documents\GitHub\MobileMoodleApp\MoodleManaged\res\layout\notifications_group.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Sir Schilly\Documents\GitHub\MobileMoodleApp\MoodleManaged\src\edu\umn\moodlemanaged\NotificationsGroup.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MoodleManaged/res/layout/about.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MoodleManaged/res/layout/add_event.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MoodleManaged/res/layout/notifications_manager.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/CoursesFragment.java" afterPath="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/CoursesFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/NotificationsActivity.java" afterPath="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/NotificationsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/adapters/NotificationsCustomAdapter.java" afterPath="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/adapters/NotificationsCustomAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoodleManaged/res/layout/notifications.xml" afterPath="$PROJECT_DIR$/MoodleManaged/res/layout/notifications.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MoodleManaged/res/layout/notifications_row.xml" afterPath="$PROJECT_DIR$/MoodleManaged/res/layout/notifications_row.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MobileMoodleApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,13 +95,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoursesFragment.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CoursesFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/CoursesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52040815" vertical-offset="0" max-vertical-offset="731">
-              <caret line="27" column="90" selection-start-line="27" selection-start-column="90" selection-end-line="27" selection-end-column="90" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+              <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="33" selection-end-column="35" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_event.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MoodleManaged/res/layout/add_event.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notifications_manager.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MoodleManaged/res/layout/notifications_manager.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MoodleManaged/res/layout/about.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -952,6 +986,9 @@
         <option value="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/NotificationsActivity.java" />
         <option value="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/adapters/NotificationsCustomAdapter.java" />
         <option value="$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/CoursesFragment.java" />
+        <option value="$PROJECT_DIR$/MoodleManaged/res/layout/add_event.xml" />
+        <option value="$PROJECT_DIR$/MoodleManaged/res/layout/notifications_manager.xml" />
+        <option value="$PROJECT_DIR$/MoodleManaged/res/layout/about.xml" />
       </list>
     </option>
   </component>
@@ -1143,6 +1180,7 @@
     <property name="recentsLimit" value="5" />
     <property name="android.project.structure.last.selected" value="MobileMoodleApp" />
     <property name="android.project.structure.proportion" value="0.15" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.MobileMoodleApp">
     <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
@@ -1312,6 +1350,9 @@
       <AnalysisUIOptions />
     </option>
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b548eb47-3c96-405a-bfae-8bcc3a525eee" name="Default" comment="" />
@@ -1322,7 +1363,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1665,10 +1706,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MoodleManaged/src/edu/umn/moodlemanaged/CoursesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52040815" vertical-offset="0" max-vertical-offset="731">
-          <caret line="27" column="90" selection-start-line="27" selection-start-column="90" selection-end-line="27" selection-end-column="90" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="33" selection-end-column="35" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MoodleManaged/res/layout/add_event.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MoodleManaged/res/layout/notifications_manager.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MoodleManaged/res/layout/about.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>
