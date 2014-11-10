@@ -29,6 +29,10 @@ public class PlanningFragment extends Fragment {
             isCheckedStatus.add("false");
         }
 
+        // TODO add adapter for switch
+
+        //TODO add adapter functionality for this spinner
+        // Spinner
         Spinner courses = (Spinner) view.findViewById(R.id.course_spinner_p);
         coursesAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, new ArrayList<String>());
@@ -39,6 +43,7 @@ public class PlanningFragment extends Fragment {
         coursesAdapter.add("PSY 3011");
         courses.setAdapter(coursesAdapter);
 
+        // List
         ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.planning_list);
         final PlanningCustomAdapter adapter = new PlanningCustomAdapter(getActivity(), groups);
         listView.setAdapter(adapter);
