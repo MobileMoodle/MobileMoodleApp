@@ -26,29 +26,29 @@ public class DatePickerFragment extends DialogFragment implements
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        TextView date = (TextView)getActivity().findViewById(R.id.dateText);
-        if(day < 10)
-        {
-            if(month < 10)
-            {
-                date.setText("Date: 0" + month + "/0" + day + "/" + year);
-            }
-            else
-            {
-                date.setText("Date: " + month + "/0" + day + "/" + year);
-            }
-        }
-        else
-        {
-            if(month < 10)
-            {
-                date.setText("Date: 0" + month + "/" + day + "/" + year);
-            }
-            else
-            {
-                date.setText("Date: " + month + "/" + day + "/" + year);
-            }
-        }
+//        TextView date = (TextView)getActivity().findViewById(R.id.dateText);
+//        if(day < 10)
+//        {
+//            if(month < 10)
+//            {
+//                date.setText("Date: 0" + month + "/0" + day + "/" + year);
+//            }
+//            else
+//            {
+//                date.setText("Date: " + month + "/0" + day + "/" + year);
+//            }
+//        }
+//        else
+//        {
+//            if(month < 10)
+//            {
+//                date.setText("Date: 0" + month + "/" + day + "/" + year);
+//            }
+//            else
+//            {
+//                date.setText("Date: " + month + "/" + day + "/" + year);
+//            }
+//        }
     }
 }
 
