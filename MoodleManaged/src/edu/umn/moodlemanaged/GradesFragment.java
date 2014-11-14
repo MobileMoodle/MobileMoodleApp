@@ -207,6 +207,7 @@ public class GradesFragment extends Fragment {
         // compute desired average grade for the rest of the course
         // equation: desiredAverage * (totalwanted - currentWeightSum) + currentGradeSum = totalWanted
         double desiredAverage = (totalWanted - currentGradeSum) / (1 - currentWeightSum);
+        desiredAverage = Math.round(desiredAverage * 100) / 100;
 
         for(int i = 0; i < groups.size(); i++)
         {
