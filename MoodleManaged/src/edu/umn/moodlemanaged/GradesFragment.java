@@ -187,7 +187,27 @@ public class GradesFragment extends Fragment {
 
     public void updateMinNeeded()
     {
-        int currentMinAvg = 0;
+        double currentWeightSum = 0;
+        double currentGradeSum = 0;
+
+        for(int i = 0; i < groups.size(); i++)
+        {
+            int key = groups.keyAt(i);
+            GradesGroup obj = groups.get(key);
+            for(Grade current : obj.children)
+            {
+                if(current.isFinal() || current.wasSet()) // Grade set by prof or user, add to sums.
+                {
+                    currentWeightSum += current.getWeight() / 100;
+                    currentGradeSum += (current.getWeight() / 100) * current.getPercent();
+                }
+            }
+        }
+
+        // compute desired average grade for the rest of the course
+        // equation: desiredAverage * (totalwanted - currentWeightSum) + currentGradeSum = totalWanted
+        double desiredAverage = (totalWanted - currentGradeSum) / (1 - currentWeightSum);
+
         for(int i = 0; i < groups.size(); i++)
         {
             int key = groups.keyAt(i);
@@ -196,6 +216,7 @@ public class GradesFragment extends Fragment {
             {
                 if(!current.isFinal() && !current.wasSet())
                 {
+                    current.setPercent(desiredAverage);
                 }
             }
         }
