@@ -62,7 +62,7 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
                 tv2.setText("- -%");
             }
             else {
-                tv2.setText(new DecimalFormat("#.##").format(child.getScore() / child.getPercentage() * 100)+"%");
+                tv2.setText(new DecimalFormat("#.#").format(child.getScore() / child.getPercentage() * 100)+"%");
             }
 
         }
