@@ -8,13 +8,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import edu.umn.moodlemanaged.NewAssignmentActivity;
 import edu.umn.moodlemanaged.PlanningGroupDate;
 import edu.umn.moodlemanaged.R;
 import edu.umn.moodlemanaged.ViewAssignmentActivity;
@@ -42,10 +45,10 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(final int groupPosition, final int childPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
-
-        if (convertView == null) {
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent)
+    {
+        if (convertView == null)
+        {
             convertView = inflater.inflate(R.layout.planning_tab_row, null);
         }
 
@@ -54,7 +57,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         final TextView text = (TextView) convertView.findViewById(R.id.planning_list_event);
         text.setText(ct);
         // Activity if selected
-        convertView.setOnClickListener(new OnClickListener() {
+        text.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ViewAssignmentActivity.class);
@@ -138,6 +141,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         PlanningGroupDate group = (PlanningGroupDate) getGroup(groupPosition);
         ((CheckedTextView) convertView).setText(group.string);
         ((CheckedTextView) convertView).setChecked(isExpanded);
+
         return convertView;
     }
 
