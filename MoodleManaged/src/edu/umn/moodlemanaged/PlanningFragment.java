@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.umn.moodlemanaged.adapters.PlanningCustomAdapter;
 
@@ -32,6 +34,20 @@ public class PlanningFragment extends Fragment {
         }
 
         // TODO add adapter for switch;
+        final Switch layoutSwitch = (Switch) view.findViewById(R.id.sw_due_v_course);
+        layoutSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (layoutSwitch.isChecked())
+                {
+                    Toast.makeText(getActivity(), "Changed sort to Courses", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getActivity(), "Changed sort to Due Soon", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         // List
         ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.planning_list);
@@ -109,6 +125,32 @@ public class PlanningFragment extends Fragment {
         group = new PlanningGroupDate("View More +");
         groups.add(j, group);
         j++;
+    }
+
+    public void swapView(int type)
+    {
+        int which = type;
+        PlanningGroupCourse groupCourse;
+        PlanningGroupDate groupDate;
+        for(int i = 0; i <groups.size(); i++)
+        {
+            if(which == 0)
+            {
+                groupDate = groups.get(i);
+                for(Event child : groupDate.children)
+                {
+                    //Do Something!
+                }
+            }
+            else
+            {
+//                groupCourse = groups.get(i);
+//                for(Event child : groupCourse.children)
+//                {
+//                    Do something!
+//                }
+            }
+        }
     }
 
 }
