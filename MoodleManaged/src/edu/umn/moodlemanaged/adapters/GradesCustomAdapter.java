@@ -2,6 +2,7 @@ package edu.umn.moodlemanaged.adapters;
 
 import android.app.Activity;
 
+import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,12 +58,19 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
             double score = child.getScore();
 
             tv2.setText(score+"%");
+            tv2.setTextColor(Color.parseColor("#000000"));
         }else{
             if(child.getScore()<0) {
                 tv2.setText("- -%");
+                tv2.setTextColor(Color.parseColor("#000000"));
             }
             else {
                 tv2.setText(new DecimalFormat("#.#").format(child.getScore() / child.getPercentage() * 100)+"%");
+
+                tv2.setTextColor(activity.getResources().getColor(R.color.holo_blue_light));
+                //tv2.setTextColor(Color.parseColor(R.color.holo_blue_bright+""));
+                //Color c = new Color(R.color.holo_blue_bright);
+
             }
 
         }
