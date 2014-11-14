@@ -32,6 +32,9 @@
             android:name=".OfficeHoursActivity"
             android:label="Office Hours" />
         <activity
+            android:name=".SyllabusActivity"
+            android:label="Syllabus" />
+        <activity
             android:name=".ViewAssignmentActivity"
             android:label="View Event" />
     </application>
