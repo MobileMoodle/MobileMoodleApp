@@ -104,19 +104,21 @@ public class GradesFragment extends Fragment {
      * TODO Add tabs for other courses
      */
 	public void createData() {
-        GradesGroup gradesGroup = new GradesGroup("Exams (40%)");
-        gradesGroup.children.add(new Grade("Midterm (15%)", "88%", true));
-        gradesGroup.children.add(new Grade("Final (25%)", "", false));
+        GradesGroup gradesGroup = new GradesGroup("Exams");
+        gradesGroup.addChildren(new Grade("Midterm",15,88,100, true));
+        gradesGroup.addChildren(new Grade("Final", 25,-1,100, false));
+
         groups.append(0, gradesGroup);
-        gradesGroup = new GradesGroup("Assignments (60%)");
-        gradesGroup.children.add(new Grade("Assignment 1 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 2 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 3 (5%)", "97%", true));
-        gradesGroup.children.add(new Grade("Assignment 4 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 5 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 6 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 7 (5%)", "", false));
-        gradesGroup.children.add(new Grade("Assignment 8 (5%)", "", false));
+        gradesGroup = new GradesGroup("Assignments");
+        gradesGroup.addChildren(new Grade("Assignment 1", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 2", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 3", 5, 97,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 4", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 5", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 6", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 7", 5, -1,100, false));
+        gradesGroup.addChildren(new Grade("Assignment 8", 5, -1,100, false));
+
         groups.append(1, gradesGroup);
 	}
 

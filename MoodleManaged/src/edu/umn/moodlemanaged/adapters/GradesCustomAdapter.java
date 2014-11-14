@@ -41,18 +41,31 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		final Grade child = (Grade) getChild(groupPosition, childPosition);
-		if (convertView == null) {
-			convertView = inflater.inflate(R.layout.grades_tab_row, null);
-		}
-        TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
-		tv1.setText(child.getCoursework());
-        TextView tv2 = (TextView) convertView.findViewById(R.id.grades_list_percent);
-        tv2.setText(child.getPercent());
+		if(child.isFinal()){
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.grades_tab_row, null);
+            }
+            TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
+            tv1.setText(child.getCoursework()+"("+child.getPercentage()+"%)");
+            TextView tv2 = (TextView) convertView.findViewById(R.id.grades_list_percent);
+            double score = child.getScore();
+            tv2.setText(score+"%");
+        }else{
+            if(convertView == null)
+                convertView = inflater.inflate(R.layout.grades_tab_row_unset,null);
+            TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
+            tv1.setText(child.getCoursework()+"("+child.getPercentage()+"%)");
+        }
+
+
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(activity, child.getCoursework(), Toast.LENGTH_SHORT).show();
-			}
+				if(child.isFinal())
+                    Toast.makeText(activity, child.getCoursework(), Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(activity,"HI",Toast.LENGTH_LONG).show();
+				}
 		});
 		return convertView;
 	}
@@ -94,7 +107,7 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 			convertView = inflater.inflate(R.layout.grades_tab_group, null);
 		}
 		GradesGroup gradesGroup = (GradesGroup) getGroup(groupPosition);
-		((CheckedTextView) convertView).setText(gradesGroup.string);
+		((CheckedTextView) convertView).setText(gradesGroup.name+" ("+gradesGroup.getPercentage()+"%)");
 		((CheckedTextView) convertView).setChecked(isExpanded);
 		return convertView;
 	}

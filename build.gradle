@@ -33,9 +33,9 @@ android {
 	
 	sourceSets {
         main {
-            manifest.srcFile 'MoodleManaged\\AndroidManifest.xml'
-            java.srcDirs = ['MoodleManaged\\src']
-            res.srcDirs = ['MoodleManaged\\res']
+            manifest.srcFile 'MoodleManaged/AndroidManifest.xml'
+            java.srcDirs = ['MoodleManaged/src']
+            res.srcDirs = ['MoodleManaged/res']
         }
 
         instrumentTest.setRoot('yourTestRoot')
