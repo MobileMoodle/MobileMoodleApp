@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,9 +55,8 @@ public class NewAssignmentActivity extends FragmentActivity
                 return false;
             }
         });
-
+        //TIME picker
         Button timePicker = (Button) findViewById(R.id.chooseTime);
-
         timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,13 +64,24 @@ public class NewAssignmentActivity extends FragmentActivity
                 newFragment.show(getFragmentManager(), "timepicker");
             }
         });
-
+        //DATE picker
         Button datePicker = (Button) findViewById(R.id.chooseDate);
         datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(getFragmentManager(), "datepicker");
+            }
+        });
+        //SUBMIT button
+        Button submitButton = (Button) findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Event Added!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
+                toast.show();
+                finish();
             }
         });
 
