@@ -29,16 +29,13 @@
         android:layout_weight=".85">
     </TextView>
 
-    <TextView
-        android:id="@+id/grades_list_percent"
-        android:layout_width="wrap_content"
+    <edu.umn.moodlemanaged.GradePicker
+        android:id="@+id/number_picker"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:text="@string/percentage"
-        android:layout_weight=".05"
-        android:textAppearance="?android:attr/textAppearanceLarge" >
-    </TextView>
+        android:layout_gravity="right"
+        android:orientation="vertical"
+        />
 
 
 </LinearLayout>

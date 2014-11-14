@@ -2,6 +2,7 @@ package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,6 @@ import android.widget.ExpandableListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,21 +21,54 @@ public class GradesFragment extends Fragment {
 	private SparseArray<GradesGroup> groups = new SparseArray<GradesGroup>();
     private String desiredGrade = "";
     private View view;
+
     ArrayAdapter<String> coursesAdapter;
-    private int totalWanted = 0;
-    private int currentAvg = 0;
-    private int aCutOff;
-    private int amCutOff;
-    private int bpCutOff;
-    private int bCutOff;
-    private int bmCutOff;
-    private int cpCutOff;
-    private int cCutOff;
-    private int cmCutOff;
-    private int dpCutOff;
-    private int dCutOff;
-    private int dmCutOff;
-    private int fCutOff;
+    public void clearFakeGrades(){
+        for (int i =0;i<groups.size();i++){
+            GradesGroup group =  groups.get(groups.keyAt(i));
+            for (Grade g : group.children){
+                if(!g.isFinal()){
+                   g.setScore(-1);
+                }
+            }
+        }
+    }
+    public boolean assignFakeGrades(double target){
+        double used_percentage =0 ;
+        double total_percentage = 0;
+
+        double sum =0 ;
+        for(int i=0 ;i < groups.size();i++){
+            int key = groups.keyAt(i);
+            GradesGroup group =  groups.get(key);
+            total_percentage += group.getPercentage();
+            for( Grade g : group.children){
+                if(g.isFinal()){
+                    double weighted_scores =g.getPercentage()*g.getScore()/100;
+                    sum+= weighted_scores;
+                    used_percentage+= g.getPercentage();
+                }
+            }
+        }
+        double unused_percentage = total_percentage-used_percentage;
+        if((unused_percentage+sum)/total_percentage<(target/100)){
+            return false;
+        }
+        double required_sum =(target/100)*total_percentage-sum;
+        double required_sum_per_percent = required_sum / unused_percentage;
+        for (int i =0;i<groups.size();i++){
+            GradesGroup group =  groups.get(groups.keyAt(i));
+            for (Grade g : group.children){
+                if(!g.isFinal()){
+                    g.setScore(g.getPercentage()*required_sum_per_percent);
+                }
+            }
+        }
+        Log.i("IN assign fake grades",""+required_sum);
+        //view.invalidate();
+
+        return true;
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,75 +99,60 @@ public class GradesFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 switch (i) {
                     case 0: desiredGrade = "";
-                        totalWanted = 0;
-                        resetNonFinal();
+                        clearFakeGrades();
                         break;
                     case 1: desiredGrade = "F";
-                        totalWanted = fCutOff;
-                        updateMinNeeded();
+                        clearFakeGrades();
                         break;
                     case 2: desiredGrade = "D-";
-                        totalWanted = dmCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(60);
                         break;
                     case 3: desiredGrade = "D";
-                        totalWanted = dCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(63);
                         break;
                     case 4: desiredGrade = "D+";
-                        totalWanted = dpCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(67);
                         break;
                     case 5: desiredGrade = "C-";
-                        totalWanted = cmCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(70);
                         break;
                     case 6: desiredGrade = "C";
-                        totalWanted = cCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(73);
                         break;
                     case 7: desiredGrade = "C+";
-                        totalWanted = cpCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(77);
                         break;
                     case 8: desiredGrade = "B-";
-                        totalWanted = bmCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(80);
                         break;
                     case 9: desiredGrade = "B";
-                        totalWanted = bCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(83);
                         break;
                     case 10: desiredGrade = "B+";
-                        totalWanted = bpCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(87);
                         break;
                     case 11: desiredGrade = "A-";
-                        totalWanted = amCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(90);
                         break;
                     case 12: desiredGrade = "A";
-                        totalWanted = aCutOff;
-                        updateMinNeeded();
+                        assignFakeGrades(93);
                         break;
                     default: desiredGrade = "";
-                        resetNonFinal();
                         break;
                 }
+                ExpandableListView listView= (ExpandableListView) view.findViewById(R.id.grades_list);
+                GradesCustomAdapter adapt = (GradesCustomAdapter) listView.getExpandableListAdapter();
+                adapt.notifyDataSetChanged();
 
                 TextView tv = (TextView) view.findViewById(R.id.tv_grade_i_want);
                 tv.setText("Grade I want: " + desiredGrade);
-
                 // TODO Change percents
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar){}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar)
-            {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar){}
         });
 
 		ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
@@ -150,95 +168,23 @@ public class GradesFragment extends Fragment {
      * TODO Add tabs for other courses
      */
 	public void createData() {
-        setCutOffs(93, 90, 85, 85, 82, 75, 75, 73, 65, 65, 63, 55);
-        GradesGroup gradesGroup = new GradesGroup("Exams (40%)");
-        gradesGroup.children.add(new Grade("Midterm", 15, 88, true, false));
-        gradesGroup.children.add(new Grade("Final", 25, -1, false, false));
+        System.out.println("Creating Data");
+        GradesGroup gradesGroup = new GradesGroup("Exams");
+        gradesGroup.addChildren(new Grade("Midterm",15,88,100, true));
+        gradesGroup.addChildren(new Grade("Final", 25,-1,100, false));
+
         groups.append(0, gradesGroup);
-        gradesGroup = new GradesGroup("Assignments (60%)");
-        gradesGroup.children.add(new Grade("Assignment 1", 7.5, 100, true, false));
-        gradesGroup.children.add(new Grade("Assignment 2", 7.5, 100, true, false));
-        gradesGroup.children.add(new Grade("Assignment 3", 7.5, 97, true, false));
-        gradesGroup.children.add(new Grade("Assignment 4", 7.5, 100, true, false));
-        gradesGroup.children.add(new Grade("Assignment 5", 7.5, 100, true, false));
-        gradesGroup.children.add(new Grade("Assignment 6", 7.5, 100, true, false));
-        gradesGroup.children.add(new Grade("Assignment 7", 7.5, -1, false, false));
-        gradesGroup.children.add(new Grade("Assignment 8", 7.5, -1, false, false));
+        gradesGroup = new GradesGroup("Assignments");
+        gradesGroup.addChildren(new Grade("Assignment 1", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 2", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 3", 5, 97,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 4", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 5", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 6", 5, 100,100, true));
+        gradesGroup.addChildren(new Grade("Assignment 7", 5, -1,100, false));
+        gradesGroup.addChildren(new Grade("Assignment 8", 5, -1,100, false));
+
         groups.append(1, gradesGroup);
 	}
-
-    public void resetNonFinal()
-    {
-        for(int i = 0; i < groups.size(); i++)
-        {
-            int key = groups.keyAt(i);
-            GradesGroup obj = groups.get(key);
-            for(Grade current : obj.children)
-            {
-                if(!current.isFinal())
-                {
-                    current.setPercent(-1);
-                }
-            }
-        }
-        ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
-        listView.invalidateViews();
-    }
-
-    public void updateMinNeeded()
-    {
-        double currentWeightSum = 0;
-        double currentGradeSum = 0;
-
-        for(int i = 0; i < groups.size(); i++)
-        {
-            int key = groups.keyAt(i);
-            GradesGroup obj = groups.get(key);
-            for(Grade current : obj.children)
-            {
-                if(current.isFinal() || current.wasSet()) // Grade set by prof or user, add to sums.
-                {
-                    currentWeightSum += current.getWeight() / 100;
-                    currentGradeSum += (current.getWeight() / 100) * current.getPercent();
-                }
-            }
-        }
-
-        // compute desired average grade for the rest of the course
-        // equation: desiredAverage * (totalwanted - currentWeightSum) + currentGradeSum = totalWanted
-        double desiredAverage = (totalWanted - currentGradeSum) / (1 - currentWeightSum);
-        desiredAverage = Math.round(desiredAverage * 100) / 100;
-
-        for(int i = 0; i < groups.size(); i++)
-        {
-            int key = groups.keyAt(i);
-            GradesGroup obj = groups.get(key);
-            for(Grade current : obj.children)
-            {
-                if(!current.isFinal() && !current.wasSet())
-                {
-                    current.setPercent(desiredAverage);
-                }
-            }
-        }
-        ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
-        listView.invalidateViews();
-    }
-
-    public void setCutOffs(int a, int am, int bp, int b, int bm, int cp, int c, int cm, int dp, int d, int dm, int f)
-    {
-        aCutOff = a;
-        amCutOff = am;
-        bpCutOff = bp;
-        bCutOff = b;
-        bmCutOff = bm;
-        cpCutOff = cp;
-        cCutOff = c;
-        cmCutOff = cm;
-        dpCutOff = dp;
-        dCutOff = d;
-        dmCutOff = dm;
-        fCutOff = f;
-    }
 
 }

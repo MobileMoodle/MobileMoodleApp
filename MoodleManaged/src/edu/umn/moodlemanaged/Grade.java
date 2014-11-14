@@ -2,39 +2,29 @@ package edu.umn.moodlemanaged;
 
 public class Grade {
     private String coursework;
-    private double weight; // E.g. 5
-    private double percent; // E.g. 97
     private boolean isFinal; // true if set by prof, false if set by student
-    private boolean wasSet; // True if user modified value, the other values should shift, not this one.
-
-    public Grade(String cw, double w, double p, boolean b, boolean s) {
+    private int percentage;
+    private double score;
+    private double total;
+    public Grade(String cw,int percentage, double score,double total, boolean b) {
         this.coursework = cw;
-        this.weight = w;
-        this.percent = p;
         this.isFinal = b;
-        this.wasSet = s;
+        this.percentage= percentage;
+        this.score = score;
+        this.total = total;
     }
 
     public void setCoursework(String s) {this.coursework = s; }
 
-    public void setIsFinal(boolean b){ this.isFinal = b; }
+    public void setFinal(boolean b){ this.isFinal = b; }
 
-    public void setWasSet(boolean s){ this.wasSet = s; }
-
-    public void setWeight(double w){ this.weight = w; }
-
-    public void setPercent(double s){ this.percent = s; }
-
-    public double getPercent(){ return percent; }
-
-    public double getWeight(){ return weight; }
+    //public void setPercent(String s){ this.percent = s; }
+    public void setPercentage(int p){ this.percentage = p ;}
+    public int getPercentage(){ return percentage; }
 
     public boolean isFinal(){ return isFinal; }
-
+    public double getScore(){ return 100*(this.score/this.total);}
+    public void setScore(double s){this.score = s/100*this.total;}
     public String getCoursework(){ return coursework; }
-
-    public boolean wasSet(){ return wasSet; }
-
-
 
 }
