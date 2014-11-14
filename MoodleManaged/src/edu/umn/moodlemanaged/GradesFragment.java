@@ -21,6 +21,19 @@ public class GradesFragment extends Fragment {
     private String desiredGrade = "";
     private View view;
     ArrayAdapter<String> coursesAdapter;
+    private int totalWanted = 0;
+    private int aCutOff;
+    private int amCutOff;
+    private int bpCutOff;
+    private int bCutOff;
+    private int bmCutOff;
+    private int cpCutOff;
+    private int cCutOff;
+    private int cmCutOff;
+    private int dpCutOff;
+    private int dCutOff;
+    private int dmCutOff;
+    private int fCutOff;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +64,8 @@ public class GradesFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 switch (i) {
                     case 0: desiredGrade = "";
+                        totalWanted = 0;
+                        resetNonFinal();
                         break;
                     case 1: desiredGrade = "F";
                         break;
@@ -75,6 +90,8 @@ public class GradesFragment extends Fragment {
                     case 11: desiredGrade = "A-";
                         break;
                     case 12: desiredGrade = "A";
+                        totalWanted = 93;
+                        updateMinNeeded();
                         break;
                     default: desiredGrade = "";
                         break;
@@ -82,13 +99,16 @@ public class GradesFragment extends Fragment {
 
                 TextView tv = (TextView) view.findViewById(R.id.tv_grade_i_want);
                 tv.setText("Grade I want: " + desiredGrade);
+
                 // TODO Change percents
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar){}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar){}
+            public void onStopTrackingTouch(SeekBar seekBar){
+                view.invalidate();
+            }
         });
 
 		ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
@@ -104,20 +124,73 @@ public class GradesFragment extends Fragment {
      * TODO Add tabs for other courses
      */
 	public void createData() {
+        setCutOffs(93, 90, 85, 85, 82, 75, 75, 73, 65, 65, 63, 55);
         GradesGroup gradesGroup = new GradesGroup("Exams (40%)");
         gradesGroup.children.add(new Grade("Midterm (15%)", "88%", true));
         gradesGroup.children.add(new Grade("Final (25%)", "", false));
         groups.append(0, gradesGroup);
         gradesGroup = new GradesGroup("Assignments (60%)");
-        gradesGroup.children.add(new Grade("Assignment 1 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 2 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 3 (5%)", "97%", true));
-        gradesGroup.children.add(new Grade("Assignment 4 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 5 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 6 (5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 7 (5%)", "", false));
-        gradesGroup.children.add(new Grade("Assignment 8 (5%)", "", false));
+        gradesGroup.children.add(new Grade("Assignment 1 (7.5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 2 (7.5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 3 (7.5%)", "97%", true));
+        gradesGroup.children.add(new Grade("Assignment 4 (7.5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 5 (7.5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 6 (7.5%)", "100%", true));
+        gradesGroup.children.add(new Grade("Assignment 7 (7.5%)", "", false));
+        gradesGroup.children.add(new Grade("Assignment 8 (7.5%)", "", false));
         groups.append(1, gradesGroup);
 	}
+
+    public void resetNonFinal()
+    {
+        for(int i = 0; i < groups.size(); i++)
+        {
+            int key = groups.keyAt(i);
+            GradesGroup obj = groups.get(key);
+            for(Grade current : obj.children)
+            {
+                if(!current.isFinal())
+                {
+                    current.setPercent("");
+                }
+            }
+        }
+        ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
+        listView.invalidateViews();
+    }
+
+    public void updateMinNeeded()
+    {
+        for(int i = 0; i < groups.size(); i++)
+        {
+            int key = groups.keyAt(i);
+            GradesGroup obj = groups.get(key);
+            for(Grade current : obj.children)
+            {
+                if(!current.isFinal())
+                {
+                    current.setPercent("25%");
+                }
+            }
+        }
+        ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
+        listView.invalidateViews();
+    }
+
+    public void setCutOffs(int a, int am, int bp, int b, int bm, int cp, int c, int cm, int dp, int d, int dm, int f)
+    {
+        aCutOff = a;
+        amCutOff = am;
+        bpCutOff = bp;
+        bCutOff = b;
+        bmCutOff = bm;
+        cpCutOff = cp;
+        cCutOff = c;
+        cmCutOff = cm;
+        dpCutOff = dp;
+        dCutOff = d;
+        dmCutOff = dm;
+        fCutOff = f;
+    }
 
 }
