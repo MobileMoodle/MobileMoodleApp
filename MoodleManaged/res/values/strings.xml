@@ -7,6 +7,8 @@
     <!-- B -->
     <!-- C -->
     <string name="courses_title">Courses</string>
+    <string name="chooseDate">Date</string>
+    <string name="chooseTime">Time</string>
     <!-- D -->
     <!-- E -->
     <string name="events_title">Planning</string>

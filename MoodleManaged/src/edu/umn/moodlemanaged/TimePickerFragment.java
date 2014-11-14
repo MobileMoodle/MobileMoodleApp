@@ -29,28 +29,28 @@ public class TimePickerFragment extends DialogFragment
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        TextView time = (TextView)getActivity().findViewById(R.id.timeText);
-        if(hourOfDay > 12)
-        {
-            if(minute < 10)
-            {
-                time.setText("Time: " + (hourOfDay-12) + ":0" + minute + " PM");
-            }
-            else
-            {
-                time.setText("Time: " + (hourOfDay-12) + ":" + minute + " PM");
-            }
-        }
-        else
-        {
-            if(minute < 10)
-            {
-                time.setText("Time: " + hourOfDay + ":0" + minute + " AM");
-            }
-            else
-            {
-                time.setText("Time: " + hourOfDay + ":" + minute + " AM");
-            }
-        }
+//        TextView time = (TextView)getActivity().findViewById(R.id.timeText);
+//        if(hourOfDay > 12)
+//        {
+//            if(minute < 10)
+//            {
+//                time.setText("Time: " + (hourOfDay-12) + ":0" + minute + " PM");
+//            }
+//            else
+//            {
+//                time.setText("Time: " + (hourOfDay-12) + ":" + minute + " PM");
+//            }
+//        }
+//        else
+//        {
+//            if(minute < 10)
+//            {
+//                time.setText("Time: " + hourOfDay + ":0" + minute + " AM");
+//            }
+//            else
+//            {
+//                time.setText("Time: " + hourOfDay + ":" + minute + " AM");
+//            }
+//        }
     }
 }
