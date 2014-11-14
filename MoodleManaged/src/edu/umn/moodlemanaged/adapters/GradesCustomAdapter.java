@@ -119,7 +119,7 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 			convertView = inflater.inflate(R.layout.grades_tab_group, null);
 		}
 		GradesGroup gradesGroup = (GradesGroup) getGroup(groupPosition);
-		((CheckedTextView) convertView).setText(gradesGroup.name+" ("+gradesGroup.getPercentage()+"%)");
+		((CheckedTextView) convertView).setText(gradesGroup.name+" ("+gradesGroup.getPercentage()+"% )");
 		((CheckedTextView) convertView).setChecked(isExpanded);
 		return convertView;
 	}
