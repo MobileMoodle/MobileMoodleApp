@@ -1,12 +1,15 @@
 package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,6 +47,15 @@ public class PlanningFragment extends Fragment {
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
                 return true; // This way the expander cannot be collapsed
+            }
+        });
+
+        Button newAssignment = (Button) view.findViewById(R.id.add_event_p);
+        newAssignment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newAssignment = new Intent(getActivity(), NewAssignmentActivity.class);
+                getActivity().startActivity(newAssignment);
             }
         });
 

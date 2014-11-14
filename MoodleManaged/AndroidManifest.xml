@@ -37,6 +37,9 @@
         <activity
             android:name=".ViewAssignmentActivity"
             android:label="View Event" />
+        <activity
+            android:name=".NewAssignmentActivity"
+            android:label="New Assignment" />
     </application>
 
 </manifest>
