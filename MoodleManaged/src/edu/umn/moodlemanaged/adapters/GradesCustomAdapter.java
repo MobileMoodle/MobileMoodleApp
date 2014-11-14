@@ -47,7 +47,14 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
         TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
 		tv1.setText(child.getCoursework());
         TextView tv2 = (TextView) convertView.findViewById(R.id.grades_list_percent);
-        tv2.setText(child.getPercent());
+        if(child.getPercent() == -1)
+        {
+            tv2.setText("");
+        }
+        else
+        {
+            tv2.setText(Double.toString(child.getPercent()) + "%");
+        }
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

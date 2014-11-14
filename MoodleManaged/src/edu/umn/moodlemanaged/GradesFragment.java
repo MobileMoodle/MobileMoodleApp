@@ -11,6 +11,7 @@ import android.widget.ExpandableListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class GradesFragment extends Fragment {
     private View view;
     ArrayAdapter<String> coursesAdapter;
     private int totalWanted = 0;
+    private int currentAvg = 0;
     private int aCutOff;
     private int amCutOff;
     private int bpCutOff;
@@ -68,32 +70,55 @@ public class GradesFragment extends Fragment {
                         resetNonFinal();
                         break;
                     case 1: desiredGrade = "F";
+                        totalWanted = fCutOff;
+                        updateMinNeeded();
                         break;
                     case 2: desiredGrade = "D-";
+                        totalWanted = dmCutOff;
+                        updateMinNeeded();
                         break;
                     case 3: desiredGrade = "D";
+                        totalWanted = dCutOff;
+                        updateMinNeeded();
                         break;
                     case 4: desiredGrade = "D+";
+                        totalWanted = dpCutOff;
+                        updateMinNeeded();
                         break;
                     case 5: desiredGrade = "C-";
+                        totalWanted = cmCutOff;
+                        updateMinNeeded();
                         break;
                     case 6: desiredGrade = "C";
+                        totalWanted = cCutOff;
+                        updateMinNeeded();
                         break;
                     case 7: desiredGrade = "C+";
+                        totalWanted = cpCutOff;
+                        updateMinNeeded();
                         break;
                     case 8: desiredGrade = "B-";
+                        totalWanted = bmCutOff;
+                        updateMinNeeded();
                         break;
                     case 9: desiredGrade = "B";
+                        totalWanted = bCutOff;
+                        updateMinNeeded();
                         break;
                     case 10: desiredGrade = "B+";
+                        totalWanted = bpCutOff;
+                        updateMinNeeded();
                         break;
                     case 11: desiredGrade = "A-";
+                        totalWanted = amCutOff;
+                        updateMinNeeded();
                         break;
                     case 12: desiredGrade = "A";
-                        totalWanted = 93;
+                        totalWanted = aCutOff;
                         updateMinNeeded();
                         break;
                     default: desiredGrade = "";
+                        resetNonFinal();
                         break;
                 }
 
@@ -106,8 +131,9 @@ public class GradesFragment extends Fragment {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar){}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar){
-                view.invalidate();
+            public void onStopTrackingTouch(SeekBar seekBar)
+            {
+
             }
         });
 
@@ -126,18 +152,18 @@ public class GradesFragment extends Fragment {
 	public void createData() {
         setCutOffs(93, 90, 85, 85, 82, 75, 75, 73, 65, 65, 63, 55);
         GradesGroup gradesGroup = new GradesGroup("Exams (40%)");
-        gradesGroup.children.add(new Grade("Midterm (15%)", "88%", true));
-        gradesGroup.children.add(new Grade("Final (25%)", "", false));
+        gradesGroup.children.add(new Grade("Midterm", 15, 88, true, false));
+        gradesGroup.children.add(new Grade("Final", 25, -1, false, false));
         groups.append(0, gradesGroup);
         gradesGroup = new GradesGroup("Assignments (60%)");
-        gradesGroup.children.add(new Grade("Assignment 1 (7.5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 2 (7.5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 3 (7.5%)", "97%", true));
-        gradesGroup.children.add(new Grade("Assignment 4 (7.5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 5 (7.5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 6 (7.5%)", "100%", true));
-        gradesGroup.children.add(new Grade("Assignment 7 (7.5%)", "", false));
-        gradesGroup.children.add(new Grade("Assignment 8 (7.5%)", "", false));
+        gradesGroup.children.add(new Grade("Assignment 1", 7.5, 100, true, false));
+        gradesGroup.children.add(new Grade("Assignment 2", 7.5, 100, true, false));
+        gradesGroup.children.add(new Grade("Assignment 3", 7.5, 97, true, false));
+        gradesGroup.children.add(new Grade("Assignment 4", 7.5, 100, true, false));
+        gradesGroup.children.add(new Grade("Assignment 5", 7.5, 100, true, false));
+        gradesGroup.children.add(new Grade("Assignment 6", 7.5, 100, true, false));
+        gradesGroup.children.add(new Grade("Assignment 7", 7.5, -1, false, false));
+        gradesGroup.children.add(new Grade("Assignment 8", 7.5, -1, false, false));
         groups.append(1, gradesGroup);
 	}
 
@@ -151,7 +177,7 @@ public class GradesFragment extends Fragment {
             {
                 if(!current.isFinal())
                 {
-                    current.setPercent("");
+                    current.setPercent(-1);
                 }
             }
         }
@@ -161,15 +187,15 @@ public class GradesFragment extends Fragment {
 
     public void updateMinNeeded()
     {
+        int currentMinAvg = 0;
         for(int i = 0; i < groups.size(); i++)
         {
             int key = groups.keyAt(i);
             GradesGroup obj = groups.get(key);
             for(Grade current : obj.children)
             {
-                if(!current.isFinal())
+                if(!current.isFinal() && !current.wasSet())
                 {
-                    current.setPercent("25%");
                 }
             }
         }
