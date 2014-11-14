@@ -22,6 +22,7 @@ import edu.umn.moodlemanaged.Course;
 import edu.umn.moodlemanaged.NotificationsActivity;
 import edu.umn.moodlemanaged.OfficeHoursActivity;
 import edu.umn.moodlemanaged.R;
+import edu.umn.moodlemanaged.SyllabusActivity;
 
 public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 	Context context;
@@ -78,11 +79,15 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 		holder.btnSyllabus.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+                Log.i("btnSyllabus Button Clicked", "**********");
+                Intent intent = new Intent(context, SyllabusActivity.class);
+                context.startActivity(intent);
+
 				// TODO Auto-generated method stub
-				Log.i("btnSyllabus Button Clicked", "**********");
+				//Log.i("btnSyllabus Button Clicked", "**********");
 				/*Toast.makeText(context, "Syllabus button Clicked",
 						Toast.LENGTH_LONG).show();*/
-
+                /*
                 File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "syllabus.pdf");
                 Intent target = new Intent(Intent.ACTION_VIEW);
                 target.setDataAndType(Uri.fromFile(file), "application/pdf");
@@ -94,7 +99,7 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
                 } catch (ActivityNotFoundException e) {
                     // Instruct the user to install a PDF reader here, or something
                 }
-
+                */
             }
 		});
 		
