@@ -2,6 +2,7 @@ package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,54 @@ public class GradesFragment extends Fragment {
 	private SparseArray<GradesGroup> groups = new SparseArray<GradesGroup>();
     private String desiredGrade = "";
     private View view;
+
     ArrayAdapter<String> coursesAdapter;
+    public void clearFakeGrades(){
+        for (int i =0;i<groups.size();i++){
+            GradesGroup group =  groups.get(groups.keyAt(i));
+            for (Grade g : group.children){
+                if(!g.isFinal()){
+                   g.setScore(-1);
+                }
+            }
+        }
+    }
+    public boolean assignFakeGrades(double target){
+        double used_percentage =0 ;
+        double total_percentage = 0;
+
+        double sum =0 ;
+        for(int i=0 ;i < groups.size();i++){
+            int key = groups.keyAt(i);
+            GradesGroup group =  groups.get(key);
+            total_percentage += group.getPercentage();
+            for( Grade g : group.children){
+                if(g.isFinal()){
+                    double weighted_scores =g.getPercentage()*g.getScore()/100;
+                    sum+= weighted_scores;
+                    used_percentage+= g.getPercentage();
+                }
+            }
+        }
+        double unused_percentage = total_percentage-used_percentage;
+        if((unused_percentage+sum)/total_percentage<(target/100)){
+            return false;
+        }
+        double required_sum =(target/100)*total_percentage-sum;
+        double required_sum_per_percent = required_sum / unused_percentage;
+        for (int i =0;i<groups.size();i++){
+            GradesGroup group =  groups.get(groups.keyAt(i));
+            for (Grade g : group.children){
+                if(!g.isFinal()){
+                    g.setScore(g.getPercentage()*required_sum_per_percent);
+                }
+            }
+        }
+        Log.i("IN assign fake grades",""+required_sum);
+        //view.invalidate();
+
+        return true;
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,34 +99,50 @@ public class GradesFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 switch (i) {
                     case 0: desiredGrade = "";
+                        clearFakeGrades();
                         break;
                     case 1: desiredGrade = "F";
+                        clearFakeGrades();
                         break;
                     case 2: desiredGrade = "D-";
+                        assignFakeGrades(60);
                         break;
                     case 3: desiredGrade = "D";
+                        assignFakeGrades(63);
                         break;
                     case 4: desiredGrade = "D+";
+                        assignFakeGrades(67);
                         break;
                     case 5: desiredGrade = "C-";
+                        assignFakeGrades(70);
                         break;
                     case 6: desiredGrade = "C";
+                        assignFakeGrades(73);
                         break;
                     case 7: desiredGrade = "C+";
+                        assignFakeGrades(77);
                         break;
                     case 8: desiredGrade = "B-";
+                        assignFakeGrades(80);
                         break;
                     case 9: desiredGrade = "B";
+                        assignFakeGrades(83);
                         break;
                     case 10: desiredGrade = "B+";
+                        assignFakeGrades(87);
                         break;
                     case 11: desiredGrade = "A-";
+                        assignFakeGrades(90);
                         break;
                     case 12: desiredGrade = "A";
+                        assignFakeGrades(93);
                         break;
                     default: desiredGrade = "";
                         break;
                 }
+                ExpandableListView listView= (ExpandableListView) view.findViewById(R.id.grades_list);
+                GradesCustomAdapter adapt = (GradesCustomAdapter) listView.getExpandableListAdapter();
+                adapt.notifyDataSetChanged();
 
                 TextView tv = (TextView) view.findViewById(R.id.tv_grade_i_want);
                 tv.setText("Grade I want: " + desiredGrade);
@@ -104,6 +168,7 @@ public class GradesFragment extends Fragment {
      * TODO Add tabs for other courses
      */
 	public void createData() {
+        System.out.println("Creating Data");
         GradesGroup gradesGroup = new GradesGroup("Exams");
         gradesGroup.addChildren(new Grade("Midterm",15,88,100, true));
         gradesGroup.addChildren(new Grade("Final", 25,-1,100, false));

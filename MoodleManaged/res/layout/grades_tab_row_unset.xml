@@ -29,7 +29,6 @@
         android:layout_weight=".85">
     </TextView>
 
-
     <edu.umn.moodlemanaged.GradePicker
         android:id="@+id/number_picker"
         android:layout_width="50dp"
@@ -37,5 +36,6 @@
         android:layout_gravity="right"
         android:orientation="vertical"
         />
+
 
 </LinearLayout>

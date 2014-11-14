@@ -1,6 +1,7 @@
 package edu.umn.moodlemanaged.adapters;
 
 import android.app.Activity;
+
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 import edu.umn.moodlemanaged.Grade;
 import edu.umn.moodlemanaged.GradesGroup;
@@ -41,28 +44,37 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		final Grade child = (Grade) getChild(groupPosition, childPosition);
-		if(child.isFinal()){
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.grades_tab_row, null);
-            }
-            TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
-            tv1.setText(child.getCoursework()+"("+child.getPercentage()+"%)");
-            TextView tv2 = (TextView) convertView.findViewById(R.id.grades_list_percent);
+
+
+        if (convertView == null) {
+            //Log.i("b :child: ",child.getCoursework());
+            convertView = inflater.inflate(R.layout.grades_tab_row, null);
+        }
+        TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
+        tv1.setText(child.getCoursework()+"("+child.getPercentage()+"%)");
+        TextView tv2 = (TextView) convertView.findViewById(R.id.grades_list_percent);
+        if(child.isFinal()){
             double score = child.getScore();
+
             tv2.setText(score+"%");
         }else{
-            if(convertView == null)
-                convertView = inflater.inflate(R.layout.grades_tab_row_unset,null);
-            TextView tv1 = (TextView) convertView.findViewById(R.id.grades_list_item);
-            tv1.setText(child.getCoursework()+"("+child.getPercentage()+"%)");
+            if(child.getScore()<0) {
+                tv2.setText("- -%");
+            }
+            else {
+                tv2.setText(new DecimalFormat("#.##").format(child.getScore() / child.getPercentage() * 100)+"%");
+            }
+
         }
+
+
 
 
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if(child.isFinal())
-                    Toast.makeText(activity, child.getCoursework(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, child.getCoursework()+" "+child.getScore()+"%", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(activity,"HI",Toast.LENGTH_LONG).show();
 				}

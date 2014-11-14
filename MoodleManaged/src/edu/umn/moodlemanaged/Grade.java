@@ -24,7 +24,7 @@ public class Grade {
 
     public boolean isFinal(){ return isFinal; }
     public double getScore(){ return 100*(this.score/this.total);}
-
+    public void setScore(double s){this.score = s/100*this.total;}
     public String getCoursework(){ return coursework; }
 
 }
