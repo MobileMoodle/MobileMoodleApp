@@ -17,10 +17,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import edu.umn.moodlemanaged.Event;
 import edu.umn.moodlemanaged.NewAssignmentActivity;
 import edu.umn.moodlemanaged.PlanningGroupDate;
 import edu.umn.moodlemanaged.R;
 import edu.umn.moodlemanaged.ViewAssignmentActivity;
+
+import static android.widget.Toast.makeText;
 
 public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
@@ -53,7 +56,9 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         }
 
         // Event string
-        final String ct = (String) groups.get(groupPosition).children.get(childPosition).text;
+        final Event e;
+        e = groups.get(groupPosition).children.get(childPosition);
+        final String ct = e.text;
         final TextView text = (TextView) convertView.findViewById(R.id.planning_list_event);
         text.setText(ct);
         // Activity if selected
@@ -62,6 +67,15 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ViewAssignmentActivity.class);
                 activity.startActivity(intent);
+            }
+        });
+
+        text.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                    Toast.makeText(activity, ""+e.time, Toast.LENGTH_LONG).show();
+                    return true;
+
             }
         });
 

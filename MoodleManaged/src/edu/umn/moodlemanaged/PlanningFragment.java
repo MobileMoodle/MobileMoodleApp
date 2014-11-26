@@ -71,7 +71,7 @@ public class PlanningFragment extends Fragment {
 
         int j=0;
         PlanningGroupDate group = new PlanningGroupDate("Today, November 8th");
-        group.children.add(new Event("CSCI 5115: Read Mathis Chapters 27-35", false));
+        group.children.add(new Event("CSCI 5115: Read Mathis Chapters 27-35", false,"2014/11/08 13:24:36","assignment"));
         groups.add(j, group);
         j++;
         group = new PlanningGroupDate("Tomorrow, November 9th");
@@ -109,6 +109,10 @@ public class PlanningFragment extends Fragment {
         group = new PlanningGroupDate("View More +");
         groups.add(j, group);
         j++;
+        createDataThroughDB();
+    }
+    public void createDataThroughDB(){
+
     }
 
 }
