@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Event {
+public class Event implements Comparable<Event>{
     public String text; // E.g. CSCI 5115: Development Complete (1:30PM)*
     public boolean isChecked; // Stores whether the event has been checked off
     public Date time;
@@ -45,5 +45,10 @@ public class Event {
         this.event_type=cursor.getString(cursor.getColumnIndex("event_type"));
         this.isChecked= (cursor.getString(cursor.getColumnIndex("done")).equals("True"));
         this.time= new Date(cursor.getString(cursor.getColumnIndex("due")));
+    }
+
+    @Override
+    public int compareTo(Event event) {
+       return this.time.compareTo(event.time);
     }
 }

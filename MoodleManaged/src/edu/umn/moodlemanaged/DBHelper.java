@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Created by bbiiggppiigg on 14/11/17.
@@ -62,11 +64,13 @@ public class DBHelper extends SQLiteOpenHelper{
         cursor.moveToFirst();
         while(!cursor.isLast()){
             Log.i("event name",cursor.getString(cursor.getColumnIndex("name"))+" id = "+cursor.getString(cursor.getColumnIndex("id")));
-            //ret.add(new Event(cursor));
+            Log.i("time",cursor.getString(cursor.getColumnIndex("due")));
+            ret.add(new Event(cursor));
             cursor.moveToNext();
         }
         Log.i("event name",cursor.getString(cursor.getColumnIndex("name"))+" id = "+cursor.getString(cursor.getColumnIndex("id")));
-
+        ret.add(new Event(cursor));
+        Collections.sort(ret);
         return ret;
     }
 }

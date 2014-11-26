@@ -24,10 +24,11 @@ public class MoodleManaged extends Activity {
 
         Event e = new Event("CSCI 5115: Read Mathis Chapters 27-35", false,"2014/11/08 13:24:36","assignment",1);
         Event e2 = new Event("CSCI 5609: Read ABC Chapters 27-35", false,"2014/11/18 13:24:36","assignment",2);
+        Event e3 = new Event("CSCI 8001: Exam", false,"2014/11/18 13:44:36","exam",3);
 
         mydb.insertEvent(e);
         mydb.insertEvent(e2);
-
+        mydb.insertEvent(e3);
         mydb.getEvents();
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);

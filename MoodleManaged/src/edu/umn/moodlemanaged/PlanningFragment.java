@@ -3,6 +3,7 @@ package edu.umn.moodlemanaged;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import edu.umn.moodlemanaged.adapters.PlanningCustomAdapter;
 
@@ -68,51 +70,27 @@ public class PlanningFragment extends Fragment {
      * TODO Add other views
      */
     public void createData() {
+        DBHelper mydb = MoodleManaged.mydb;
+        ArrayList<Event> list = mydb.getEvents();
 
-        int j=0;
-        PlanningGroupDate group = new PlanningGroupDate("Today, November 8th");
-        group.children.add(new Event("CSCI 5115: Read Mathis Chapters 27-35", false,"2014/11/08 13:24:36","assignment"));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("Tomorrow, November 9th");
-        group.children.add(new Event("PSY 3011: Read Chapter 10", false));
-        group.children.add(new Event("CSCI 5115: GradesGroup Meeting (5:00pm)", false));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("Monday, November 10th");
-        group.children.add(new Event("KIN 5001: Job Task Analysis", false));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("Tuesday, November 11th");
-        group.children.add(new Event("CSCI 4131: Assignment 7 Due (11:55pm)", false));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("Wednesday, November 12th");
-        group.children.add(new Event("PSY 3011: Chapter 10 Writing Due (11:59pm)", false));
-        group.children.add(new Event("PSY 3011: Chapter 10 Quizzes", false));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("Thursday, November 13th");
-        group.children.add(new Event("KIN 5001: Job Task Analysis", false));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("Friday, November 14th");
-        group.children.add(new Event("CSCI 5115: Development Complete (1:30pm)", false));
-        group.children.add(new Event("CSCI 5115: Finalize Testing Plan (1:30pm)", false));
-        group.children.add(new Event("CSCI 5115: GradesGroup Meeting (4:00pm)", false));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("Saturday, November 15th");
-        group.children.add(new Event("CSCI 5115: User Testing", false));
-        groups.add(j, group);
-        j++;
-        group = new PlanningGroupDate("View More +");
-        groups.add(j, group);
-        j++;
-        createDataThroughDB();
-    }
-    public void createDataThroughDB(){
+        Date tmp=list.get(0).time;
+        PlanningGroupDate group = new PlanningGroupDate(""+tmp);
+
+        int j=0,i=0;
+        for (j=0,i=0;j<list.size();j++){
+            if(list.get(j).time.getDay()==tmp.getDay()){
+                group.children.add(list.get(j));
+            }else{
+               groups.add(i,group);
+               i++;
+               tmp = list.get(j).time;
+               group = new PlanningGroupDate(""+tmp);
+               group.children.add(list.get(j));
+            }
+        }
+        groups.add(i,group);
 
     }
+
 
 }
