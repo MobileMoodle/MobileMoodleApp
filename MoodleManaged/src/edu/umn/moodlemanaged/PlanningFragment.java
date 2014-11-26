@@ -76,19 +76,19 @@ public class PlanningFragment extends Fragment {
         Date tmp=list.get(0).time;
         PlanningGroupDate group = new PlanningGroupDate(""+tmp);
 
-        int j=0,i=0;
-        for (j=0,i=0;j<list.size();j++){
+        int j=0;
+        for (j=0;j<list.size();j++){
             if(list.get(j).time.getDay()==tmp.getDay()){
                 group.children.add(list.get(j));
             }else{
-               groups.add(i,group);
-               i++;
+               groups.add(group);
+
                tmp = list.get(j).time;
                group = new PlanningGroupDate(""+tmp);
                group.children.add(list.get(j));
             }
         }
-        groups.add(i,group);
+        groups.add(group);
 
     }
 
