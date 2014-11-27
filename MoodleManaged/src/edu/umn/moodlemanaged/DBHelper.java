@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.i("db on create","");
         sqLiteDatabase.execSQL("create table events( id integer primary key ,cid integer , event_type text,name text ,due text , done boolean)");
-        sqLiteDatabase.execSQL("create table courses(id integer primary key, name text, instructor text, syllabus text)");
+        sqLiteDatabase.execSQL("create table courses(id integer primary key, number text, name text, syllabus text)");
         sqLiteDatabase.execSQL("create table scores(id integer primary key, eid integer, score real, total real, percentage integer)");
     }
 
@@ -41,6 +42,18 @@ public class DBHelper extends SQLiteOpenHelper{
         db.execSQL("truncate table if exists courses");
         db.execSQL("truncate table if exists scores");
     }
+    public boolean insertCourse(Course c){
+        Log.i("insert course",c.name);
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("id",c.id);
+        cv.put("number",c.number);
+        cv.put("name",c.name);
+        cv.put("syllabus",c.syllabus);
+        db.insertWithOnConflict("courses",null,cv,SQLiteDatabase.CONFLICT_REPLACE);
+        return true;
+    }
+
     public boolean insertEvent(Event e){
         Log.i("debug","inserting event :"+e.text);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -62,15 +75,29 @@ public class DBHelper extends SQLiteOpenHelper{
         Log.i("debug","calling get Events"+cursor.getCount());
 
         cursor.moveToFirst();
-        while(!cursor.isLast()){
+        while(!cursor.isAfterLast()){
             Log.i("event name",cursor.getString(cursor.getColumnIndex("name"))+" id = "+cursor.getString(cursor.getColumnIndex("id")));
             Log.i("time",cursor.getString(cursor.getColumnIndex("due")));
             ret.add(new Event(cursor));
             cursor.moveToNext();
         }
-        Log.i("event name",cursor.getString(cursor.getColumnIndex("name"))+" id = "+cursor.getString(cursor.getColumnIndex("id")));
-        ret.add(new Event(cursor));
+
         Collections.sort(ret);
+        return ret;
+    }
+
+    public ArrayList<Course> getCourses(){
+        ArrayList<Course> ret = new ArrayList<Course>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+        cursor = db.rawQuery("select * from courses",null);
+        cursor.moveToFirst();
+        Log.i("debug","calling get Courses"+cursor.getCount());
+        while(!cursor.isAfterLast()){
+            Log.i("course name",cursor.getString(cursor.getColumnIndex("number"))+" "+cursor.getString(cursor.getColumnIndex("name")));
+            ret.add(new Course(cursor));
+            cursor.moveToNext();
+        }
         return ret;
     }
 }

@@ -1,6 +1,7 @@
 package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
@@ -13,6 +14,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import edu.umn.moodlemanaged.adapters.GradesCustomAdapter;
@@ -82,10 +84,12 @@ public class GradesFragment extends Fragment {
         coursesAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, new ArrayList<String>());
         coursesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        coursesAdapter.add("CSCI 4131");
-        coursesAdapter.add("CSCI 5115");
-        coursesAdapter.add("KIN 5001");
-        coursesAdapter.add("PSY 3011");
+        DBHelper mydb = MoodleManaged.mydb;
+        ArrayList<Course> list = mydb.getCourses();
+        for (Course c : list){
+            coursesAdapter.add(c.getNumber());
+        }
+
         courses.setAdapter(coursesAdapter);
 
         // Text for the desired grade

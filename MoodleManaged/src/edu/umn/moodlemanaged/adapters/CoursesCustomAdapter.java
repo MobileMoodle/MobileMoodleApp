@@ -55,9 +55,9 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 			holder = (CourseHolder) row.getTag();
 		}
 		
-		Course course = courses.get(position);
+		final Course course = courses.get(position);
 		holder.courseName.setText(course.getName());
-		holder.courseID.setText(course.getID());
+		holder.courseID.setText(course.getNumber());
         String numNots = String.valueOf(course.getNumNotifications());
         if (course.getNumNotifications() > 0) {
             holder.btnNotifications.setBackgroundResource(R.drawable.bluebutton);
@@ -81,6 +81,7 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 			public void onClick(View v) {
                 Log.i("btnSyllabus Button Clicked", "**********");
                 Intent intent = new Intent(context, SyllabusActivity.class);
+                intent.putExtra("syllabus", course.syllabus);
                 context.startActivity(intent);
 
 				// TODO Auto-generated method stub
@@ -118,7 +119,7 @@ public class CoursesCustomAdapter extends ArrayAdapter<Course> {
 	}
 
     // Holder used to build row from xml and data
-	static class CourseHolder {
+    public class CourseHolder {
 		TextView courseID;
 		TextView courseName;
 		Button btnNotifications;

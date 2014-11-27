@@ -22,8 +22,10 @@ public class SyllabusActivity extends Activity {
         // Dynamically add textviews MOCKUP (TODO get html from DB script in cloud)
         // TODO make unique mockups for each course (use a switch)
         LinearLayout layout = (LinearLayout) findViewById(R.id.oh_view);
+
         TextView oh = new TextView(this);
-        oh.setText(Html.fromHtml(
+
+        /*oh.setText(Html.fromHtml(
             "<p>" +
                 "<h2>Course Syllabus</h2>" +
             "</p>" +
@@ -73,7 +75,10 @@ public class SyllabusActivity extends Activity {
                 "<li>Design and implement user interfaces for the Android mobile operating system.<li>" +
                 "<li>Identify and explain key foundational concepts and theories in Human-Computer Interaction.<li>" +
             "</p>"
-        ));
+        ));*/
+        Bundle b = getIntent().getExtras();
+
+        oh.setText(b.getString("syllabus"));
         layout.addView(oh);
 
     }

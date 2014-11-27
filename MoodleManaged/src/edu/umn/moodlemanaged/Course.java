@@ -1,27 +1,42 @@
 package edu.umn.moodlemanaged;
 
-public class Course {
-	private String id; // E.g. CSCI 5115
-	private String name; // E.g. User Interface Design, Implementation & Evaluation
-    private int numNotifications;
-	
-	public Course(String id, String name){
-		this.id = id;
-		this.name = name;
-	}
+import android.database.Cursor;
 
-    public Course(String id, String name, int numNotifications){
-        this.id = id;
+public class Course {
+	public String number; // E.g. CSCI 5115
+	public String name; // E.g. User Interface Design, Implementation & Evaluation
+    public int numNotifications;
+	public String syllabus;
+    public int id;
+
+    public Course(String number, String name){
+        this.number = number;
+        this.name = name;
+    }
+
+    public Course(String number, String name, int numNotifications){
+        this.number = number;
         this.name = name;
         this.numNotifications = numNotifications;
     }
-
+    public Course(int id , String number , String name, String syllabus){
+        this.id = id;
+        this.number = number;
+        this.name = name;
+        this.syllabus = syllabus;
+    }
+    public Course(Cursor cursor){
+        this.id = new Integer(cursor.getString(cursor.getColumnIndex("id")));
+        this.name = cursor.getString(cursor.getColumnIndex("name"));
+        this.syllabus = cursor.getString(cursor.getColumnIndex("syllabus"));
+        this.number = cursor.getString(cursor.getColumnIndex("number"));
+    }
 	public String getName() {
 		return name;
 	}
 	
-	public String getID() {
-		return id;
+	public String getNumber() {
+		return number;
 	}
 
     public int getNumNotifications() {

@@ -1,6 +1,7 @@
 package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,12 @@ public class CoursesFragment extends Fragment {
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         // TODO Integrate with cloud
-		/**
-		 * Add Courses (Mock-up ONLY)
-		 */
-		courseArray.add(new Course("CSCI 4131", "Internet Programming", 3));
-		courseArray.add(new Course("CSCI 5115", "User Interface Design, Implementation & Evaluation", 0));
-		courseArray.add(new Course("KIN 5001", "Foundations of Human Factors & Ergonomics", 0));
-        courseArray.add(new Course("PSY 3011", "Introduction to Learning & Behavior", 1));
+
+        DBHelper db = MoodleManaged.mydb;
+        ArrayList<Course> list = db.getCourses();
+        for (Course course : list){
+            courseArray.add(course);
+        }
 	}
 
 	@Override
