@@ -24,10 +24,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_below="@id/enterNameText"
         android:singleLine="true"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_alignLeft="@+id/courseDescriptionText"
+        android:layout_alignStart="@+id/courseDescriptionText"
+        android:layout_alignRight="@+id/courseDescriptionText"
+        android:layout_alignEnd="@+id/courseDescriptionText" />
 
     <Spinner
         android:id="@+id/course_spinner_nassign"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Enter Course Description"
-        android:id="@+id/textView2"
+        android:id="@+id/courseDescriptionText"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.05"
         android:paddingTop="25dp"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Select Course"
-        android:id="@+id/textView3"
+        android:id="@+id/selectCourseText"
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true" />
 
@@ -93,12 +93,25 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/descriptionInput"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"/>
+        android:layout_below="@+id/courseDescriptionText"
+        android:layout_alignLeft="@+id/courseDescriptionText"
+        android:layout_alignStart="@+id/courseDescriptionText"
+        android:layout_alignRight="@+id/courseDescriptionText"
+        android:layout_alignEnd="@+id/courseDescriptionText"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Event"
+        android:id="@+id/submitButton"
+        android:layout_marginBottom="43dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/course_spinner_nassign"
+        android:layout_alignStart="@+id/course_spinner_nassign"
+        android:layout_alignRight="@+id/course_spinner_nassign"
+        android:layout_alignEnd="@+id/course_spinner_nassign"
+        android:background="@drawable/greybutton" />
 
 </RelativeLayout>
