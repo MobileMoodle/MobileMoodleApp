@@ -6,12 +6,16 @@ import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.text.format.Time;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import org.w3c.dom.Text;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
@@ -28,29 +32,16 @@ public class TimePickerFragment extends DialogFragment
                 DateFormat.is24HourFormat(getActivity()));
     }
 
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//        TextView time = (TextView)getActivity().findViewById(R.id.timeText);
-//        if(hourOfDay > 12)
-//        {
-//            if(minute < 10)
-//            {
-//                time.setText("Time: " + (hourOfDay-12) + ":0" + minute + " PM");
-//            }
-//            else
-//            {
-//                time.setText("Time: " + (hourOfDay-12) + ":" + minute + " PM");
-//            }
-//        }
-//        else
-//        {
-//            if(minute < 10)
-//            {
-//                time.setText("Time: " + hourOfDay + ":0" + minute + " AM");
-//            }
-//            else
-//            {
-//                time.setText("Time: " + hourOfDay + ":" + minute + " AM");
-//            }
-//        }
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+    {
+        String s;
+        Format formatter;
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+
+        formatter = new SimpleDateFormat("HH:mm:ss");
+        s = formatter.format(calendar.getTime());
+        NewAssignmentActivity.tempEventDate+=s;
     }
 }

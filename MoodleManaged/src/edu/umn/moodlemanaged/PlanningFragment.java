@@ -2,23 +2,30 @@ package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import edu.umn.moodlemanaged.adapters.PlanningCustomAdapter;
 
 public class PlanningFragment extends Fragment {
-    private ArrayList<PlanningGroupDate> groups = new ArrayList<PlanningGroupDate>();
+    public static ArrayList<PlanningGroupDate> groups = new ArrayList<PlanningGroupDate>();
+    public static ExpandableListView listView;
+    public static PlanningCustomAdapter adapter;
     ArrayList<String> isCheckedStatus = new ArrayList<String>();
     ArrayAdapter<String> coursesAdapter;
 
@@ -26,7 +33,6 @@ public class PlanningFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.planning_tab, container, false);
-
         // Populate upcoming events, and set their checkboxes to false (views are recycled)
         createData();
         for (int i = 0; i < groups.size(); i++) {
@@ -36,8 +42,8 @@ public class PlanningFragment extends Fragment {
         // TODO add adapter for switch;
 
         // List
-        ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.planning_list);
-        final PlanningCustomAdapter adapter = new PlanningCustomAdapter(getActivity(), groups);
+        listView = (ExpandableListView) view.findViewById(R.id.planning_list);
+        adapter = new PlanningCustomAdapter(getActivity(), groups);
         listView.setAdapter(adapter);
         int count = adapter.getGroupCount();
         // Expand all groups, and throw away click events (i.e. cannot collapse)
@@ -64,6 +70,20 @@ public class PlanningFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume(){
+        groups.clear();
+        createData();
+        adapter.notifyDataSetInvalidated();
+        adapter.notifyDataSetChanged();
+        int count = adapter.getGroupCount();
+        // Expand all groups, and throw away click events (i.e. cannot collapse)
+        for (int position = 0; position < count; position++) {
+            listView.expandGroup(position);
+        }
+        super.onResume();
+    }
+
     // TODO Integrate with cloud
     /**
      * Add Events (Mock-up ONLY)
@@ -72,24 +92,25 @@ public class PlanningFragment extends Fragment {
     public void createData() {
         DBHelper mydb = MoodleManaged.mydb;
         ArrayList<Event> list = mydb.getEvents();
-
         Date tmp=list.get(0).time;
         PlanningGroupDate group = new PlanningGroupDate(""+tmp);
 
-        int j=0;
-        for (j=0;j<list.size();j++){
-            if(list.get(j).time.getDay()==tmp.getDay()){
+        int j;
+        for (j=0;j<list.size();j++)
+        {
+            if(list.get(j).time.getDay()==tmp.getDay())
+            {
                 group.children.add(list.get(j));
-            }else{
+            }
+            else
+            {
                groups.add(group);
-
                tmp = list.get(j).time;
                group = new PlanningGroupDate(""+tmp);
                group.children.add(list.get(j));
             }
         }
         groups.add(group);
-
     }
 
 

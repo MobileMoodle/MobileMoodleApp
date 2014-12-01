@@ -12,15 +12,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.app.DialogFragment;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import edu.umn.moodlemanaged.adapters.PlanningCustomAdapter;
+
 public class NewAssignmentActivity extends FragmentActivity
 {
     private ArrayAdapter<String> coursesAdapter;
+    public static String tempEventText;
+    public static String tempEventDate;
+    public static String tempEventDescription;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +35,7 @@ public class NewAssignmentActivity extends FragmentActivity
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Spinner courses = (Spinner) findViewById(R.id.course_spinner_nassign);
+        final Spinner courses = (Spinner) findViewById(R.id.course_spinner_nassign);
         coursesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new ArrayList<String>());
         coursesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         coursesAdapter.add("CSCI 4131");
@@ -45,11 +51,8 @@ public class NewAssignmentActivity extends FragmentActivity
             {
                 // if keydown and "enter" is pressed
                 if ((event.getAction() == KeyEvent.ACTION_DOWN)
-                        && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-
-                    // display a floating message
-                    Toast.makeText(NewAssignmentActivity.this,
-                            assignmentTitle.getText(), Toast.LENGTH_LONG).show();
+                        && (keyCode == KeyEvent.KEYCODE_ENTER))
+                {
                     return true;
                 }
                 return false;
@@ -77,11 +80,26 @@ public class NewAssignmentActivity extends FragmentActivity
         Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Event Added!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
-                toast.show();
+            public void onClick(View v)
+            {
+//                Toast toast = Toast.makeText(getApplicationContext(), "Event Added!", Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
+//                toast.show();
+                String currentClass = courses.getSelectedItem().toString() + ": " + assignmentTitle.getText();
+                tempEventText = currentClass;
+                tempEventDescription = "TESTIES 1";
+                if(tempEventDate != "" && tempEventDescription != "" && tempEventText != "")
+                {
+                    int id = MoodleManaged.mydb.getEvents().size() + 1;
+                    Event temp = new Event(tempEventText, false,tempEventDate, tempEventDescription, id);
+                    MoodleManaged.mydb.insertEvent(temp);
+                    tempEventText = "";
+                    tempEventDescription = "";
+                    tempEventDate = "";
+
+                }
                 finish();
+
             }
         });
 

@@ -5,13 +5,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-public class ViewAssignmentActivity extends Activity {
+public class ViewAssignmentActivity extends Activity
+{
+    public static String titleString;
+    public static String dateString;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_assignment);
+        TextView title = (TextView) findViewById(R.id.event_title);
+        title.setText(titleString);
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -24,7 +30,7 @@ public class ViewAssignmentActivity extends Activity {
         TextView tv = (TextView) findViewById(R.id.event_view);
         tv.setText(Html.fromHtml(
                 "<p>" +
-                        "<p><strong>Due Date:</strong><br/>Tuesday, November 11th, 2014 (11:55pm)<br/></p>" +
+                        "<p><strong>Due Date:</strong><br/>" + dateString + "<br/></p>" +
                         "<p><strong>Weight:</strong><br/>10%<br/></p>" +
                         "<p><strong>Time Remaining:</strong><br/>3 days, 8 hours<br/></p>" +
                         "<p><strong>Description:</strong><br/>In this assignment you will learn about" +
@@ -125,6 +131,7 @@ public class ViewAssignmentActivity extends Activity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
+                titleString = "";
                 finish();
                 return true;
         }
