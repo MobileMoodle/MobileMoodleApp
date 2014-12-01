@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper{
         Log.i("db on create","");
         sqLiteDatabase.execSQL("create table events( id integer primary key ,cid integer , event_type text,name text ,due text , done boolean)");
         sqLiteDatabase.execSQL("create table courses(id integer primary key, number text, name text, syllabus text)");
-        sqLiteDatabase.execSQL("create table scores(id integer primary key, eid integer, score real, total real, percentage integer)");
+        sqLiteDatabase.execSQL("create table grades(id integer primary key, eid integer,fixed int , score real, total real, percentage integer)");
     }
 
     @Override
@@ -40,7 +40,21 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("truncate table if exists events");
         db.execSQL("truncate table if exists courses");
-        db.execSQL("truncate table if exists scores");
+        db.execSQL("truncate table if exists grades");
+    }
+    public boolean insertGrade(Grade g){
+        Log.i("insert grades ",""+g.id);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("id",g.id);
+        cv.put("eid",g.eid);
+        //cv.put("name",g.name);
+        cv.put("fixed",g.fixed);
+        cv.put("percentage",g.percentage);
+        cv.put("score",g.score);
+        cv.put("total",g.total);
+        db.insertWithOnConflict("grades",null,cv,SQLiteDatabase.CONFLICT_REPLACE);
+        return true;
     }
     public boolean insertCourse(Course c){
         Log.i("insert course",c.name);
@@ -59,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("id",e.id);
-        cv.put("cid",0);
+        cv.put("cid",e.cid);
         cv.put("name",e.text);
         cv.put("event_type",e.event_type);
         cv.put("due",e.time.toString());
@@ -96,6 +110,21 @@ public class DBHelper extends SQLiteOpenHelper{
         while(!cursor.isAfterLast()){
             Log.i("course name",cursor.getString(cursor.getColumnIndex("number"))+" "+cursor.getString(cursor.getColumnIndex("name")));
             ret.add(new Course(cursor));
+            cursor.moveToNext();
+        }
+        return ret;
+    }
+
+    public ArrayList<Grade> getGrades(){
+        ArrayList<Grade> ret = new ArrayList<Grade>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+        cursor = db.rawQuery("select g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id",null);
+        cursor.moveToFirst();
+        Log.i("debug","calling get Grades "+cursor.getCount());
+        while(!cursor.isAfterLast()){
+            Log.i("grade name",cursor.getString(cursor.getColumnIndex("name")));
+            ret.add(new Grade(cursor));
             cursor.moveToNext();
         }
         return ret;

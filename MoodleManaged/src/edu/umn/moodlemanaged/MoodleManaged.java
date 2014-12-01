@@ -22,19 +22,22 @@ public class MoodleManaged extends Activity {
        //this.deleteDatabase("test.db");
         mydb = new DBHelper(this);
 
-        Event e = new Event("CSCI 5115: Read Mathis Chapters 27-35", false,"2014/11/08 13:24:36","assignment",1);
-        Event e2 = new Event("CSCI 5609: Read ABC Chapters 27-35", false,"2014/11/18 13:24:36","assignment",2);
-        Event e3 = new Event("CSCI 8001: Exam", false,"2014/11/18 13:44:36","exam",3);
+        Event e = new Event("CSCI 5115: Read Mathis Chapters 27-35", false,"2014/11/08 13:24:36","assignment",1,1);
+        Event e2 = new Event("CSCI 5609: Read ABC Chapters 27-35", false,"2014/11/18 13:24:36","assignment",2,2);
+        Event e3 = new Event("CSCI 8001: Exam", false,"2014/11/18 13:44:36","exam",3,2);
         Course c1 = new Course(1,"CSCI 5115","User Interface Design, Implementation & Evaluation","This is a course.");
         Course c2 = new Course(2,"CSCI 5609","Visualization","This is another course.");
-
+        Grade g1 = new Grade(1,1,"Homework 1",true,5,20,30);
         mydb.insertEvent(e);
         mydb.insertEvent(e2);
         mydb.insertEvent(e3);
         mydb.insertCourse(c1);
         mydb.insertCourse(c2);
-        mydb.getCourses();
+        mydb.insertGrade(g1);
+        mydb.getGrades();
+        //mydb.getCourses();
         //mydb.getEvents();
+
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
        
