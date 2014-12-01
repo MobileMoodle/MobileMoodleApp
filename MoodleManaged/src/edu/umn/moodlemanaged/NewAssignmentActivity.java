@@ -95,8 +95,8 @@ public class NewAssignmentActivity extends FragmentActivity
 //                toast.show();
                 int pos = courses.getSelectedItemPosition();
                 Course currentClass = courselist.get(pos);
-
-                // + ": " + assignmentTitle.getText();
+                String courseName = courses.getSelectedItem().toString();
+                courseName = courseName.replace(" ", "-");
                 tempEventText = assignmentTitle.getText().toString();
                 tempEventDescription = descriptionInput.getText().toString();
                 Log.i("Add Event :", "Event Name = "+tempEventText+"Course Id = "+currentClass.id+" Description = "+tempEventDescription);
@@ -105,7 +105,7 @@ public class NewAssignmentActivity extends FragmentActivity
                 {
                     int id = MoodleManaged.mydb.getEvents().size() + 1;
                     DBHelper db = MoodleManaged.mydb;
-                    Event temp = new Event(tempEventText, false,tempEventDate, tempEventDescription,id,currentClass.id);
+                    Event temp = new Event(tempEventText, courseName, false,tempEventDate, tempEventDescription,id,currentClass.id);
                     MoodleManaged.mydb.insertEvent(temp);
                     tempEventText = "";
                     tempEventDescription = "";

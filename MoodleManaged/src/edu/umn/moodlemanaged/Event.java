@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Event implements Comparable<Event>{
     public String text; // E.g. CSCI 5115: Development Complete (1:30PM)*
+    public String courseName;
     public boolean isChecked; // Stores whether the event has been checked off
     public Date time;
     public String event_type;
@@ -17,9 +18,10 @@ public class Event implements Comparable<Event>{
         this.text = t;
         this.isChecked = b;
     }
-    public Event(String name,boolean b , String due,String event_type){
+    public Event(String name, String courseName, boolean b , String due,String event_type){
         this.id =0 ;
         this.text = name;
+        this.courseName = courseName;
         this.event_type = event_type;
         this.isChecked = b;
         SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -29,9 +31,10 @@ public class Event implements Comparable<Event>{
             e.printStackTrace();
         }
     }
-    public Event(String name,boolean b , String due,String event_type,int id,int cid){
+    public Event(String name, String courseName, boolean b, String due,String event_type,int id,int cid){
         this.id = id;
         this.text = name;
+        this.courseName = courseName;
         this.event_type = event_type;
         this.isChecked = b;
         this.cid = cid;
@@ -44,6 +47,7 @@ public class Event implements Comparable<Event>{
     }
     public Event(Cursor cursor){
         this.text = cursor.getString(cursor.getColumnIndex("name"));
+        this.courseName = cursor.getString(cursor.getColumnIndex("course_name"));
         this.event_type=cursor.getString(cursor.getColumnIndex("event_type"));
         this.isChecked= (cursor.getString(cursor.getColumnIndex("done")).equals("True"));
         this.time= new Date(cursor.getString(cursor.getColumnIndex("due")));

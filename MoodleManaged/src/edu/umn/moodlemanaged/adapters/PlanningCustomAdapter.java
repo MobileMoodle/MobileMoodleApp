@@ -70,7 +70,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         text.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ViewAssignmentActivity.titleString = text.getText().toString();
+                ViewAssignmentActivity.titleString = e.courseName + ": " + text.getText().toString();
                 ViewAssignmentActivity.dateString = e.time.toString();
                 Intent intent = new Intent(activity, ViewAssignmentActivity.class);
                 activity.startActivity(intent);

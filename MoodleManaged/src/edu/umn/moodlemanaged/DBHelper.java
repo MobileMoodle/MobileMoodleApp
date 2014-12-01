@@ -11,6 +11,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by bbiiggppiigg on 14/11/17.
@@ -24,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.i("db on create","");
-        sqLiteDatabase.execSQL("create table events( id integer primary key ,cid integer , event_type text,name text ,due text , done boolean)");
+        sqLiteDatabase.execSQL("create table events( id integer primary key ,cid integer , event_type text,name text, course_name text, due text , done boolean)");
         sqLiteDatabase.execSQL("create table courses(id integer primary key, number text, name text, syllabus text)");
         sqLiteDatabase.execSQL("create table grades(id integer primary key, eid integer,fixed int , score real, total real, percentage integer)");
     }
@@ -75,6 +76,7 @@ public class DBHelper extends SQLiteOpenHelper{
         cv.put("id",e.id);
         cv.put("cid",e.cid);
         cv.put("name",e.text);
+        cv.put("course_name", e.courseName);
         cv.put("event_type",e.event_type);
         cv.put("due",e.time.toString());
         cv.put("done", e.isChecked);
@@ -95,8 +97,25 @@ public class DBHelper extends SQLiteOpenHelper{
             ret.add(new Event(cursor));
             cursor.moveToNext();
         }
-
         Collections.sort(ret);
+        return ret;
+    }
+
+    public ArrayList<Event> getEventsSortName(){
+        ArrayList<Event> ret = new ArrayList<Event>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+        cursor = db.rawQuery("select * from events",null );
+        Log.i("debug","calling get Events"+cursor.getCount());
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            Log.i("event name",cursor.getString(cursor.getColumnIndex("name"))+" id = "+cursor.getString(cursor.getColumnIndex("id")));
+            Log.i("time",cursor.getString(cursor.getColumnIndex("due")));
+            ret.add(new Event(cursor));
+            cursor.moveToNext();
+        }
+        Collections.sort(ret, StringDescComparator);
         return ret;
     }
 
@@ -137,4 +156,15 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return new Integer(cursor.getString(cursor.getColumnIndex("num")));
     }
+
+    public static Comparator<Event> StringDescComparator = new Comparator<Event>()
+    {
+        @Override
+        public int compare(Event lhs, Event rhs) {
+            String courseName1 = lhs.courseName;
+            String courseName2 = rhs.courseName;
+
+            return courseName2.compareToIgnoreCase(courseName1);
+        }
+    };
 }
