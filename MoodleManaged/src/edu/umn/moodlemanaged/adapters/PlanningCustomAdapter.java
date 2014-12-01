@@ -3,6 +3,7 @@ package edu.umn.moodlemanaged.adapters;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,7 +16,11 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import edu.umn.moodlemanaged.Event;
 import edu.umn.moodlemanaged.NewAssignmentActivity;
@@ -66,6 +71,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 ViewAssignmentActivity.titleString = text.getText().toString();
+                ViewAssignmentActivity.dateString = e.time.toString();
                 Intent intent = new Intent(activity, ViewAssignmentActivity.class);
                 activity.startActivity(intent);
             }

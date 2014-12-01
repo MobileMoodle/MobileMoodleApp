@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class ViewAssignmentActivity extends Activity
 {
     public static String titleString;
+    public static String dateString;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class ViewAssignmentActivity extends Activity
         TextView tv = (TextView) findViewById(R.id.event_view);
         tv.setText(Html.fromHtml(
                 "<p>" +
-                        "<p><strong>Due Date:</strong><br/>Tuesday, November 11th, 2014 (11:55pm)<br/></p>" +
+                        "<p><strong>Due Date:</strong><br/>" + dateString + "<br/></p>" +
                         "<p><strong>Weight:</strong><br/>10%<br/></p>" +
                         "<p><strong>Time Remaining:</strong><br/>3 days, 8 hours<br/></p>" +
                         "<p><strong>Description:</strong><br/>In this assignment you will learn about" +
