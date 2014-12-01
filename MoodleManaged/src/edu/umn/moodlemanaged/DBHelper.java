@@ -129,4 +129,12 @@ public class DBHelper extends SQLiteOpenHelper{
         }
         return ret;
     }
+    public int numOfEvent(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+        cursor = db.rawQuery("select count(*) as num from events", null);
+        cursor.moveToFirst();
+
+        return new Integer(cursor.getString(cursor.getColumnIndex("num")));
+    }
 }

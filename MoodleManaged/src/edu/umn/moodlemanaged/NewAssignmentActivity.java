@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -23,7 +24,8 @@ import edu.umn.moodlemanaged.adapters.PlanningCustomAdapter;
 
 public class NewAssignmentActivity extends FragmentActivity
 {
-    private ArrayAdapter<String> coursesAdapter;
+    private ArrayList<Course> courselist ;
+    private ArrayAdapter<String> courseNameAdapter;
     public static String tempEventText;
     public static String tempEventDate;
     public static String tempEventDescription;
@@ -34,17 +36,23 @@ public class NewAssignmentActivity extends FragmentActivity
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
+        courseNameAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new ArrayList<String>());
         final Spinner courses = (Spinner) findViewById(R.id.course_spinner_nassign);
-        coursesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new ArrayList<String>());
-        coursesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        coursesAdapter.add("CSCI 4131");
+        courseNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        DBHelper mydb = MoodleManaged.mydb;
+        courselist = mydb.getCourses();
+        for(Course c : courselist){
+            courseNameAdapter.add(c.number);
+        }
+
+       /* coursesAdapter.add("CSCI 4131");
         coursesAdapter.add("CSCI 5115");
         coursesAdapter.add("KIN 5001");
-        coursesAdapter.add("PSY 3011");
-        courses.setAdapter(coursesAdapter);
+        coursesAdapter.add("PSY 3011");*/
+        courses.setAdapter(courseNameAdapter);
 
         final EditText assignmentTitle = (EditText) findViewById(R.id.editText);
+        final EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
         assignmentTitle.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event)
@@ -85,13 +93,19 @@ public class NewAssignmentActivity extends FragmentActivity
 //                Toast toast = Toast.makeText(getApplicationContext(), "Event Added!", Toast.LENGTH_SHORT);
 //                toast.setGravity(Gravity.CENTER|Gravity.BOTTOM, 0, 0);
 //                toast.show();
-                String currentClass = courses.getSelectedItem().toString() + ": " + assignmentTitle.getText();
-                tempEventText = currentClass;
-                tempEventDescription = "TESTIES 1";
+                int pos = courses.getSelectedItemPosition();
+                Course currentClass = courselist.get(pos);
+
+                // + ": " + assignmentTitle.getText();
+                tempEventText = assignmentTitle.getText().toString();
+                tempEventDescription = descriptionInput.getText().toString();
+                Log.i("Add Event :", "Event Name = "+tempEventText+"Course Id = "+currentClass.id+" Description = "+tempEventDescription);
+
                 if(tempEventDate != "" && tempEventDescription != "" && tempEventText != "")
                 {
                     int id = MoodleManaged.mydb.getEvents().size() + 1;
-                    Event temp = new Event(tempEventText, false,tempEventDate, tempEventDescription, id);
+                    DBHelper db = MoodleManaged.mydb;
+                    Event temp = new Event(tempEventText, false,tempEventDate, tempEventDescription,id,currentClass.id);
                     MoodleManaged.mydb.insertEvent(temp);
                     tempEventText = "";
                     tempEventDescription = "";
