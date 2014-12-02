@@ -49,7 +49,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+        return childPosition;
     }
 
     @Override
@@ -63,6 +63,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
         // Event string
         final Event e;
         e = groups.get(groupPosition).children.get(childPosition);
+        Log.i("debug", "Getting view for child: " + e.text);
         final String ct = e.text;
         final TextView text = (TextView) convertView.findViewById(R.id.planning_list_event);
         text.setText(ct);
@@ -125,6 +126,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
+        Log.i("debug", "Have " + groups.get(groupPosition).children.size() + " children. " + groups.get(groupPosition).string);
         return groups.get(groupPosition).children.size();
     }
 
@@ -150,7 +152,7 @@ public class PlanningCustomAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return groupPosition;
     }
 
     @Override

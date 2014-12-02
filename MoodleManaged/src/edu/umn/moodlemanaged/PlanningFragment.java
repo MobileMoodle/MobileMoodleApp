@@ -35,49 +35,20 @@ public class PlanningFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.planning_tab, container, false);
+        final View view = inflater.inflate(R.layout.planning_tab, container, false);
         // Populate upcoming events, and set their checkboxes to false (views are recycled)
+        groups.clear();
         sortDataDate();
         for (int i = 0; i < groups.size(); i++) {
             isCheckedStatus.add("false");
         }
-
-        // TODO add adapter for switch;
-        sortSwitch = (Switch) view.findViewById(R.id.sw_due_v_course);
-        sortSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.i("debug", "isChecked: " + sortSwitch.isChecked());
-                if(sortSwitch.isChecked())
-                {
-                    groups.clear();
-                    sortDataName();
-                    int count = adapter.getGroupCount();
-                    for (int position = 0; position < count; position++) {
-                        listView.expandGroup(position);
-                    }
-                    adapter.notifyDataSetInvalidated();
-                    adapter.notifyDataSetChanged();
-                }
-                else
-                {
-                    groups.clear();
-                    sortDataDate();
-                    int count = adapter.getGroupCount();
-                    for (int position = 0; position < count; position++) {
-                        listView.expandGroup(position);
-                    }
-                    adapter.notifyDataSetInvalidated();
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        });
 
         // List
         listView = (ExpandableListView) view.findViewById(R.id.planning_list);
         adapter = new PlanningCustomAdapter(getActivity(), groups);
         listView.setAdapter(adapter);
         int count = adapter.getGroupCount();
+        Log.i("debug", "Count is: " + count);
         // Expand all groups, and throw away click events (i.e. cannot collapse)
         for (int position = 0; position < count; position++) {
             listView.expandGroup(position);
@@ -99,35 +70,73 @@ public class PlanningFragment extends Fragment {
             }
         });
 
+        // TODO add adapter for switch;
+        sortSwitch = (Switch) view.findViewById(R.id.sw_due_v_course);
+        sortSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.i("debug", "isChecked: " + sortSwitch.isChecked());
+                if(sortSwitch.isChecked())
+                {
+                    groups.clear();
+                    //listView.invalidate();
+                    sortDataName();
+                    Log.i("debug", "Groups size is: " + groups.size());
+                    int count = adapter.getGroupCount();
+                    Log.i("debug", "Count is: " + count);
+                    for (int position = 0; position < count; position++) {
+                        Log.i("debug", "Position is: " + position);
+                        listView.expandGroup(position);
+                    }
+                    //adapter.notifyDataSetInvalidated();
+                    adapter.notifyDataSetChanged();
+                }
+                else
+                {
+                    groups.clear();
+                    //listView.invalidate();
+                    sortDataDate();
+                    Log.i("debug", "Groups size is: " + groups.size());
+                    int count = adapter.getGroupCount();
+                    Log.i("debug", "Count is: " + count);
+                    for (int position = 0; position < count; position++) {
+                        Log.i("debug", "Position is: " + position);
+                        listView.expandGroup(position);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
         return view;
     }
 
-    @Override
-    public void onResume(){
-        if(sortSwitch.isChecked())
-        {
-            groups.clear();
-            sortDataName();
-            int count = adapter.getGroupCount();
-            for (int position = 0; position < count; position++) {
-                listView.expandGroup(position);
-            }
-            adapter.notifyDataSetInvalidated();
-            adapter.notifyDataSetChanged();
-        }
-        else
-        {
-            groups.clear();
-            sortDataDate();
-            int count = adapter.getGroupCount();
-            for (int position = 0; position < count; position++) {
-                listView.expandGroup(position);
-            }
-            adapter.notifyDataSetInvalidated();
-            adapter.notifyDataSetChanged();
-        }
-        super.onResume();
-    }
+//    @Override
+//    public void onResume(){
+//        if(sortSwitch.isChecked())
+//        {
+//            groups.clear();
+//            sortDataName();
+//            int count = adapter.getGroupCount();
+//            for (int position = 0; position < count; position++) {
+//                listView.expandGroup(position);
+//            }
+//            //adapter.notifyDataSetInvalidated();
+//            adapter.notifyDataSetChanged();
+//        }
+//        else
+//        {
+//            groups.clear();
+//            sortDataDate();
+//            int count = adapter.getGroupCount();
+//            for (int position = 0; position < count; position++) {
+//                listView.expandGroup(position);
+//            }
+//            //adapter.notifyDataSetInvalidated();
+//            adapter.notifyDataSetChanged();
+//        }
+//        super.onResume();
+//    }
 
     // TODO Integrate with cloud
     /**
@@ -135,6 +144,7 @@ public class PlanningFragment extends Fragment {
      * TODO Add other views
      */
     public void sortDataDate() {
+        Log.i("debug", "SORT DATA BY DATE CALLED");
         DBHelper mydb = MoodleManaged.mydb;
         ArrayList<Event> list = mydb.getEvents();
         Date tmp=list.get(0).time;
@@ -159,6 +169,7 @@ public class PlanningFragment extends Fragment {
     }
 
     public void sortDataName() {
+        Log.i("debug", "SORT DATA BY NAME CALLED");
         DBHelper mydb = MoodleManaged.mydb;
         ArrayList<Event> list = mydb.getEventsSortName();
         String tmp=list.get(0).courseName;
