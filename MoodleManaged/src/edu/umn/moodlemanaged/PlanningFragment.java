@@ -111,32 +111,32 @@ public class PlanningFragment extends Fragment {
         return view;
     }
 
-//    @Override
-//    public void onResume(){
-//        if(sortSwitch.isChecked())
-//        {
-//            groups.clear();
-//            sortDataName();
-//            int count = adapter.getGroupCount();
-//            for (int position = 0; position < count; position++) {
-//                listView.expandGroup(position);
-//            }
-//            //adapter.notifyDataSetInvalidated();
-//            adapter.notifyDataSetChanged();
-//        }
-//        else
-//        {
-//            groups.clear();
-//            sortDataDate();
-//            int count = adapter.getGroupCount();
-//            for (int position = 0; position < count; position++) {
-//                listView.expandGroup(position);
-//            }
-//            //adapter.notifyDataSetInvalidated();
-//            adapter.notifyDataSetChanged();
-//        }
-//        super.onResume();
-//    }
+    @Override
+    public void onResume(){
+        if(sortSwitch.isChecked())
+        {
+            groups.clear();
+            sortDataName();
+            int count = adapter.getGroupCount();
+            for (int position = 0; position < count; position++) {
+                listView.expandGroup(position);
+            }
+            //adapter.notifyDataSetInvalidated();
+            adapter.notifyDataSetChanged();
+        }
+        else
+        {
+            groups.clear();
+            sortDataDate();
+            int count = adapter.getGroupCount();
+            for (int position = 0; position < count; position++) {
+                listView.expandGroup(position);
+            }
+            //adapter.notifyDataSetInvalidated();
+            adapter.notifyDataSetChanged();
+        }
+        super.onResume();
+    }
 
     // TODO Integrate with cloud
     /**
