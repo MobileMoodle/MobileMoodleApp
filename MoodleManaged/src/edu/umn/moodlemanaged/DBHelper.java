@@ -18,6 +18,7 @@ import java.util.Comparator;
  */
 public class DBHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "test.db";
+    private static final String[ ] EVENT_TYPES= {"assignment","exam","project","quiz"};
     public DBHelper(Context context)
     {
         super(context, DATABASE_NAME , null, 1);
@@ -83,6 +84,26 @@ public class DBHelper extends SQLiteOpenHelper{
         db.insertWithOnConflict("events",null,cv,SQLiteDatabase.CONFLICT_REPLACE);
         return true;
     }
+    public void insertEventWithGrade(Event e ){
+        Log.i("debug","inserting event :"+e.text);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("id",e.id);
+        cv.put("cid",e.cid);
+        cv.put("name",e.text);
+        cv.put("course_name", e.courseName);
+        cv.put("event_type",e.event_type);
+        cv.put("due",e.time.toString());
+        cv.put("done", e.isChecked);
+        db.insertWithOnConflict("events",null,cv,SQLiteDatabase.CONFLICT_REPLACE);
+        for ( String etype : EVENT_TYPES){
+            //Log.i("insert with grade event type = ",e.event_type+ " "+etype);
+            if(etype.equals(e.event_type)){
+
+                insertGrade(new Grade(e.id,e.id,e.text,false,e.percentage,0,e.total));
+            }
+        }
+    }
     public ArrayList<Event> getEvents(){
         ArrayList<Event> ret = new ArrayList<Event>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -139,10 +160,43 @@ public class DBHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor;
         cursor = db.rawQuery("select g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id",null);
-        cursor.moveToFirst();
-        Log.i("debug","calling get Grades "+cursor.getCount());
-        while(!cursor.isAfterLast()){
+            cursor.moveToFirst();
+            Log.i("debug","calling get Grades "+cursor.getCount());
+            while(!cursor.isAfterLast()){
             Log.i("grade name",cursor.getString(cursor.getColumnIndex("name")));
+            ret.add(new Grade(cursor));
+            cursor.moveToNext();
+        }
+        return ret;
+    }
+    public ArrayList<Grade> getGrades(String type){
+        ArrayList<Grade> ret = new ArrayList<Grade>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+        //String query = );
+        //Log.i("query = ",query);
+        cursor = db.rawQuery("select g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id and e.event_type = ?",new String[]{type});
+        cursor.moveToFirst();
+        Log.i("debug","calling get Grades of type "+type);
+        while(!cursor.isAfterLast()){
+            Log.i("grade name ",cursor.getString(cursor.getColumnIndex("name"))+ " type = "+cursor.getString(cursor.getColumnIndex("event_type")));
+            ret.add(new Grade(cursor));
+            cursor.moveToNext();
+        }
+        return ret;
+    }
+
+    public ArrayList<Grade> getGrades(int cid,String type){
+        ArrayList<Grade> ret = new ArrayList<Grade>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor;
+        //String query = );
+        //Log.i("query = ",query);
+        cursor = db.rawQuery("select g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id and cid = ? and e.event_type = ?",new String[]{cid+"",type});
+        cursor.moveToFirst();
+        Log.i("debug","calling get Grades of type "+type);
+        while(!cursor.isAfterLast()){
+            Log.i("grade name ",cursor.getString(cursor.getColumnIndex("name"))+ " type = "+cursor.getString(cursor.getColumnIndex("event_type")));
             ret.add(new Grade(cursor));
             cursor.moveToNext();
         }

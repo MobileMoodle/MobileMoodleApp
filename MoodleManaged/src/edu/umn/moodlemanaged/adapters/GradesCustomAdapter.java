@@ -29,7 +29,7 @@ import edu.umn.moodlemanaged.R;
 
 public class GradesCustomAdapter extends BaseExpandableListAdapter {
 
-	private final SparseArray<GradesGroup> groups;
+	private SparseArray<GradesGroup> groups;
 	public LayoutInflater inflater;
 	public Activity activity;
 
@@ -38,6 +38,9 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 		this.groups = groups;
 		inflater = act.getLayoutInflater();
 	}
+    public void setGroup(SparseArray<GradesGroup> groups){
+        this.groups = groups;
+    }
 
 	@Override
 	public Object getChild(int groupPosition, int childPosition) {

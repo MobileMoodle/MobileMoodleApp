@@ -3,12 +3,14 @@ package edu.umn.moodlemanaged;
 import android.app.Fragment;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.mtp.MtpObjectInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SeekBar;
@@ -22,13 +24,17 @@ import edu.umn.moodlemanaged.adapters.GradesCustomAdapter;
 
 public class GradesFragment extends Fragment {
 	private static SparseArray<GradesGroup> groups = new SparseArray<GradesGroup>();
+    private static ArrayList<SparseArray<GradesGroup>> grouplist = new ArrayList<SparseArray<GradesGroup>>();
     private String desiredGrade = "";
     private View view;
     public static Context thiscontext;
     public static double currentWanted;
-    public static GradesCustomAdapter adapter;
+    public static GradesCustomAdapter adapter ;
 
-    ArrayAdapter<String> coursesAdapter;
+
+
+    ArrayAdapter<String> courseNameAdapter;
+    ArrayList<Course> courselist;
     public void clearFakeGrades(){
         for (int i =0;i<groups.size();i++){
             GradesGroup group =  groups.get(groups.keyAt(i));
@@ -91,19 +97,41 @@ public class GradesFragment extends Fragment {
 		view = inflater.inflate(R.layout.grades_tab, container, false);
 
         // Populate grades data
-		createData();
+		//createData();
 
         Spinner courses = (Spinner) view.findViewById(R.id.course_spinner_g);
-        coursesAdapter = new ArrayAdapter<String>(getActivity(),
+        courseNameAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, new ArrayList<String>());
-        coursesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        courseNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         DBHelper mydb = MoodleManaged.mydb;
-        ArrayList<Course> list = mydb.getCourses();
-        for (Course c : list){
-            coursesAdapter.add(c.getNumber());
-        }
+        courselist = mydb.getCourses();
 
-        courses.setAdapter(coursesAdapter);
+        for (Course c : courselist){
+            courseNameAdapter.add(c.getNumber());
+            ////courselist.add(c);
+        }
+        grouplist = createData(courselist);
+       if(courses.getSelectedItemPosition()==-1){
+           courses.setSelection(0);
+       }
+        groups = grouplist.get(courses.getSelectedItemPosition());
+        courses.setAdapter(courseNameAdapter);
+        courses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Course c;
+                c = courselist.get(adapterView.getSelectedItemPosition());
+                Log.i("on click ",c.name+" "+c.id);
+                groups = grouplist.get(adapterView.getSelectedItemPosition());
+                adapter.setGroup(groups);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         // Text for the desired grade
         TextView textView = (TextView) view.findViewById(R.id.tv_grade_i_want);
@@ -184,9 +212,37 @@ public class GradesFragment extends Fragment {
      * Add Grades (Mock-up ONLY)
      * TODO Add tabs for other courses
      */
-	public void createData() {
+    public SparseArray<GradesGroup> createData(int cid){
+        int i =0;
+        SparseArray<GradesGroup> ret = new SparseArray<GradesGroup>();
+        GradesGroup gradesGroup = new GradesGroup("Exam");
+        DBHelper db = MoodleManaged.mydb;
+        ArrayList<Grade> temp = db.getGrades(cid,"exam");
+        for (Grade g : temp)
+            gradesGroup.addChildren(g);
+        ret.append(i++, gradesGroup);
+        gradesGroup = new GradesGroup("Assignment");
+
+        temp = db.getGrades(cid,"assignment");
+        for (Grade g : temp)
+            gradesGroup.addChildren(g);
+        ret.append(i++,gradesGroup);
+        gradesGroup = new GradesGroup("Quiz");
+        temp = db.getGrades(cid,"quiz");
+        for (Grade g : temp)
+            gradesGroup.addChildren(g);
+        ret.append(i++,gradesGroup);
+        gradesGroup = new GradesGroup("Project");
+        temp = db.getGrades(cid,"project");
+        for (Grade g : temp)
+            gradesGroup.addChildren(g);
+        ret.append(i++,gradesGroup);
+        return ret;
+    }
+	/*public void createData() {
         System.out.println("Creating Data");
         GradesGroup gradesGroup = new GradesGroup("Exams");
+
         gradesGroup.addChildren(new Grade("Midterm",15,88,100, true, false));
         gradesGroup.addChildren(new Grade("Final", 25,-1,100, false, false));
 
@@ -202,6 +258,13 @@ public class GradesFragment extends Fragment {
         gradesGroup.addChildren(new Grade("Assignment 8", 5, -1,100, false, false));
 
         groups.append(1, gradesGroup);
-	}
+	}*/
+    public ArrayList<SparseArray<GradesGroup>> createData(ArrayList<Course> clist){
+        ArrayList<SparseArray<GradesGroup>> ret= new ArrayList<SparseArray<GradesGroup>>();
+       for (Course c : clist){
+           ret.add(createData(c.id));
+       }
+        return  ret;
+    }
 
 }
