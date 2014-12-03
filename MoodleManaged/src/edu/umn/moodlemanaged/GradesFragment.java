@@ -1,6 +1,7 @@
 package edu.umn.moodlemanaged;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,22 +21,31 @@ import java.util.ArrayList;
 import edu.umn.moodlemanaged.adapters.GradesCustomAdapter;
 
 public class GradesFragment extends Fragment {
-	private SparseArray<GradesGroup> groups = new SparseArray<GradesGroup>();
+	private static SparseArray<GradesGroup> groups = new SparseArray<GradesGroup>();
     private String desiredGrade = "";
     private View view;
+    public static Context thiscontext;
+    public static double currentWanted;
+    public static GradesCustomAdapter adapter;
 
     ArrayAdapter<String> coursesAdapter;
     public void clearFakeGrades(){
         for (int i =0;i<groups.size();i++){
             GradesGroup group =  groups.get(groups.keyAt(i));
             for (Grade g : group.children){
-                if(!g.isFinal()){
-                   g.setScore(-1);
+                if(!g.isFinal())
+                {
+                    if(g.isSetStudent())
+                    {
+                        g.setSetStudent(false);
+                    }
+                    g.setScore(-1);
                 }
             }
         }
     }
-    public boolean assignFakeGrades(double target){
+    public static boolean assignFakeGrades(double target){
+        currentWanted = target;
         double used_percentage =0 ;
         double total_percentage = 0;
 
@@ -45,7 +55,7 @@ public class GradesFragment extends Fragment {
             GradesGroup group =  groups.get(key);
             total_percentage += group.getPercentage();
             for( Grade g : group.children){
-                if(g.isFinal()){
+                if(g.isFinal() || g.isSetStudent()){
                     double weighted_scores =g.getPercentage()*g.getScore()/100;
                     sum+= weighted_scores;
                     used_percentage+= g.getPercentage();
@@ -61,7 +71,7 @@ public class GradesFragment extends Fragment {
         for (int i =0;i<groups.size();i++){
             GradesGroup group =  groups.get(groups.keyAt(i));
             for (Grade g : group.children){
-                if(!g.isFinal()){
+                if(!g.isFinal() && !g.isSetStudent()){
                     g.setScore(g.getPercentage()*required_sum_per_percent);
                 }
             }
@@ -69,11 +79,14 @@ public class GradesFragment extends Fragment {
         Log.i("IN assign fake grades",""+required_sum);
         //view.invalidate();
 
+        adapter.notifyDataSetChanged();
         return true;
     }
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        thiscontext = container.getContext();
 		super.onCreate(savedInstanceState);
 		view = inflater.inflate(R.layout.grades_tab, container, false);
 
@@ -160,7 +173,7 @@ public class GradesFragment extends Fragment {
         });
 
 		ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
-		GradesCustomAdapter adapter = new GradesCustomAdapter(getActivity(), groups);
+		adapter = new GradesCustomAdapter(getActivity(), groups);
 		listView.setAdapter(adapter);
 		
 		return view;
@@ -174,19 +187,19 @@ public class GradesFragment extends Fragment {
 	public void createData() {
         System.out.println("Creating Data");
         GradesGroup gradesGroup = new GradesGroup("Exams");
-        gradesGroup.addChildren(new Grade("Midterm",15,88,100, true));
-        gradesGroup.addChildren(new Grade("Final", 25,-1,100, false));
+        gradesGroup.addChildren(new Grade("Midterm",15,88,100, true, false));
+        gradesGroup.addChildren(new Grade("Final", 25,-1,100, false, false));
 
         groups.append(0, gradesGroup);
         gradesGroup = new GradesGroup("Assignments");
-        gradesGroup.addChildren(new Grade("Assignment 1", 5, 100,100, true));
-        gradesGroup.addChildren(new Grade("Assignment 2", 5, 100,100, true));
-        gradesGroup.addChildren(new Grade("Assignment 3", 5, 97,100, true));
-        gradesGroup.addChildren(new Grade("Assignment 4", 5, 100,100, true));
-        gradesGroup.addChildren(new Grade("Assignment 5", 5, 100,100, true));
-        gradesGroup.addChildren(new Grade("Assignment 6", 5, 100,100, true));
-        gradesGroup.addChildren(new Grade("Assignment 7", 5, -1,100, false));
-        gradesGroup.addChildren(new Grade("Assignment 8", 5, -1,100, false));
+        gradesGroup.addChildren(new Grade("Assignment 1", 5, 100,100, true, false));
+        gradesGroup.addChildren(new Grade("Assignment 2", 5, 100,100, true, false));
+        gradesGroup.addChildren(new Grade("Assignment 3", 5, 97,100, true, false));
+        gradesGroup.addChildren(new Grade("Assignment 4", 5, 100,100, true, false));
+        gradesGroup.addChildren(new Grade("Assignment 5", 5, 100,100, true, false));
+        gradesGroup.addChildren(new Grade("Assignment 6", 5, 100,100, true, false));
+        gradesGroup.addChildren(new Grade("Assignment 7", 5, -1,100, false, false));
+        gradesGroup.addChildren(new Grade("Assignment 8", 5, -1,100, false, false));
 
         groups.append(1, gradesGroup);
 	}
