@@ -35,6 +35,22 @@ public class GradesFragment extends Fragment {
 
     ArrayAdapter<String> courseNameAdapter;
     ArrayList<Course> courselist;
+    public void getCurrentGrade()
+    {
+        int numPossible = 0;
+        int totalGained = 0;
+        for (int i =0;i<groups.size();i++){
+            GradesGroup group =  groups.get(groups.keyAt(i));
+            for (Grade g : group.children){
+                if(g.isFinal())
+                {
+                    numPossible += g.total;
+                    totalGained += g.score;
+                }
+            }
+        }
+        Log.i("debug", "TOTAL GRADE IS: " + (totalGained/numPossible));
+    }
     public void clearFakeGrades(){
         for (int i =0;i<groups.size();i++){
             GradesGroup group =  groups.get(groups.keyAt(i));

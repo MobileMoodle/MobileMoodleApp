@@ -22,12 +22,11 @@ public class MoodleManaged extends Activity {
         this.deleteDatabase("test.db");
         mydb = new DBHelper(this);
 
-        Event e = new Event("Read Mathis Chapters 27-35", "CSCI-5115", false,"2014/11/08 13:24:36","assignment",1,1,5,30);
-        Event e2 = new Event("Read ABC Chapters 27-35", "CSCI-5609",false,"2014/11/18 13:24:36","assignment",2,2,10,20);
-        Event e3 = new Event("Exam", "CSCI-8001",false,"2014/11/18 13:44:36","exam",3,2,35,100);
+        Event e = new Event("Read Mathis Chapters 27-35", "CSCI-5115", false,"2014/11/08 13:24:36","assignment",1,1,5,100);
+        Event e2 = new Event("Read ABC Chapters 27-35", "CSCI-5609",false,"2014/11/18 13:24:36","assignment",2,2,10,100);
+        Event e3 = new Event("Exam", "CSCI-5609",false,"2014/11/18 13:44:36","exam",3,2,35,100);
         Course c1 = new Course(1,"CSCI 5115","User Interface Design, Implementation & Evaluation","This is a course.");
         Course c2 = new Course(2,"CSCI 5609","Visualization","This is another course.");
-        Grade g1 = new Grade(1,1,"Homework 1",true,5,20,30);
         mydb.insertEventWithGrade(e);
         mydb.insertEventWithGrade(e2);
         mydb.insertEventWithGrade(e3);
@@ -46,7 +45,7 @@ public class MoodleManaged extends Activity {
         
         // Creating Planning Tab
         Tab tab = actionBar.newTab()
-        		.setText("Planning")
+        		.setText("Schedule")
         		.setTabListener(new CustomTabListener<PlanningFragment>(this, "planning", PlanningFragment.class));
         
         actionBar.addTab(tab, 0, false);
