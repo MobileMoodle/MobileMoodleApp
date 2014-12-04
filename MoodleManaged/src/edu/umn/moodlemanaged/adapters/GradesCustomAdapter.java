@@ -67,22 +67,25 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
         TextView tv2 = (TextView) convertView.findViewById(R.id.grades_list_percent);
         if(child.isFinal()){
             double score = child.getScore();
-
+            Log.i("debug", "CHILD IS FINAL");
             tv2.setText(score+"%");
             tv2.setTextColor(Color.parseColor("#000000"));
         }else{
             if(child.getScore()<0) {
+                Log.i("debug", "CHILD IS < 0");
                 tv2.setText("- -%");
                 tv2.setTextColor(Color.parseColor("#000000"));
             }
             else {
                 if(child.setStudent)
                 {
-                    tv2.setText(child.getScore()+"%");
+                    Log.i("debug", "CHILD IS SET BY STUDENT, value is: " + child.score);
+                    tv2.setText(child.score+"%");
                     tv2.setTextColor(activity.getResources().getColor(R.color.holo_blue_light));
                 }
                 else
                 {
+                    Log.i("debug", "CHILD IS NOT SET BY STUDENT, value is: " + (child.getScore() / child.getPercentage() * 100)+"%");
                     tv2.setText(new DecimalFormat("#.#").format(child.getScore() / child.getPercentage() * 100)+"%");
                     tv2.setTextColor(activity.getResources().getColor(R.color.holo_blue_light));
                     //tv2.setTextColor(Color.parseColor(R.color.holo_blue_bright+""));
@@ -121,11 +124,19 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
                             .setPositiveButton("Ok",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,int id) {
-                                            child.score = aNumberPicker.getValue();
-                                            child.setSetStudent(true);
-                                            GradesFragment.assignFakeGrades(GradesFragment.currentWanted);
-                                            //temp.assignFakeGrades(temp.currentWanted);
-                                            Log.e("", "New Quantity Value : " + aNumberPicker.getValue());
+                                            if(GradesFragment.currentWanted != -1)
+                                            {
+                                                child.score = aNumberPicker.getValue();
+                                                child.setSetStudent(true);
+                                                GradesFragment.assignFakeGrades(GradesFragment.currentWanted);
+                                                //temp.assignFakeGrades(temp.currentWanted);
+                                                Log.e("", "New Quantity Value : " + aNumberPicker.getValue());
+                                                Log.e("debug", "Result is: " + child.getScore());
+                                            }
+                                            else
+                                            {
+                                                Log.e("debug", "No value assigned, set is -1");
+                                            }
                                         }
                                     })
                             .setNegativeButton("Cancel",

@@ -28,7 +28,7 @@ public class GradesFragment extends Fragment {
     private String desiredGrade = "";
     private View view;
     public static Context thiscontext;
-    public static double currentWanted;
+    public static double currentWanted = -1;
     public static GradesCustomAdapter adapter ;
 
 
@@ -51,7 +51,6 @@ public class GradesFragment extends Fragment {
         }
     }
     public static boolean assignFakeGrades(double target){
-        currentWanted = target;
         double used_percentage =0 ;
         double total_percentage = 0;
 
@@ -124,6 +123,10 @@ public class GradesFragment extends Fragment {
                 Log.i("on click ",c.name+" "+c.id);
                 groups = grouplist.get(adapterView.getSelectedItemPosition());
                 adapter.setGroup(groups);
+                clearFakeGrades();
+                SeekBar seekBar = (SeekBar) getActivity().findViewById(R.id.sb_grade_i_want);
+                int itt = 0;
+                seekBar.setProgress(itt);
                 adapter.notifyDataSetChanged();
             }
 
@@ -145,42 +148,55 @@ public class GradesFragment extends Fragment {
                 switch (i) {
                     case 0: desiredGrade = "";
                         clearFakeGrades();
+                        currentWanted = -1;
                         break;
                     case 1: desiredGrade = "F";
                         clearFakeGrades();
+                        currentWanted = -1;
                         break;
                     case 2: desiredGrade = "D-";
                         assignFakeGrades(60);
+                        currentWanted = 60;
                         break;
                     case 3: desiredGrade = "D";
                         assignFakeGrades(63);
+                        currentWanted = 63;
                         break;
                     case 4: desiredGrade = "D+";
                         assignFakeGrades(67);
+                        currentWanted = 67;
                         break;
                     case 5: desiredGrade = "C-";
                         assignFakeGrades(70);
+                        currentWanted = 70;
                         break;
                     case 6: desiredGrade = "C";
                         assignFakeGrades(73);
+                        currentWanted = 73;
                         break;
                     case 7: desiredGrade = "C+";
                         assignFakeGrades(77);
+                        currentWanted = 77;
                         break;
                     case 8: desiredGrade = "B-";
                         assignFakeGrades(80);
+                        currentWanted = 80;
                         break;
                     case 9: desiredGrade = "B";
                         assignFakeGrades(83);
+                        currentWanted = 83;
                         break;
                     case 10: desiredGrade = "B+";
                         assignFakeGrades(87);
+                        currentWanted = 87;
                         break;
                     case 11: desiredGrade = "A-";
                         assignFakeGrades(90);
+                        currentWanted = 90;
                         break;
                     case 12: desiredGrade = "A";
                         assignFakeGrades(93);
+                        currentWanted = 93;
                         break;
                     default: desiredGrade = "";
                         break;
