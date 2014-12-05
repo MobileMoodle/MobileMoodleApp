@@ -37,16 +37,30 @@ public class MoodleManaged extends Activity {
         this.deleteDatabase("test.db");
         mydb = new DBHelper(this);
 
-        Event e = new Event("Read Mathis Chapters 27-35", "CSCI-5115", false,"2014/11/08 13:24:36","assignment",1,1,5,100, 95,true);
-        Event e2 = new Event("Read ABC Chapters 27-35", "CSCI-5609",false,"2014/11/18 13:24:36","assignment",2,2,10,100, -1,true);
-        Event e3 = new Event("Exam", "CSCI-5609",false,"2014/11/18 13:44:36","exam",3,2,35,100, 94,true);
-        Event e4 = new Event("Exam 2", "CSCI-5115",false,"2014/11/18 13:44:36","exam",4,1,35,100, 88,true);
+        //5609
+        Event e2 = new Event("Read Visual Testing Chapters 27-35", "CSCI-5609",false,"2014/12/18 13:24:36","assignment",2,2,10,100, -1,false);
+        Event e3 = new Event("Exam", "CSCI-5609",false,"2014/12/18 10:33:00","exam",3,2,35,100, 95,true);
+
+        //5115
+        Event e = new Event("Read Mathis Chapters 27-35", "CSCI-5115", false,"2014/12/08 13:24:36","assignment",1,1,5,100, 100,true);
+        Event e4 = new Event("Exam", "CSCI-5115",false,"2014/12/05 8:00:00","exam",4,1,35,100, 96,true);
+        Event e5 = new Event("Exam 2", "CSCI-5115",false,"2014/12/18 13:44:36","exam",5,1,35,100, 99,true);
+        Event e6 = new Event("Presentation", "CSCI-5115",false,"2014/12/18 13:44:36","project",6,1,10,100, -1,false);
+        Event e7 = new Event("Read Mathis Chapters 10-14", "CSCI-5115", false,"2014/12/08 13:24:36","assignment",7,1,5,100, 100,true);
+        Event e8 = new Event("In Class Quiz", "CSCI-5115",false,"2014/12/18 13:44:36","quiz",8,1,10,100, -1,false);
+
         Course c1 = new Course(1,"CSCI 5115","User Interface Design, Implementation & Evaluation","This is a course.");
         Course c2 = new Course(2,"CSCI 5609","Visualization","This is another course.");
+
+
         mydb.insertEventWithGrade(e);
         mydb.insertEventWithGrade(e2);
         mydb.insertEventWithGrade(e3);
         mydb.insertEventWithGrade(e4);
+        mydb.insertEventWithGrade(e5);
+        mydb.insertEventWithGrade(e6);
+        mydb.insertEventWithGrade(e7);
+        mydb.insertEventWithGrade(e8);
 
         mydb.insertCourse(c1);
         mydb.insertCourse(c2);
