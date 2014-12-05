@@ -103,6 +103,8 @@ public class DBHelper extends SQLiteOpenHelper{
                 insertGrade(new Grade(e.id,e.id,e.text,false,e.percentage,0,e.total));
             }
         }
+
+
     }
     public ArrayList<Event> getEvents(){
         ArrayList<Event> ret = new ArrayList<Event>();
@@ -119,9 +121,13 @@ public class DBHelper extends SQLiteOpenHelper{
             cursor.moveToNext();
         }
         Collections.sort(ret);
+        cursor.close();
         return ret;
     }
+    public void setGrade(int gid){
+        SQLiteDatabase db =this.getWritableDatabase();
 
+    }
     public ArrayList<Event> getEventsSortName(){
         ArrayList<Event> ret = new ArrayList<Event>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -137,6 +143,7 @@ public class DBHelper extends SQLiteOpenHelper{
             cursor.moveToNext();
         }
         Collections.sort(ret, StringDescComparator);
+        cursor.close();
         return ret;
     }
 
@@ -152,6 +159,7 @@ public class DBHelper extends SQLiteOpenHelper{
             ret.add(new Course(cursor));
             cursor.moveToNext();
         }
+        cursor.close();
         return ret;
     }
 
@@ -167,6 +175,7 @@ public class DBHelper extends SQLiteOpenHelper{
             ret.add(new Grade(cursor));
             cursor.moveToNext();
         }
+        cursor.close();
         return ret;
     }
     public ArrayList<Grade> getGrades(String type){
@@ -183,6 +192,7 @@ public class DBHelper extends SQLiteOpenHelper{
             ret.add(new Grade(cursor));
             cursor.moveToNext();
         }
+        cursor.close();
         return ret;
     }
 
@@ -200,6 +210,7 @@ public class DBHelper extends SQLiteOpenHelper{
             ret.add(new Grade(cursor));
             cursor.moveToNext();
         }
+        cursor.close();
         return ret;
     }
     public int numOfEvent(){
@@ -208,7 +219,9 @@ public class DBHelper extends SQLiteOpenHelper{
         cursor = db.rawQuery("select count(*) as num from events", null);
         cursor.moveToFirst();
 
-        return new Integer(cursor.getString(cursor.getColumnIndex("num")));
+        int ret =  new Integer(cursor.getString(cursor.getColumnIndex("num")));
+        cursor.close();
+        return ret;
     }
 
     public static Comparator<Event> StringDescComparator = new Comparator<Event>()

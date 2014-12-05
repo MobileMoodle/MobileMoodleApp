@@ -148,7 +148,9 @@ public class PlanningFragment extends Fragment {
         DBHelper mydb = MoodleManaged.mydb;
         ArrayList<Event> list = mydb.getEvents();
         Date tmp=list.get(0).time;
-        PlanningGroupDate group = new PlanningGroupDate(""+tmp);
+        String str = tmp.toString();
+        str = str.substring(0,10);
+        PlanningGroupDate group = new PlanningGroupDate(""+str);
 
         int j;
         for (j=0;j<list.size();j++)
@@ -161,7 +163,9 @@ public class PlanningFragment extends Fragment {
             {
                groups.add(group);
                tmp = list.get(j).time;
-               group = new PlanningGroupDate(""+tmp);
+               str = tmp.toString();
+               str = str.substring(0,10);
+               group = new PlanningGroupDate(""+str);
                group.children.add(list.get(j));
             }
         }

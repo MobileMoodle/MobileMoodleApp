@@ -6,9 +6,24 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONObject;
 
 import edu.umn.moodlemanaged.adapters.CustomTabListener;
 
@@ -38,7 +53,7 @@ public class MoodleManaged extends Activity {
         mydb.getGrades(2,"exam");
         //mydb.getCourses();
         //mydb.getEvents();
-
+        getData();
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
        
@@ -110,4 +125,33 @@ public class MoodleManaged extends Activity {
                 })
                 .show();
     }
+    public void getData(){
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+
+// Set up the network to use HttpURLConnection as the HTTP client.
+        Network network = new BasicNetwork(new HurlStack());
+        RequestQueue rq = new RequestQueue(cache,network);
+        rq.start();
+        //String url = "http://104.131.162.115/";
+        String url = "http://127.0.0.1/";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Do something with the response
+                        Log.i("response",response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error
+                        Log.i("Error",error.toString());
+                    }
+                });
+        rq.add(stringRequest);
+    }
+
+
 }
