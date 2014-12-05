@@ -16,6 +16,8 @@ public class Event implements Comparable<Event>{
     public int cid;
     public int percentage;
     public double total;
+    public boolean isFinal;
+    public double score = -1;
     public Event(String t, boolean b) {
         this.text = t;
         this.isChecked = b;
@@ -33,15 +35,17 @@ public class Event implements Comparable<Event>{
             e.printStackTrace();
         }
     }
-    public Event(String name, String courseName, boolean b, String due,String event_type,int id,int cid,int percentage,double total){
+    public Event(String name, String courseName, boolean b, String due,String event_type,int id,int cid,int percentage,double total, double score, boolean isFinal){
         this.id = id;
         this.text = name;
         this.courseName = courseName;
         this.event_type = event_type;
         this.isChecked = b;
+        this.isFinal = isFinal;
         this.cid = cid;
         this.percentage = percentage;
         this.total = total;
+        this.score = score;
         SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         try {
             time = sd.parse(due);

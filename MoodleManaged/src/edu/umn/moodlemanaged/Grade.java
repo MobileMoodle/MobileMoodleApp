@@ -31,6 +31,16 @@ public class Grade {
         this.score = score;
         this.total = total;
     }
+
+    public Grade(int id, int eid, String name, boolean fixed, int percentage, double total){
+        this.id = id ;
+        this.eid = eid;
+        this.name = name;
+        this.fixed = fixed;
+        this.percentage = percentage;
+        this.total = total;
+    }
+
     public Grade(Cursor cursor){
         this.name=cursor.getString(cursor.getColumnIndex("name"));
         this.fixed = new Boolean(cursor.getString(cursor.getColumnIndex("fixed")));
