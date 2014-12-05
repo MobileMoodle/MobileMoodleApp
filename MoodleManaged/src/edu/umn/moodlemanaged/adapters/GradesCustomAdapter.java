@@ -49,7 +49,7 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
-		return 0;
+		return childPosition;
 	}
 
 	@Override
@@ -182,7 +182,7 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public long getGroupId(int groupPosition) {
-		return 0;
+		return groupPosition;
 	}
 
 	@Override
