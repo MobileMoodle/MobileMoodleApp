@@ -124,9 +124,15 @@ public class DBHelper extends SQLiteOpenHelper{
         cursor.close();
         return ret;
     }
-    public void setGrade(int gid){
-        SQLiteDatabase db =this.getWritableDatabase();
-
+    public void setGrade(int id,double score){
+        SQLiteDatabase db =this.getReadableDatabase();
+        Cursor  cursor;
+        cursor = db.rawQuery("select * from s where id = ?",new String [] {id+""});
+        cursor.moveToFirst();
+        Grade g = new Grade(cursor);
+        g.score  = score;
+        //insertGrade(g);
+        cursor.close();
     }
     public ArrayList<Event> getEventsSortName(){
         ArrayList<Event> ret = new ArrayList<Event>();
