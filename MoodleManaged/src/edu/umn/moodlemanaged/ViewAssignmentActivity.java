@@ -31,15 +31,30 @@ public class ViewAssignmentActivity extends Activity
         tv.setText(Html.fromHtml(
                 "<p>" +
                         "<p><strong>Due Date:</strong><br/>" + dateString + "<br/></p>" +
-                        "<p><strong>Weight:</strong><br/>10%<br/></p>" +
-                        "<p><strong>Time Remaining:</strong><br/>3 days, 8 hours<br/></p>" +
-                        "<p><strong>Description:</strong><br/>In this assignment you will learn about" +
-                            "creating restricted pages for your website using credentials from" +
-                            " a database. This is a very practical php application that is heavily" +
-                            " used in web portals and content management" +
-                            " systems (CMS) like WordPress, and PHP handles it very well.<br/></p>" +
+                        "<p><strong>Weight:</strong><br/>35%<br/></p>" +
+                        "<p><strong>Description:</strong><br/>" +
+                        "One way to learn about user needs is to ask them. However, in class we discussed a number of problems with just asking users about their needs. Which one of the following is not a problem we discussed?\n" +
+                        "<p>People may not be able to identify their problems.<br/>" +
+                        "<p>People are not good at coming up with solutions.<br/>" +
+                        "<p>People may refuse to talk to you.<br/>" +
+                        "<p>People are really bad at predicting whether and how they’d use a new product.<br/>" +
+                        "We have spent a lot of time talking about and working with user tasks (specifically as defined in the Lewis & Rieman text). Which of the following statements about tasks is false?\n" +
+                        "Tasks are detailed descriptions of a complete user ‘job’.\n" +
+                        "Tasks specify how a user does the ‘job’ in a particular user interface.\n" +
+                        "Tasks can be used to guide design decisions.\n" +
+                        "Tasks can be based on input and feedback from your users.\n" +
+                        "Which of the following is the best definition of Norman’s gulf of evaluation?\n" +
+                        "Having a good interface design, but no concrete measures by which to evaluate it.\n" +
+                        "A user knowing what she wants to achieve, but not knowing how to achieve that goal in the interface.\n" +
+                        "A property of an interface that indicates to users what functions it can be used to carry out.\n" +
+                        "A user having completed an action but not being able to tell whether it succeeded.\n" +
+                        "All of the following are important parts of the start of a user evaluation except which?\n" +
+                        "Giving the user a tour of the interface being studied.\n" +
+                        "Explaining that the user is free to leave and can stop if he is uncomfortable.\n" +
+                        "Reassuring the user that you are not testing her, just testing the interface.\n" +
+                        "Explaining, at least in general terms, what is involved in the test you are asking the user to complete." +
                         "<p><strong>Details:</strong><br/>" +
-                            "FALL 2014: CSci-4131 Internet Programming<br/>" +
+                            "FALL 2014: CSci 5115: UI Design, Implementation & Evaluation<br/>" +
                             "Assignment 7<br/>" +
                             "Issued: 11/4, Due: 11/11<br/><br/>" +
                             "Task:<br/><br/>" +

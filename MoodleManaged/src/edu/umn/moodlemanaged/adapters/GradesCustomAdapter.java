@@ -149,7 +149,6 @@ public class GradesCustomAdapter extends BaseExpandableListAdapter {
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 }
-                    Toast.makeText(activity,"HI",Toast.LENGTH_LONG).show();
 				}
 		});
 		return convertView;

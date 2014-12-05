@@ -39,6 +39,7 @@ public class Grade {
         this.fixed = fixed;
         this.percentage = percentage;
         this.total = total;
+        this.score = -1;
     }
 
     public Grade(Cursor cursor){
