@@ -162,7 +162,7 @@ public class MoodleManaged extends Activity {
         
         // Creating Planning Tab
         Tab tab = actionBar.newTab()
-        		.setText("Planning")
+        		.setText("Schedule")
         		.setTabListener(new CustomTabListener<PlanningFragment>(this, "planning", PlanningFragment.class));
         
         actionBar.addTab(tab, 0, false);

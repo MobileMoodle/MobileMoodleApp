@@ -35,6 +35,29 @@ public class GradesFragment extends Fragment {
 
     ArrayAdapter<String> courseNameAdapter;
     ArrayList<Course> courselist;
+    public void getCurrentGrade()
+    {
+        int numPossible = 0;
+        int totalGained = 0;
+        for (int i =0;i<groups.size();i++){
+            GradesGroup group =  groups.get(groups.keyAt(i));
+            for (Grade g : group.children)
+            {
+                Log.e("debug", "Current course is: " + g.name + ". Is final is: " + g.isFinal() + ". Has value? " + g.score);
+                if(g.isFinal())
+                {
+                    numPossible += g.total;
+                    totalGained += g.score;
+                }
+            }
+        }
+        if(numPossible > 0)
+        {
+            TextView courses = (TextView) view.findViewById(R.id.grade_i_have);
+            courses.setText("Grade I have: " + (totalGained/numPossible) + "%");
+            Log.i("debug", "TOTAL GRADE IS: " + (totalGained/numPossible));
+        }
+    }
     public void clearFakeGrades(){
         for (int i =0;i<groups.size();i++){
             GradesGroup group =  groups.get(groups.keyAt(i));
@@ -98,6 +121,8 @@ public class GradesFragment extends Fragment {
         // Populate grades data
 		//createData();
 
+        //Set the grade I Have
+
         Spinner courses = (Spinner) view.findViewById(R.id.course_spinner_g);
         courseNameAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_item, new ArrayList<String>());
@@ -128,6 +153,7 @@ public class GradesFragment extends Fragment {
                 int itt = 0;
                 seekBar.setProgress(itt);
                 adapter.notifyDataSetChanged();
+                getCurrentGrade();
             }
 
             @Override
@@ -219,6 +245,7 @@ public class GradesFragment extends Fragment {
 		ExpandableListView listView = (ExpandableListView) view.findViewById(R.id.grades_list);
 		adapter = new GradesCustomAdapter(getActivity(), groups);
 		listView.setAdapter(adapter);
+        getCurrentGrade();
 		
 		return view;
 	}
@@ -233,25 +260,42 @@ public class GradesFragment extends Fragment {
         SparseArray<GradesGroup> ret = new SparseArray<GradesGroup>();
         GradesGroup gradesGroup = new GradesGroup("Exam");
         DBHelper db = MoodleManaged.mydb;
+        ArrayList<Grade> bleh = db.getGrades();
+        for(Grade g : bleh)
+        {
+            Log.e("debug", "Grade is: " + g.name + ". isFixed? = " + g.isFinal());
+        }
         ArrayList<Grade> temp = db.getGrades(cid,"exam");
         for (Grade g : temp)
+        {
+            Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
             gradesGroup.addChildren(g);
+        }
         ret.append(i++, gradesGroup);
         gradesGroup = new GradesGroup("Assignment");
 
         temp = db.getGrades(cid,"assignment");
         for (Grade g : temp)
+        {
+            Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
             gradesGroup.addChildren(g);
+        }
         ret.append(i++,gradesGroup);
         gradesGroup = new GradesGroup("Quiz");
         temp = db.getGrades(cid,"quiz");
         for (Grade g : temp)
+        {
+            Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
             gradesGroup.addChildren(g);
+        }
         ret.append(i++,gradesGroup);
         gradesGroup = new GradesGroup("Project");
         temp = db.getGrades(cid,"project");
         for (Grade g : temp)
+        {
+            Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
             gradesGroup.addChildren(g);
+        }
         ret.append(i++,gradesGroup);
         return ret;
     }

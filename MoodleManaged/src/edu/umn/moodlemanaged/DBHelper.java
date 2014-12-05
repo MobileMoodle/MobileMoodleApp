@@ -46,6 +46,7 @@ public class DBHelper extends SQLiteOpenHelper{
     }
     public boolean insertGrade(Grade g){
         Log.i("insert grades ",""+g.id);
+        Log.e("insert grades isFInal",""+g.fixed);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("id",g.id);
@@ -99,8 +100,18 @@ public class DBHelper extends SQLiteOpenHelper{
         for ( String etype : EVENT_TYPES){
             //Log.i("insert with grade event type = ",e.event_type+ " "+etype);
             if(etype.equals(e.event_type)){
-
-                insertGrade(new Grade(e.id,e.id,e.text,false,e.percentage,0,e.total));
+                if(e.score != -1)
+                {
+                    Log.e("debug","isFinal? " + e.isFinal + ". Text is: " + e.text);
+                    Grade temp = new Grade(e.id,e.id,e.text,e.isFinal,e.percentage, 100,e.total);
+                    Log.e("debug","isFinalAFTER? " + temp.isFinal() + ". Text is: " + temp.name);
+                    insertGrade(temp);
+                }
+                else
+                {
+                    Log.e("debug","isFinal? " + e.isFinal + ". Text is: " + e.text);
+                    insertGrade(new Grade(e.id,e.id,e.text,e.isFinal,e.percentage,e.total));
+                }
             }
         }
 

@@ -10,7 +10,8 @@
         android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
 
 
     <TextView
@@ -23,14 +24,14 @@
         android:layout_below="@+id/course_spinner_g"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="25dp" />
 
     <SeekBar
         android:id="@+id/sb_grade_i_want"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:max="12"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="55dp"
         android:layout_below="@+id/course_spinner_g"
         android:layout_centerHorizontal="true" />
 
@@ -44,5 +45,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
     </ExpandableListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Grade I have:"
+        android:id="@+id/grade_i_have"
+        android:layout_below="@id/course_spinner_g"
+        android:layout_alignLeft="@+id/tv_grade_i_want"
+        android:layout_alignStart="@+id/tv_grade_i_want" />
 
 </RelativeLayout>

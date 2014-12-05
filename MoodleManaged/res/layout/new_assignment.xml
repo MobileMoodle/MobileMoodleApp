@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Enter Course Description"
+        android:text="Enter Description"
         android:id="@+id/courseDescriptionText"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.05"
