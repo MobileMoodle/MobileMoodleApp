@@ -30,6 +30,7 @@ public class GradesFragment extends Fragment {
     public static Context thiscontext;
     public static double currentWanted = -1;
     public static GradesCustomAdapter adapter ;
+    public static boolean firstRun = true;
 
 
 
@@ -37,8 +38,8 @@ public class GradesFragment extends Fragment {
     ArrayList<Course> courselist;
     public void getCurrentGrade()
     {
-        int numPossible = 0;
-        int totalGained = 0;
+        float numPossible = 0;
+        float totalGained = 0;
         for (int i =0;i<groups.size();i++){
             GradesGroup group =  groups.get(groups.keyAt(i));
             for (Grade g : group.children)
@@ -54,8 +55,10 @@ public class GradesFragment extends Fragment {
         if(numPossible > 0)
         {
             TextView courses = (TextView) view.findViewById(R.id.grade_i_have);
-            courses.setText("Grade I have: " + (totalGained/numPossible) + "%");
-            Log.i("debug", "TOTAL GRADE IS: " + (totalGained/numPossible));
+            float value = totalGained/numPossible;
+            value = value * 100;
+            courses.setText("Grade I have: " + value + "%");
+            Log.i("debug", "TOTAL GRADE IS: " + value + ". which is: " + totalGained + "/" + numPossible);
         }
     }
     public void clearFakeGrades(){
@@ -260,15 +263,15 @@ public class GradesFragment extends Fragment {
         SparseArray<GradesGroup> ret = new SparseArray<GradesGroup>();
         GradesGroup gradesGroup = new GradesGroup("Exam");
         DBHelper db = MoodleManaged.mydb;
-        ArrayList<Grade> bleh = db.getGrades();
-        for(Grade g : bleh)
-        {
-            Log.e("debug", "Grade is: " + g.name + ". isFixed? = " + g.isFinal());
-        }
+        ArrayList<Grade> temp1 = db.getGrades();
         ArrayList<Grade> temp = db.getGrades(cid,"exam");
         for (Grade g : temp)
         {
-            Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
+            if(g.score != -1 && firstRun)
+            {
+                g.setFinal(true);
+                Log.e("debug", "Grade being fixed is: " + g.name + ". isFixed? = " + g.isFinal());
+            }
             gradesGroup.addChildren(g);
         }
         ret.append(i++, gradesGroup);
@@ -277,6 +280,10 @@ public class GradesFragment extends Fragment {
         temp = db.getGrades(cid,"assignment");
         for (Grade g : temp)
         {
+            if(g.score != -1 && firstRun)
+            {
+                g.setFinal(true);
+            }
             Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
             gradesGroup.addChildren(g);
         }
@@ -285,6 +292,10 @@ public class GradesFragment extends Fragment {
         temp = db.getGrades(cid,"quiz");
         for (Grade g : temp)
         {
+            if(g.score != -1 && firstRun)
+            {
+                g.setFinal(true);
+            }
             Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
             gradesGroup.addChildren(g);
         }
@@ -293,6 +304,10 @@ public class GradesFragment extends Fragment {
         temp = db.getGrades(cid,"project");
         for (Grade g : temp)
         {
+            if(g.score != -1 && firstRun)
+            {
+                g.setFinal(true);
+            }
             Log.e("debug", "Grade being added is: " + g.name + ". isFixed? = " + g.isFinal());
             gradesGroup.addChildren(g);
         }

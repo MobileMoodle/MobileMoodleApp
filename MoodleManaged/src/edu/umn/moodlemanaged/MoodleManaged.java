@@ -38,13 +38,15 @@ public class MoodleManaged extends Activity {
         mydb = new DBHelper(this);
 
         Event e = new Event("Read Mathis Chapters 27-35", "CSCI-5115", false,"2014/11/08 13:24:36","assignment",1,1,5,100, 95,true);
-        Event e2 = new Event("Read ABC Chapters 27-35", "CSCI-5609",false,"2014/11/18 13:24:36","assignment",2,2,10,100, 88,true);
+        Event e2 = new Event("Read ABC Chapters 27-35", "CSCI-5609",false,"2014/11/18 13:24:36","assignment",2,2,10,100, -1,true);
         Event e3 = new Event("Exam", "CSCI-5609",false,"2014/11/18 13:44:36","exam",3,2,35,100, 94,true);
+        Event e4 = new Event("Exam 2", "CSCI-5115",false,"2014/11/18 13:44:36","exam",4,1,35,100, 88,true);
         Course c1 = new Course(1,"CSCI 5115","User Interface Design, Implementation & Evaluation","This is a course.");
         Course c2 = new Course(2,"CSCI 5609","Visualization","This is another course.");
         mydb.insertEventWithGrade(e);
         mydb.insertEventWithGrade(e2);
         mydb.insertEventWithGrade(e3);
+        mydb.insertEventWithGrade(e4);
 
         mydb.insertCourse(c1);
         mydb.insertCourse(c2);
