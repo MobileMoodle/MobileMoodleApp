@@ -142,7 +142,8 @@ public class MoodleManaged extends Activity {
                 "\n" +
                 "Last modified: Thursday, September 4, 2014, 6:59 PM");
         Course c2 = new Course(2,"CSCI 5609","Visualization","This is another course.");
-        Grade g1 = new Grade(1,1,"Homework 1",true,5,20,30);
+        //Grade g1 = new Grade(1,1,"Homework 1",true,5,20,30);
+
         mydb.insertEventWithGrade(e);
         mydb.insertEventWithGrade(e2);
         mydb.insertEventWithGrade(e3);
@@ -151,10 +152,11 @@ public class MoodleManaged extends Activity {
         mydb.insertCourse(c2);
         //mydb.getGrades(2,"assignment");
         //mydb.getGrades(2,"exam");
-        //mydb.setGrade(1,30);
+         mydb.setGrade(1,30);
         //mydb.getCourses();
         //mydb.getEvents();
-        getData();
+        mydb.getGrades();
+        //getData();
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
        

@@ -43,9 +43,11 @@ public class Grade {
 
     public Grade(Cursor cursor){
         this.name=cursor.getString(cursor.getColumnIndex("name"));
-        this.fixed = new Boolean(cursor.getString(cursor.getColumnIndex("fixed")));
+        int temp = new Integer(cursor.getString(cursor.getColumnIndex("fixed")));
+        this.fixed = temp!=0? true: false;
         this.percentage = new Integer(cursor.getString(cursor.getColumnIndex("percentage")));
-        //this.id = new Integer(cursor.getString(cursor.getColumnIndex("id")));
+        this.id = new Integer(cursor.getString(cursor.getColumnIndex("id")));
+        this.eid = id;
         //this.eid = new Integer(cursor.getString(cursor.getColumnIndex("eid")));
         this.score = new Double(cursor.getString(cursor.getColumnIndex("score")));
         this.total = new Double(cursor.getString(cursor.getColumnIndex("total")));

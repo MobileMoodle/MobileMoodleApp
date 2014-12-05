@@ -52,10 +52,12 @@ public class DBHelper extends SQLiteOpenHelper{
         cv.put("id",g.id);
         cv.put("eid",g.eid);
         //cv.put("name",g.name);
-        cv.put("fixed",g.fixed);
+
+        cv.put("fixed",g.fixed?1:0);
         cv.put("percentage",g.percentage);
         cv.put("score",g.score);
         cv.put("total",g.total);
+        Log.i("Insertin score",""+g.score);
         db.insertWithOnConflict("grades",null,cv,SQLiteDatabase.CONFLICT_REPLACE);
         return true;
     }
@@ -100,7 +102,7 @@ public class DBHelper extends SQLiteOpenHelper{
         for ( String etype : EVENT_TYPES){
             //Log.i("insert with grade event type = ",e.event_type+ " "+etype);
             if(etype.equals(e.event_type)){
-                if(e.score != -1)
+               /* if(e.score != -1)
                 {
                     Log.e("debug","isFinal? " + e.isFinal + ". Text is: " + e.text);
                     Grade temp = new Grade(e.id,e.id,e.text,e.isFinal,e.percentage, 100,e.total);
@@ -108,10 +110,10 @@ public class DBHelper extends SQLiteOpenHelper{
                     insertGrade(temp);
                 }
                 else
-                {
+                {*/
                     Log.e("debug","isFinal? " + e.isFinal + ". Text is: " + e.text);
                     insertGrade(new Grade(e.id,e.id,e.text,e.isFinal,e.percentage,e.total));
-                }
+                //}
             }
         }
 
@@ -138,12 +140,16 @@ public class DBHelper extends SQLiteOpenHelper{
     public void setGrade(int id,double score){
         SQLiteDatabase db =this.getReadableDatabase();
         Cursor  cursor;
-        cursor = db.rawQuery("select * from s where id = ?",new String [] {id+""});
+        cursor = db.rawQuery("select g.id as id, g.fixed as fixed, g.total as total , g.score as score , g.percentage as percentage ,e.name as name from grades as g, events as e where g.id ="+id+" and e.id = g.id",null);
         cursor.moveToFirst();
+
+        //Log.i("num",cursor.getString(0));
+
         Grade g = new Grade(cursor);
         g.score  = score;
-        //insertGrade(g);
-        cursor.close();
+        g.fixed = true;
+        insertGrade(g);
+
     }
     public ArrayList<Event> getEventsSortName(){
         ArrayList<Event> ret = new ArrayList<Event>();
@@ -163,7 +169,15 @@ public class DBHelper extends SQLiteOpenHelper{
         cursor.close();
         return ret;
     }
-
+    /*public Grade createGrade(Cursor cursor){
+        boolean fixed = new Boolean(cursor.getString(cursor.getColumnIndex("fixed")));
+        int percentage = new Integer(cursor.getString(cursor.getColumnIndex("percentage")));
+        int id = new Integer(cursor.getString(cursor.getColumnIndex("id")));
+        int eid = new Integer(cursor.getString(cursor.getColumnIndex("eid")));
+        double score = new Double(cursor.getString(cursor.getColumnIndex("score")));
+        double total = new Double(cursor.getString(cursor.getColumnIndex("total")));
+        return Grade(id,eid,fixed,score,total)
+    }*/
     public ArrayList<Course> getCourses(){
         ArrayList<Course> ret = new ArrayList<Course>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -184,11 +198,11 @@ public class DBHelper extends SQLiteOpenHelper{
         ArrayList<Grade> ret = new ArrayList<Grade>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor;
-        cursor = db.rawQuery("select g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id",null);
+        cursor = db.rawQuery("select g.id as id,  g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id",null);
             cursor.moveToFirst();
             Log.i("debug","calling get Grades "+cursor.getCount());
             while(!cursor.isAfterLast()){
-            Log.i("grade name",cursor.getString(cursor.getColumnIndex("name")));
+            Log.i("grade",cursor.getString(cursor.getColumnIndex("score")));
             ret.add(new Grade(cursor));
             cursor.moveToNext();
         }
@@ -219,7 +233,7 @@ public class DBHelper extends SQLiteOpenHelper{
         Cursor cursor;
         //String query = );
         //Log.i("query = ",query);
-        cursor = db.rawQuery("select g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id and cid = ? and e.event_type = ?",new String[]{cid+"",type});
+        cursor = db.rawQuery("select g.id as id ,g.fixed as fixed , g.score as score, g.total  as total , g.percentage  as percentage, e.name  as name, e.event_type as event_type, c.number as number from grades as g , events as e , courses as c where e.id = g.eid and e.cid =  c.id and cid = ? and e.event_type = ?",new String[]{cid+"",type});
         cursor.moveToFirst();
         Log.i("debug","calling get Grades of type "+type);
         while(!cursor.isAfterLast()){

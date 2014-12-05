@@ -35,6 +35,24 @@ public class Event implements Comparable<Event>{
             e.printStackTrace();
         }
     }
+    public Event(String name, String courseName, boolean b, String due,String event_type,int id,int cid,int percentage,double total){
+        this.id = id;
+        this.text = name;
+        this.courseName = courseName;
+        this.event_type = event_type;
+        this.isChecked = b;
+        this.isFinal = isFinal;
+        this.cid = cid;
+        this.percentage = percentage;
+        this.total = total;
+        this.score = score;
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        try {
+            time = sd.parse(due);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     public Event(String name, String courseName, boolean b, String due,String event_type,int id,int cid,int percentage,double total, double score, boolean isFinal){
         this.id = id;
         this.text = name;
